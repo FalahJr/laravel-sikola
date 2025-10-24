@@ -1,0 +1,200 @@
+@extends('layouts.app')
+
+@section('title', 'Edit Lesson Schedule')
+
+@push('style')
+    <!-- CSS Libraries -->
+    <link rel="stylesheet" href="{{ asset('library/selectric/public/selectric.css') }}">
+    <link rel="stylesheet" href="{{ asset('library/bootstrap-timepicker/css/bootstrap-timepicker.min.css') }}">
+@endpush
+
+@section('main')
+    <div class="main-content">
+        <section class="section">
+            <div class="section-header">
+                <h1>Edit Lesson Schedule</h1>
+                <div class="section-header-breadcrumb">
+                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+                    <div class="breadcrumb-item"><a href="#">Lesson Schedules</a></div>
+                    <div class="breadcrumb-item">Edit Schedule</div>
+                </div>
+            </div>
+
+            <div class="section-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Form Edit Lesson Schedule</h4>
+                            </div>
+                            <form class="form" action="/teacher/lesson-schedules/{{ $schedule->id }}" method="post">
+                                @csrf
+                                @method('PUT')
+                                <div class="card-body">
+                                    <div class="form-group row mb-4">
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Lesson</label>
+                                        <div class="col-sm-12 col-md-7">
+                                            <select class="form-control selectric" name="lesson_id" required>
+                                                <option value="">Select Lesson</option>
+                                                @foreach ($lessons as $lesson)
+                                                    <option value="{{ $lesson->id }}"
+                                                        {{ $schedule->lesson_id == $lesson->id ? 'selected' : '' }}>
+                                                        {{ $lesson->name }} -
+                                                        {{ $lesson->user->nama_lengkap ?? 'No Teacher' }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row mb-4">
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Class</label>
+                                        <div class="col-sm-12 col-md-7">
+                                            <select class="form-control selectric" name="class_id" required>
+                                                <option value="">Select Class</option>
+                                                @foreach ($classes as $class)
+                                                    <option value="{{ $class->id }}"
+                                                        {{ $schedule->class_id == $class->id ? 'selected' : '' }}>
+                                                        {{ $class->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row mb-4">
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Day</label>
+                                        <div class="col-sm-12 col-md-7">
+                                            <select class="form-control selectric" name="day" required>
+                                                <option value="">Select Day</option>
+                                                <option value="Monday" {{ $schedule->day == 'Monday' ? 'selected' : '' }}>
+                                                    Monday</option>
+                                                <option value="Tuesday"
+                                                    {{ $schedule->day == 'Tuesday' ? 'selected' : '' }}>Tuesday</option>
+                                                <option value="Wednesday"
+                                                    {{ $schedule->day == 'Wednesday' ? 'selected' : '' }}>Wednesday
+                                                </option>
+                                                <option value="Thursday"
+                                                    {{ $schedule->day == 'Thursday' ? 'selected' : '' }}>Thursday</option>
+                                                <option value="Friday" {{ $schedule->day == 'Friday' ? 'selected' : '' }}>
+                                                    Friday</option>
+                                                <option value="Saturday"
+                                                    {{ $schedule->day == 'Saturday' ? 'selected' : '' }}>Saturday</option>
+                                                <option value="Sunday" {{ $schedule->day == 'Sunday' ? 'selected' : '' }}>
+                                                    Sunday</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row mb-4">
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Time</label>
+                                        <div class="col-sm-12 col-md-7">
+                                            <input type="time" class="form-control" name="time"
+                                                value="{{ $schedule->time ? date('H:i', strtotime($schedule->time)) : '' }}"
+                                                required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row mb-4">
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Room</label>
+                                        <div class="col-sm-12 col-md-7">
+                                            <input type="text" class="form-control" name="room"
+                                                value="{{ $schedule->room }}"
+                                                placeholder="Enter room number or location (e.g., Lab 101, Room A1)">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row mb-4">
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
+                                        <div class="col-sm-12 col-md-7">
+                                            <button class="btn btn-primary" type="submit">Update Schedule</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Schedule Statistics -->
+                    <div class="col-12 mt-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Schedule Statistics</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                        <div class="card card-statistic-1">
+                                            <div class="card-icon bg-primary">
+                                                <i class="far fa-book"></i>
+                                            </div>
+                                            <div class="card-wrap">
+                                                <div class="card-header">
+                                                    <h4>Lesson</h4>
+                                                </div>
+                                                <div class="card-body">
+                                                    {{ $schedule->lesson->name ?? '-' }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                        <div class="card card-statistic-1">
+                                            <div class="card-icon bg-info">
+                                                <i class="far fa-building"></i>
+                                            </div>
+                                            <div class="card-wrap">
+                                                <div class="card-header">
+                                                    <h4>Class</h4>
+                                                </div>
+                                                <div class="card-body">
+                                                    {{ $schedule->class->name ?? '-' }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                        <div class="card card-statistic-1">
+                                            <div class="card-icon bg-warning">
+                                                <i class="far fa-users"></i>
+                                            </div>
+                                            <div class="card-wrap">
+                                                <div class="card-header">
+                                                    <h4>Attendances</h4>
+                                                </div>
+                                                <div class="card-body">
+                                                    {{ $schedule->lessonAttendances()->count() }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                        <div class="card card-statistic-1">
+                                            <div class="card-icon bg-success">
+                                                <i class="fas fa-circle"></i>
+                                            </div>
+                                            <div class="card-wrap">
+                                                <div class="card-header">
+                                                    <h4>Created At</h4>
+                                                </div>
+                                                <div class="card-body">
+                                                    {{ $schedule->created_at ? $schedule->created_at->format('M Y') : '-' }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+@endsection
+
+@push('scripts')
+    <!-- JS Libraies -->
+    <script src="{{ asset('library/selectric/public/jquery.selectric.min.js') }}"></script>
+    <script src="{{ asset('library/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>
+@endpush
