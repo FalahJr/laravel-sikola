@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Management Lessons')
+@section('title', 'Manajemen Pelajaran')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -10,29 +10,29 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>{{ __('Management Lessons') }}</h1>
+                <h1>Manajemen Pelajaran</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">{{ __('Dashboard') }}</a></div>
-                    <div class="breadcrumb-item"><a href="#">{{ __('Lessons') }}</a></div>
+                    <div class="breadcrumb-item active"><a href="#">Dasbor</a></div>
+                    <div class="breadcrumb-item"><a href="#">Pelajaran</a></div>
                 </div>
             </div>
 
             <div class="section-body">
                 <div class="row">
                     <div class="col-12">
-                        <a href="{{ route('add-lesson') }}" class="btn btn-success btn-block w-25">{{ __('+ Tambah Lesson') }}</a>
+                        <a href="{{ route('add-lesson') }}" class="btn btn-success btn-block w-25">+ Tambah Pelajaran</a>
                         <div class="card mt-4">
                             <div class="card-body p-0">
                                 <div class="table-responsive">
                                     <table class="table-striped table-md table">
                                         <tr>
                                             <th>#</th>
-                                            <th>{{ __('Lesson Name') }}</th>
-                                            <th>{{ __('Teacher') }}</th>
-                                            <th>{{ __('Total Schedules') }}</th>
-                                            <th>{{ __('Total Materials') }}</th>
-                                            <th>{{ __('Created At') }}</th>
-                                            <th>{{ __('Action') }}</th>
+                                            <th>Nama Pelajaran</th>
+                                            <th>Guru</th>
+                                            <th>Total Jadwal</th>
+                                            <th>Total Materi</th>
+                                            <th>Dibuat Pada</th>
+                                            <th>Aksi</th>
                                         </tr>
                                         <?php $no = 1; ?>
 
@@ -44,27 +44,27 @@
                                                 <td>
                                                     <div class="badge badge-info">
                                                         {{ \App\Models\LessonSchedule::where('lesson_id', $list->id)->count() }}
-                                                        Schedules
+                                                        Jadwal
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="badge badge-success">
                                                         {{ \App\Models\Materi::where('lesson_id', $list->id)->count() }}
-                                                        Materials
+                                                        Materi
                                                     </div>
                                                 </td>
                                                 <td>{{ $list->created_at ? $list->created_at->format('d M Y') : '-' }}</td>
                                                 <td>
                                                     <a href="lessons/{{ $list->id }}/edit"
-                                                        class="btn btn-secondary">{{ __('Edit') }}</a>
-                                                    <a href="lessons/{{ $list->id }}" class="btn btn-info">{{ __('Detail') }}</a>
+                                                        class="btn btn-secondary">Ubah</a>
+                                                    <a href="lessons/{{ $list->id }}" class="btn btn-info">Detail</a>
                                                     <form class="ml-auto mr-auto mt-3" method="POST"
                                                         action="/teacher/lessons/{{ $list->id }}">
                                                         {{ csrf_field() }}
                                                         @method('DELETE')
                                                         <button class="btn btn-danger"
-                                                            onclick="return confirm('Are you sure you want to delete this lesson?')">
-                                                            Delete
+                                                            onclick="return confirm('Anda yakin ingin menghapus pelajaran ini?')">
+                                                            Hapus
                                                         </button>
                                                     </form>
                                                 </td>

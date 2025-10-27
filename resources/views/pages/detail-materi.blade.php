@@ -12,8 +12,8 @@
             <div class="section-header">
                 <h1 class="text-capitalize">{{ $materi->judul }}</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">{{ __('Dashboard') }}</a></div>
-                    <div class="breadcrumb-item"><a href="/student/materi"> Material </a></div>
+                    <div class="breadcrumb-item active"><a href="#">Dasbor</a></div>
+                    <div class="breadcrumb-item"><a href="/student/materi">Materi</a></div>
                     @if ($materi->lesson_name)
                         <div class="breadcrumb-item">{{ $materi->lesson_name }}</div>
                     @endif
@@ -42,32 +42,32 @@
                                     <div class="col-md-4">
                                         <div class="card bg-light">
                                             <div class="card-header">
-                                                <h6>{{ __('Additional Resources') }}</h6>
+                                                <h6>Sumber Tambahan</h6>
                                             </div>
                                             <div class="card-body">
                                                 <div class="mb-3">
-                                                    <strong>{{ __('Created by:') }}</strong><br>
+                                                    <strong>Dibuat oleh:</strong><br>
                                                     <span class="text-muted">{{ $materi->nama_lengkap }}</span>
                                                 </div>
 
                                                 @if ($materi->file)
                                                     <div class="mb-3">
-                                                        <strong>{{ __('Additional File (PPT / PDF):') }}</strong><br>
+                                                        <strong>Dokumen Tambahan (PPT / PDF):</strong><br>
                                                         <a href="{{ asset('file_upload/materi/' . $materi->file) }}"
                                                             class="btn btn-primary btn-block mt-2" target="_blank">
-                                                            <i class="fas fa-download"></i> View File
+                                                            <i class="fas fa-download"></i> Lihat File
                                                         </a>
                                                     </div>
                                                 @else
                                                     <div class="mb-3">
-                                                        <strong>{{ __('Additional File:') }}</strong><br>
-                                                        <span class="text-muted">{{ __('No additional file available') }}</span>
+                                                        <strong>Dokumen Tambahan:</strong><br>
+                                                        <span class="text-muted">Tidak ada file tambahan</span>
                                                     </div>
                                                 @endif
 
                                                 @if ($materi->gambar)
                                                     <div class="mb-3">
-                                                        <strong>{{ __('Material Image:') }}</strong><br>
+                                                        <strong>Gambar Materi:</strong><br>
                                                         <img src="{{ asset('img/materi/' . $materi->gambar) }}"
                                                             alt="{{ $materi->judul }}" class="img-fluid mt-2 rounded">
                                                     </div>

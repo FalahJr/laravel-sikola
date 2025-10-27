@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Detail Lesson')
+@section('title', 'Detail Pelajaran')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -13,10 +13,10 @@ use Illuminate\Support\Str;
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Detail Lesson: {{ $lesson->name }}</h1>
+                <h1>Detail Pelajaran: {{ $lesson->name }}</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">{{ __('Dashboard') }}</a></div>
-                    <div class="breadcrumb-item"><a href="#">{{ __('Lessons') }}</a></div>
+                    <div class="breadcrumb-item active"><a href="#">Dasbor</a></div>
+                    <div class="breadcrumb-item"><a href="#">Pelajaran</a></div>
                     <div class="breadcrumb-item">{{ $lesson->name }}</div>
                 </div>
             </div>
@@ -31,7 +31,7 @@ use Illuminate\Support\Str;
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
-                                    <h4>{{ __('Lesson Schedules') }}</h4>
+                                    <h4>Jadwal Pelajaran</h4>
                                 </div>
                                 <div class="card-body">
                                     {{ $lesson->lessonSchedules()->count() }}
@@ -46,7 +46,7 @@ use Illuminate\Support\Str;
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
-                                    <h4>{{ __('Materials') }}</h4>
+                                    <h4>Materi</h4>
                                 </div>
                                 <div class="card-body">
                                     {{ $lesson->materials()->count() }}
@@ -61,7 +61,7 @@ use Illuminate\Support\Str;
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
-                                    <h4>{{ __('Teacher') }}</h4>
+                                    <h4>Guru</h4>
                                 </div>
                                 <div class="card-body">
                                     {{ $lesson->user->nama_lengkap ?? '-' }}
@@ -76,7 +76,7 @@ use Illuminate\Support\Str;
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
-                                    <h4>{{ __('Created At') }}</h4>
+                                    <h4>Dibuat Pada</h4>
                                 </div>
                                 <div class="card-body">
                                     {{ $lesson->created_at ? $lesson->created_at->format('M Y') : '-' }}
@@ -91,17 +91,17 @@ use Illuminate\Support\Str;
                     <div class="col-12 col-md-6">
                         <div class="card">
                             <div class="card-header">
-                                <h4>{{ __('Lesson Schedules') }}</h4>
+                                <h4>Jadwal Pelajaran</h4>
                             </div>
                             <div class="card-body p-0">
                                 <div class="table-responsive">
                                     <table class="table table-striped table-md">
                                         <thead>
                                             <tr>
-                                                <th>{{ __('Day') }}</th>
-                                                <th>{{ __('Time') }}</th>
-                                                <th>{{ __('Class') }}</th>
-                                                <th>{{ __('Room') }}</th>
+                                                <th>Hari</th>
+                                                <th>Waktu</th>
+                                                <th>Kelas</th>
+                                                <th>Ruang</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -115,7 +115,7 @@ use Illuminate\Support\Str;
                                                 </tr>
                                             @empty
                                                 <tr>
-                                                    <td colspan="4" class="text-center">{{ __('No schedules created yet') }}</td>
+                                                    <td colspan="4" class="text-center">Belum ada jadwal dibuat</td>
                                                 </tr>
                                             @endforelse
                                         </tbody>
@@ -129,7 +129,7 @@ use Illuminate\Support\Str;
                     <div class="col-12 col-md-6">
                         <div class="card">
                             <div class="card-header">
-                                <h4>{{ __('Materials') }}</h4>
+                                <h4>Materi</h4>
                             </div>
                             <div class="card-body p-0">
                                 <div class="table-responsive">
@@ -137,9 +137,9 @@ use Illuminate\Support\Str;
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>{{ __('Title') }}</th>
-                                                <th>{{ __('Created By') }}</th>
-                                                <th>{{ __('Created At') }}</th>
+                                                <th>Judul</th>
+                                                <th>Dibuat Oleh</th>
+                                                <th>Dibuat Pada</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -153,7 +153,7 @@ use Illuminate\Support\Str;
                                                 </tr>
                                             @empty
                                                 <tr>
-                                                    <td colspan="4" class="text-center">{{ __('No materials created yet') }}</td>
+                                                    <td colspan="4" class="text-center">Belum ada materi</td>
                                                 </tr>
                                             @endforelse
                                         </tbody>
@@ -169,17 +169,17 @@ use Illuminate\Support\Str;
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>{{ __('Recent Attendances') }}</h4>
+                                <h4>Kehadiran Terbaru</h4>
                             </div>
                             <div class="card-body p-0">
                                 <div class="table-responsive">
                                     <table class="table table-striped">
                                         <thead>
                                             <tr>
-                                                <th>{{ __('Student') }}</th>
-                                                <th>{{ __('Schedule') }}</th>
-                                                <th>{{ __('Status') }}</th>
-                                                <th>{{ __('Date') }}</th>
+                                                <th>Murid</th>
+                                                <th>Jadwal</th>
+                                                <th>Status</th>
+                                                <th>Tanggal</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -204,7 +204,7 @@ use Illuminate\Support\Str;
                                                 </tr>
                                             @empty
                                                 <tr>
-                                                    <td colspan="4" class="text-center">{{ __('No attendance records yet') }}</td>
+                                                    <td colspan="4" class="text-center">Belum ada catatan kehadiran</td>
                                                 </tr>
                                             @endforelse
                                         </tbody>
@@ -221,10 +221,10 @@ use Illuminate\Support\Str;
                         <div class="card">
                             <div class="card-body text-center">
                                 <a href="/teacher/lessons/{{ $lesson->id }}/edit" class="btn btn-warning">
-                                    <i class="fa fa-edit"></i> Edit Lesson
+                                    <i class="fa fa-edit"></i> Ubah Pelajaran
                                 </a>
                                 <a href="/teacher/lessons" class="btn btn-secondary">
-                                    <i class="fa fa-arrow-left"></i> Back to Lessons
+                                    <i class="fa fa-arrow-left"></i> Kembali ke Pelajaran
                                 </a>
                             </div>
                         </div>

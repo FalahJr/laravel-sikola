@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Add Materi')
+@section('title', 'Tambah Materi')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -14,11 +14,11 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>{{ __('Add Materi') }}</h1>
+                <h1>Tambah Materi</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">{{ __('Dashboard') }}</a></div>
-                    <div class="breadcrumb-item"><a href="#">{{ __('Materi') }}</a></div>
-                    <div class="breadcrumb-item">{{ __('Add Materi') }}</div>
+                    <div class="breadcrumb-item active"><a href="#">Dasbor</a></div>
+                    <div class="breadcrumb-item"><a href="#">Materi</a></div>
+                    <div class="breadcrumb-item">Tambah Materi</div>
                 </div>
             </div>
 
@@ -29,17 +29,18 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>{{ __('Form Add Materi') }}</h4>
+                                <h4>Formulir Tambah Materi</h4>
                             </div>
                             <form class="form" action="/teacher/materi" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Lesson') }}</label>
+                                        <label
+                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Pelajaran</label>
                                         <div class="col-sm-12 col-md-7">
                                             {{-- {{ dd($lessons) }} --}}
                                             <select class="form-control selectric" name="lesson_id">
-                                                <option value="">{{ __('Select Lesson (Optional)') }}</option>
+                                                <option value="">Pilih Pelajaran (Opsional)</option>
                                                 @foreach ($lessons as $lesson)
                                                     <option value="{{ $lesson->id }}">{{ $lesson->name }}</option>
                                                 @endforeach
@@ -48,7 +49,7 @@
                                     </div>
 
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Title') }}</label>
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Judul</label>
                                         <div class="col-sm-12 col-md-7">
                                             <input type="text" class="form-control" name="judul" required>
                                         </div>
@@ -56,24 +57,23 @@
 
                                     <div class="form-group row mb-4">
                                         <label
-                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Description') }}</label>
+                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Deskripsi</label>
                                         <div class="col-sm-12 col-md-7">
                                             <textarea class="summernote" name="deskripsi"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row mb-4">
-                                        <label
-                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Thumbnail') }}</label>
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Gambar</label>
                                         <div class="col-sm-12 col-md-7">
                                             <div id="image-preview" class="image-preview">
-                                                <label for="image-upload" id="image-label">{{ __('Choose File') }}</label>
+                                                <label for="image-upload" id="image-label">Pilih Berkas</label>
                                                 <input type="file" name="gambar" id="image-upload" />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Dokumen
-                                            Tambahan (PPT / PDF)') }}</label>
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Dokumen
+                                            Tambahan (PPT / PDF)</label>
                                         <div class="col-sm-12 col-md-7">
 
                                             <input type="file" class="form-control" name="file">
@@ -82,7 +82,7 @@
                                     <div class="form-group row mb-4">
                                         <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                                         <div class="col-sm-12 col-md-7">
-                                            <button class="btn btn-primary" type="submit">{{ __('Publish') }}</button>
+                                            <button class="btn btn-primary" type="submit">Terbitkan</button>
                                         </div>
                                     </div>
                                 </div>

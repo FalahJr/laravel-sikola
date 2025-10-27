@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Edit Lesson')
+@section('title', 'Ubah Pelajaran')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -11,11 +11,11 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>{{ __('Edit Lesson') }}</h1>
+                <h1>Ubah Pelajaran</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">{{ __('Dashboard') }}</a></div>
-                    <div class="breadcrumb-item"><a href="#">{{ __('Lessons') }}</a></div>
-                    <div class="breadcrumb-item">{{ __('Edit Lesson') }}</div>
+                    <div class="breadcrumb-item active"><a href="#">Dasbor</a></div>
+                    <div class="breadcrumb-item"><a href="#">Pelajaran</a></div>
+                    <div class="breadcrumb-item">Ubah Pelajaran</div>
                 </div>
             </div>
 
@@ -24,28 +24,28 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>{{ __('Form Edit Lesson') }}</h4>
+                                <h4>Formulir Ubah Pelajaran</h4>
                             </div>
                             <form class="form" action="/teacher/lessons/{{ $lesson->id }}" method="post">
                                 @csrf
                                 @method('PUT')
                                 <div class="card-body">
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Lesson
-                                            Name') }}</label>
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Nama
+                                            Pelajaran</label>
                                         <div class="col-sm-12 col-md-7">
                                             <input type="text" class="form-control" name="name"
                                                 value="{{ $lesson->name }}"
-                                                placeholder="Enter lesson name (e.g., Mathematics, Physics, Programming)"
+                                                placeholder="Masukkan nama pelajaran (mis. Matematika, Fisika, Pemrograman)"
                                                 required>
                                         </div>
                                     </div>
 
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Teacher') }}</label>
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Guru</label>
                                         <div class="col-sm-12 col-md-7">
                                             <select class="form-control selectric" name="user_id" required>
-                                                <option value="">{{ __('Select Teacher') }}</option>
+                                                <option value="">Pilih Guru</option>
                                                 @foreach ($teachers as $teacher)
                                                     <option value="{{ $teacher->id }}"
                                                         {{ $lesson->user_id == $teacher->id ? 'selected' : '' }}>
@@ -59,7 +59,7 @@
                                     <div class="form-group row mb-4">
                                         <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                                         <div class="col-sm-12 col-md-7">
-                                            <button class="btn btn-primary" type="submit">{{ __('Update Lesson') }}</button>
+                                            <button class="btn btn-primary" type="submit">Perbarui Pelajaran</button>
                                         </div>
                                     </div>
                                 </div>
@@ -71,7 +71,7 @@
                     <div class="col-12 mt-4">
                         <div class="card">
                             <div class="card-header">
-                                <h4>{{ __('Lesson Statistics') }}</h4>
+                                <h4>Statistik Pelajaran</h4>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -82,7 +82,7 @@
                                             </div>
                                             <div class="card-wrap">
                                                 <div class="card-header">
-                                                    <h4>{{ __('Lesson Schedules') }}</h4>
+                                                    <h4>Jadwal Pelajaran</h4>
                                                 </div>
                                                 <div class="card-body">
                                                     {{ $lesson->lessonSchedules()->count() }}
@@ -97,7 +97,7 @@
                                             </div>
                                             <div class="card-wrap">
                                                 <div class="card-header">
-                                                    <h4>{{ __('Materials') }}</h4>
+                                                    <h4>Materi</h4>
                                                 </div>
                                                 <div class="card-body">
                                                     {{ $lesson->materials()->count() }}
@@ -112,7 +112,7 @@
                                             </div>
                                             <div class="card-wrap">
                                                 <div class="card-header">
-                                                    <h4>{{ __('Teacher') }}</h4>
+                                                    <h4>Guru</h4>
                                                 </div>
                                                 <div class="card-body">
                                                     {{ $lesson->user->nama_lengkap ?? '-' }}
@@ -127,7 +127,7 @@
                                             </div>
                                             <div class="card-wrap">
                                                 <div class="card-header">
-                                                    <h4>{{ __('Created At') }}</h4>
+                                                    <h4>Dibuat Pada</h4>
                                                 </div>
                                                 <div class="card-body">
                                                     {{ $lesson->created_at ? $lesson->created_at->format('M Y') : '-' }}

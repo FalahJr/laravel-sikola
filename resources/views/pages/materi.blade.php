@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Material')
+@section('title', 'Materi')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -10,16 +10,16 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>{{ __('Material') }}</h1>
+                <h1>Materi</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">{{ __('Dashboard') }}</a></div>
-                    <div class="breadcrumb-item">{{ __('Material') }}</div>
+                    <div class="breadcrumb-item active"><a href="#">Dasbor</a></div>
+                    <div class="breadcrumb-item">Materi</div>
                 </div>
             </div>
 
             <div class="section-body">
 
-                <h2 class="section-title">{{ __('All Materials') }}</h2>
+                <h2 class="section-title">Semua Materi</h2>
                 <div class="row">
                     {{-- <div class="col-12 col-sm-6 col-md-6 col-lg-3">
                         <article class="article article-style-b">
@@ -65,10 +65,10 @@
                                     <div class="article-title">
                                         <h2 class="text-capitalize"><a href="#">{{ $list->judul }}</a></h2>
                                     </div>
-                                    <p>By {{ $list->nama_lengkap }}</p>
+                                    <p>Oleh {{ $list->nama_lengkap }}</p>
                                     <div class="article-cta">
                                         <a href="/student/detail-materi/{{ $list->id }}"
-                                            class="btn btn-info w-100 mt-3">View Material <i
+                                            class="btn btn-info w-100 mt-3">Lihat Materi <i
                                                 class="fas fa-chevron-right"></i></a>
                                     </div>
                                 </div>

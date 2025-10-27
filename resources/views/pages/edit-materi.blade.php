@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Add Materi')
+@section('title', 'Ubah Materi')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -14,11 +14,11 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>{{ __('Edit Materi') }}</h1>
+                <h1>Ubah Materi</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">{{ __('Dashboard') }}</a></div>
-                    <div class="breadcrumb-item"><a href="#">{{ __('Materi') }}</a></div>
-                    <div class="breadcrumb-item">{{ __('Edit Materi') }}</div>
+                    <div class="breadcrumb-item active"><a href="#">Dasbor</a></div>
+                    <div class="breadcrumb-item"><a href="#">Materi</a></div>
+                    <div class="breadcrumb-item">Ubah Materi</div>
                 </div>
             </div>
 
@@ -29,7 +29,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>{{ __('Form Edit Materi') }}</h4>
+                                <h4>Formulir Ubah Materi</h4>
                             </div>
                             <form class="form" action="/teacher/materi/{{ Request::segment(3) }}" method="post"
                                 enctype="multipart/form-data">
@@ -37,10 +37,11 @@
                                 @method('PUT')
                                 <div class="card-body">
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Lesson') }}</label>
+                                        <label
+                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Pelajaran</label>
                                         <div class="col-sm-12 col-md-7">
                                             <select class="form-control" name="lesson_id">
-                                                <option value="">{{ __('Select Lesson (Optional)') }}</option>
+                                                <option value="">Pilih Pelajaran (Opsional)</option>
                                                 @foreach ($lessons as $lesson)
                                                     <option value="{{ $lesson->id }}"
                                                         {{ $materi->lesson_id == $lesson->id ? 'selected' : '' }}>
@@ -51,7 +52,7 @@
                                     </div>
 
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Title') }}</label>
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Judul</label>
                                         <div class="col-sm-12 col-md-7">
                                             <input type="text" class="form-control" name="judul"
                                                 value="{{ $materi->judul }}" required>
@@ -60,14 +61,13 @@
 
                                     <div class="form-group row mb-4">
                                         <label
-                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Description') }}</label>
+                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Deskripsi</label>
                                         <div class="col-sm-12 col-md-7">
                                             <textarea class="summernote" name="deskripsi"> {{ $materi->deskripsi }}</textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row mb-4">
-                                        <label
-                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Thumbnail') }}</label>
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Gambar</label>
                                         <div class="col-sm-12 col-md-7">
                                             {{-- <div id="image-preview" class="image-preview">
                                                 <label for="image-upload" id="image-label">{{ __('Choose File') }}</label>
@@ -77,24 +77,25 @@
                                             <div id="image-preview" class="image-preview"
                                                 style="background-image: url('{{ asset('img/materi/' . $materi->gambar) }}') ; background-size: cover;
                                             background-position: center center;">
-                                                <label for="image-upload" id="image-label">{{ __('Choose Thumbnail') }}</label>
+                                                <label for="image-upload" id="image-label">Pilih Berkas</label>
                                                 <input type="file" name="gambar" id="image-upload"
                                                     value="{{ asset('img/materi/' . $materi->gambar) }}" />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Dokumen
-                                            Tambahan (PPT / PDF)') }}</label>
+                                        <label
+                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Dokumen
+                                                                                        Tambahan (PPT / PDF)') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             @if ($materi->file)
                                                 <a href="{{ asset('file_upload/materi/' . $materi->file) }}"
                                                     class="btn btn-primary btn-md mb-3" target="_blank">
-                                                    View File
+                                                    Lihat File
                                                 </a>
                                             @else
                                                 <button class="btn btn-secondary mb-3" disabled>
-                                                    <i>{{ __('Tidak ada File Tambahan') }}</i>
+                                                    <i>Tidak ada File Tambahan</i>
                                                 </button>
                                             @endif
 
@@ -104,7 +105,7 @@
                                     <div class="form-group row mb-4">
                                         <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                                         <div class="col-sm-12 col-md-7">
-                                            <button class="btn btn-primary" type="submit">{{ __('Publish') }}</button>
+                                            <button class="btn btn-primary" type="submit">Perbarui Materi</button>
                                         </div>
                                     </div>
                                 </div>
