@@ -18,15 +18,28 @@ class MateriController extends Controller
 
     public function index()
     {
-        $data = Materi::leftJoin('lesson', 'lesson.id', '=', 'materi.lesson_id')
-            ->leftJoin('user', 'user.id', '=', 'lesson.user_id')
-            ->select('materi.*', 'user.nama_lengkap', 'lesson.name as lesson_name')
-            ->where(function ($query) {
-                $query->where('lesson.user_id', Session('user')['id'])
-                    ->orWhereNull('materi.lesson_id');
-            })
-            ->orderBy('materi.id', 'desc')
-            ->get();
+        if (Session('user')['role'] == 'Guru') {
+            $data = Materi::leftJoin('lesson', 'lesson.id', '=', 'materi.lesson_id')
+                ->leftJoin('user', 'user.id', '=', 'lesson.user_id')
+                ->select('materi.*', 'user.nama_lengkap', 'lesson.name as lesson_name')
+                ->where(function ($query) {
+                    $query->where('lesson.user_id', Session('user')['id'])
+                        ->orWhereNull('materi.lesson_id');
+                })
+                ->orderBy('materi.id', 'desc')
+                ->get();
+        } else {
+            $data = Materi::leftJoin('lesson', 'lesson.id', '=', 'materi.lesson_id')
+                ->leftJoin('user', 'user.id', '=', 'lesson.user_id')
+                ->select('materi.*', 'user.nama_lengkap', 'lesson.name as lesson_name')
+                // ->where(function ($query) {
+                //     $query->where('lesson.user_id', Session('user')['id'])
+                //         ->orWhereNull('materi.lesson_id');
+                // })
+                ->orderBy('materi.id', 'desc')
+                ->get();
+        }
+
 
         // Debug to see what we're getting
         // dd($data->toArray());
@@ -133,14 +146,18 @@ class MateriController extends Controller
 
     public function create()
     {
-        $lessons = Lesson::where('user_id', Session('user')['id'])->get();
+        if (Session('user')['role'] == 'Guru') {
+            $lessons = Lesson::where('user_id', Session('user')['id'])->get();
+        } else {
+            $lessons = Lesson::all();
+        }
         return view('pages.add-materi', compact('lessons'));
     }
 
     public function store(Request $request)
     {
         // Validate that the lesson belongs to the current teacher
-        if ($request->lesson_id) {
+        if ($request->lesson_id && Session('user')['role'] == 'Guru') {
             $lesson = Lesson::where('id', $request->lesson_id)
                 ->where('user_id', Session('user')['id'])
                 ->first();
@@ -260,7 +277,7 @@ class MateriController extends Controller
     {
         $materi = Materi::leftJoin('lesson', 'lesson.id', '=', 'materi.lesson_id')
             ->where('materi.id', $id)
-            ->where('lesson.user_id', Session('user')['id'])
+            // ->where('lesson.user_id', Session('user')['id'])
             ->select('materi.*')
             ->first();
 
