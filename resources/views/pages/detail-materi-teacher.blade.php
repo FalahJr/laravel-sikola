@@ -13,7 +13,9 @@
                 <h1>{{ __('Material Details') }}</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">{{ __('Dashboard') }}</a></div>
-                    <div class="breadcrumb-item"><a href="{{ url('/teacher/materi') }}">{{ __('Materials') }}</a></div>
+                    <div class="breadcrumb-item"><a
+                            href="{{ Session('user')['role'] == 'Guru' ? url('/teacher/materi') : url('/admin/materi') }}">{{ __('Materials') }}</a>
+                    </div>
                     <div class="breadcrumb-item">{{ __('Details') }}</div>
                 </div>
             </div>
@@ -27,7 +29,8 @@
                                 <div class="card-header-action">
                                     <a href="{{ url('/teacher/materi/' . $materi->id . '/edit') }}"
                                         class="btn btn-warning">{{ __('Edit') }}</a>
-                                    <a href="{{ url('/teacher/materi') }}" class="btn btn-secondary">{{ __('Back to List') }}</a>
+                                    <a href="{{ Session('user')['role'] == 'Guru' ? url('/teacher/materi') : url('/admin/materi') }}"
+                                        class="btn btn-secondary">{{ __('Back to List') }}</a>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -43,9 +46,11 @@
                                                     <td><strong>{{ __('Lesson:') }}</strong></td>
                                                     <td>
                                                         @if ($materi->lesson_name)
-                                                            <span class="badge badge-info">{{ $materi->lesson_name }}</span>
+                                                            <span
+                                                                class="badge badge-info">{{ $materi->lesson_name }}</span>
                                                         @else
-                                                            <span class="badge badge-secondary">{{ __('No Lesson Assigned') }}</span>
+                                                            <span
+                                                                class="badge badge-secondary">{{ __('No Lesson Assigned') }}</span>
                                                         @endif
                                                     </td>
                                                 </tr>

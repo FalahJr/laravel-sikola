@@ -220,7 +220,8 @@ use Illuminate\Support\Str;
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body text-center">
-                                <a href="/teacher/lessons/{{ $lesson->id }}/edit" class="btn btn-warning">
+                                <a href="{{ Session('user')['role'] == 'Guru' ? url('/teacher/lessons/' . $lesson->id . '/edit') : url('/admin/lessons/' . $lesson->id . '/edit') }}"
+                                    class="btn btn-warning">
                                     <i class="fa fa-edit"></i> Ubah Pelajaran
                                 </a>
                                 <a href="/teacher/lessons" class="btn btn-secondary">

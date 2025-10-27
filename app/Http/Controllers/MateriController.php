@@ -202,47 +202,72 @@ class MateriController extends Controller
     }
     public function edit(Request $request)
     {
-        $materi = Materi::leftJoin('lesson', 'lesson.id', '=', 'materi.lesson_id')
-            ->where('materi.id', $request->segment(3))
-            ->where('lesson.user_id', Session('user')['id'])
-            ->select('materi.*')
-            ->first();
+        if (Session('user')['role'] == 'Guru') {
+            $materi = Materi::leftJoin('lesson', 'lesson.id', '=', 'materi.lesson_id')
+                ->where('materi.id', $request->segment(3))
+                ->where('lesson.user_id', Session('user')['id'])
+                ->select('materi.*')
+                ->first();
+            $lessons = Lesson::where('user_id', Session('user')['id'])->get();
+        } else {
+            $materi = Materi::leftJoin('lesson', 'lesson.id', '=', 'materi.lesson_id')
+                ->where('materi.id', $request->segment(3))
+                // ->where('lesson.user_id', Session('user')['id'])
+                ->select('materi.*')
+                ->first();
+            $lessons = Lesson::all();
+        }
+
 
         if (!$materi) {
             return redirect('/admin/materi')->with('error', 'Material not found or access denied');
         }
 
-        $lessons = Lesson::where('user_id', Session('user')['id'])->get();
 
         return view('pages.edit-materi', compact('materi', 'lessons'));
     }
 
     public function show($id)
     {
-        $materi = Materi::leftJoin('lesson', 'lesson.id', '=', 'materi.lesson_id')
-            ->leftJoin('user', 'user.id', '=', 'lesson.user_id')
-            ->select('materi.*', 'user.nama_lengkap', 'lesson.name as lesson_name')
-            ->where('materi.id', $id)
-            ->where('lesson.user_id', Session('user')['id'])
-            ->first();
+        if (Session('user')['role'] == 'Guru') {
+            $materi = Materi::leftJoin('lesson', 'lesson.id', '=', 'materi.lesson_id')
+                ->where('materi.id', $id)
+                ->where('lesson.user_id', Session('user')['id'])
+                ->select('materi.*')
+                ->first();
+        } else {
+            $materi = Materi::leftJoin('lesson', 'lesson.id', '=', 'materi.lesson_id')
+                ->where('materi.id', $id)
+                // ->where('lesson.user_id', Session('user')['id'])
+                ->select('materi.*')
+                ->first();
+        }
 
         return view('pages.detail-materi-teacher', compact('materi'));
     }
 
     public function update(Request $request)
     {
-        $materi = Materi::leftJoin('lesson', 'lesson.id', '=', 'materi.lesson_id')
-            ->where('materi.id', $request->segment(3))
-            ->where('lesson.user_id', Session('user')['id'])
-            ->select('materi.*')
-            ->first();
+        if (Session('user')['role'] == 'Guru') {
+            $materi = Materi::leftJoin('lesson', 'lesson.id', '=', 'materi.lesson_id')
+                ->where('materi.id', $request->segment(3))
+                ->where('lesson.user_id', Session('user')['id'])
+                ->select('materi.*')
+                ->first();
+        } else {
+            $materi = Materi::leftJoin('lesson', 'lesson.id', '=', 'materi.lesson_id')
+                ->where('materi.id', $request->segment(3))
+                // ->where('lesson.user_id', Session('user')['id'])
+                ->select('materi.*')
+                ->first();
+        }
 
         if (!$materi) {
             return redirect('/admin/materi')->with('error', 'Material not found or access denied');
         }
 
         // Validate that the new lesson belongs to the current teacher
-        if ($request->lesson_id) {
+        if ($request->lesson_id && Session('user')['role'] == 'Guru') {
             $lesson = Lesson::where('id', $request->lesson_id)
                 ->where('user_id', Session('user')['id'])
                 ->first();
