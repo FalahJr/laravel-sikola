@@ -20,6 +20,10 @@ class LoginController extends Controller
     {
         return view('pages.login-teacher');
     }
+    public function index_admin()
+    {
+        return view('pages.login-admin');
+    }
 
     public function login_action(Request $request)
     {
@@ -116,6 +120,9 @@ class LoginController extends Controller
                     return redirect('teacher/home');
                     break;
 
+                case 'Admin':
+                    return redirect('admin/home');
+                    break;
                 // case 'Karyawan':
                 //     return redirect('/karyawan/home');
                 //     break;

@@ -33,7 +33,7 @@
                             <div class="card-header">
                                 <h4>{{ __('Form Tambah Tugas') }}</h4>
                             </div>
-                            <form class="form" action="/teacher/assignment" method="post" enctype="multipart/form-data">
+                            <form class="form" action="/admin/assignment" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
 
@@ -88,7 +88,7 @@
 
                                         <label
                                             class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Tanggal
-                                                                                        Mulai') }}</label>
+                                                                                                                                    Mulai') }}</label>
                                         <div class="col-sm-12 col-md-7">
 
                                             <input type="text" class="form-control datepicker" name="start_date">
@@ -98,7 +98,7 @@
 
                                         <label
                                             class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Tanggal
-                                                                                        Selesai') }}</label>
+                                                                                                                                    Selesai') }}</label>
                                         <div class="col-sm-12 col-md-7">
 
                                             <input type="text" class="form-control datepicker" name="end_date">

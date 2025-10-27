@@ -27,8 +27,9 @@ use Illuminate\Support\Str;
                 <div class="row">
 
                     <div class="col-12 ">
-                        <a href="{{ route('questions.create', $quiz->id) }}" class="btn btn-success btn-block w-25 ">{{ __('+ Add
-                            Question') }}</a>
+                        <a href="{{ route('questions.create', $quiz->id) }}"
+                            class="btn btn-success btn-block w-25 ">{{ __('+ Add
+                                                        Question') }}</a>
                         <div class="card mt-4">
 
 
@@ -71,7 +72,8 @@ use Illuminate\Support\Str;
                                                         method="POST" style="display:inline;">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger">{{ __('Hapus') }}</button>
+                                                        <button type="submit"
+                                                            class="btn btn-danger">{{ __('Hapus') }}</button>
                                                     </form>
                                                 </td>
                                                 {{-- <td>{{ $no }}</td>
@@ -85,7 +87,7 @@ use Illuminate\Support\Str;
                                                         <a href="materi/{{ $list->id }}/edit"
                                                             class="btn btn-success mr-4">{{ __('Edit') }}</a>
                                                         <form class="" method="POST"
-                                                            action="/teacher/materi/{{ $list->id }}">
+                                                            action="/admin/materi/{{ $list->id }}">
                                                             {{ csrf_field() }}
                                                             @method('DELETE')
                                                             <button class="btn btn-danger">{{ __('Delete') }}</button>

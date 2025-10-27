@@ -27,7 +27,7 @@
                             <div class="card-header">
                                 <h4>Formulir Ubah Jadwal Pelajaran</h4>
                             </div>
-                            <form class="form" action="/teacher/lesson-schedules/{{ $schedule->id }}" method="post">
+                            <form class="form" action="/admin/lesson-schedules/{{ $schedule->id }}" method="post">
                                 @csrf
                                 @method('PUT')
                                 <div class="card-body">

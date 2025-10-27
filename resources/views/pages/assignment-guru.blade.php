@@ -70,7 +70,7 @@ use Illuminate\Support\Str;
                                                 <td><a href="assignment/{{ $list->id }}/edit"
                                                         class="btn btn-secondary">{{ __('Detail') }}</a>
                                                     <form class="ml-auto mr-auto mt-3" method="POST"
-                                                        action="/teacher/assignment/{{ $list->id }}">
+                                                        action="/admin/assignment/{{ $list->id }}">
                                                         {{ csrf_field() }}
                                                         @method('DELETE')
                                                         <button class="btn btn-danger">{{ __('Hapus') }}</button>

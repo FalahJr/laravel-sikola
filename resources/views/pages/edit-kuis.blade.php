@@ -31,7 +31,7 @@
                             <div class="card-header">
                                 <h4>{{ __('Form Edit Quiz') }}</h4>
                             </div>
-                            <form class="form" action="/teacher/quizzes/update/{{ $quiz->id }}" method="post"
+                            <form class="form" action="/admin/quizzes/update/{{ $quiz->id }}" method="post"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')

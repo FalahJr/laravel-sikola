@@ -27,7 +27,8 @@ use Illuminate\Support\Str;
                 <div class="row">
 
                     <div class="col-12 ">
-                        <a href="{{ route('quizzes.create') }}" class="btn btn-success btn-block w-25 ">{{ __('+ Add Quiz') }}</a>
+                        <a href="{{ route('quizzes.create') }}"
+                            class="btn btn-success btn-block w-25 ">{{ __('+ Add Quiz') }}</a>
                         <div class="card mt-4">
 
 
@@ -57,7 +58,7 @@ use Illuminate\Support\Str;
                                                         <a href="quizzes/edit/{{ $list->id }}"
                                                             class="btn btn-success mr-4">{{ __('Edit') }}</a>
                                                         <form class="" method="POST"
-                                                            action="/teacher/quizzes/{{ $list->id }}">
+                                                            action="/admin/quizzes/{{ $list->id }}">
                                                             {{ csrf_field() }}
                                                             @method('DELETE')
                                                             <button class="btn btn-danger">{{ __('Delete') }}</button>

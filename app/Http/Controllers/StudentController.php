@@ -60,17 +60,17 @@ class StudentController extends Controller
 
                 $user->save();
 
-                return redirect('/teacher/manage-student');
+                return redirect('/admin/manage-student');
 
 
 
                 // ->with('success', 'Berhasil membuat Materi');
             } else {
-                return redirect('/teacher/manage-student');
+                return redirect('/admin/manage-student');
                 // ->with('failed', 'Gagal membuat Materi');
             }
         } else {
-            return redirect('/teacher/materi');
+            return redirect('/admin/materi');
             // ->with('failed', 'Gagal membuat Materi');
         }
     }
@@ -109,10 +109,10 @@ class StudentController extends Controller
 
             $user->gambar = $fileName;
             $user->save();
-            return redirect('/teacher/manage-student');
+            return redirect('/admin/manage-student');
         } else {
             $user->save();
-            return redirect('/teacher/manage-student');
+            return redirect('/admin/manage-student');
         }
     }
 
@@ -123,9 +123,9 @@ class StudentController extends Controller
 
 
         if ($user->delete()) {
-            return redirect('/teacher/manage-student');
+            return redirect('/admin/manage-student');
         } else {
-            return redirect('/teacher/manage-student');
+            return redirect('/admin/manage-student');
         }
     }
 }

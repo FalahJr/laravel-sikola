@@ -31,47 +31,53 @@
                             <div class="card-header">
                                 <h4>{{ __('Formulir Tambah Murid') }}</h4>
                             </div>
-                            <form class="form" action="/teacher/manage-student" method="post"
+                            <form class="form" action="/admin/manage-student" method="post"
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Nama
-                                            Lengkap') }}</label>
+                                        <label
+                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Nama
+                                                                                        Lengkap') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <input type="text" class="form-control" name="nama_lengkap">
                                         </div>
                                     </div>
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Email') }}</label>
+                                        <label
+                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Email') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <input type="email" class="form-control" name="email">
                                         </div>
                                     </div>
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Kata
-                                            Sandi') }}</label>
+                                        <label
+                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Kata
+                                                                                        Sandi') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <input type="text" class="form-control" name="password">
                                         </div>
                                     </div>
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Nomor
-                                            Induk') }}</label>
+                                        <label
+                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Nomor
+                                                                                        Induk') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <input type="number" min="0" class="form-control" name="nomor_induk">
                                         </div>
                                     </div>
 
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Alamat') }}</label>
+                                        <label
+                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Alamat') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <textarea class="form-control" name="alamat"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Foto
-                                            Profil') }}</label>
+                                        <label
+                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Foto
+                                                                                        Profil') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <div id="image-preview" class="image-preview">
                                                 <label for="image-upload" id="image-label">{{ __('Pilih Berkas') }}</label>

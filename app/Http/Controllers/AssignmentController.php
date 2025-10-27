@@ -90,15 +90,15 @@ class AssignmentController extends Controller
 
                 //     $notifikasi->save();
 
-                //     return redirect('/teacher/materi');
+                //     return redirect('/admin/materi');
                 // }
 
                 $assignment->save();
-                return redirect('/teacher/assignment');
+                return redirect('/admin/assignment');
             }
             // ->with('success', 'Berhasil membuat Materi');
         } else {
-            return redirect('/teacher/assignment');
+            return redirect('/admin/assignment');
             // ->with('failed', 'Gagal membuat Materi');
         }
     }
@@ -186,7 +186,7 @@ class AssignmentController extends Controller
             $assignment->gambar = $fileGambarName;
             $assignment->file = $fileName;
             $assignment->save();
-            return redirect('/teacher/assignment');
+            return redirect('/admin/assignment');
         } elseif ($request->hasFile('gambar')) {
             // dd($request->all());
 
@@ -196,7 +196,7 @@ class AssignmentController extends Controller
 
             $assignment->gambar = $fileGambarName;
             $assignment->save();
-            return redirect('/teacher/assignment');
+            return redirect('/admin/assignment');
         } elseif ($request->hasFile('file')) {
             $fileName = $request->file('file')->getClientOriginalName();
             $request->file('file')->move('file_upload/assignment', $fileName);
@@ -206,10 +206,10 @@ class AssignmentController extends Controller
             $assignment->file = $fileName;
 
             $assignment->save();
-            return redirect('/teacher/assignment');
+            return redirect('/admin/assignment');
         } else {
             $assignment->save();
-            return redirect('/teacher/assignment');
+            return redirect('/admin/assignment');
         }
     }
 
@@ -222,18 +222,18 @@ class AssignmentController extends Controller
 
             if ($deleteAssignmentSubmission) {
                 Assignment::where('id', $id)->delete();
-                return redirect('/teacher/assignment');
+                return redirect('/admin/assignment');
             }
         } else {
             Assignment::where('id', $id)->delete();
-            return redirect('/teacher/assignment');
+            return redirect('/admin/assignment');
         }
 
 
         // if ($assignment->delete()) {
-        //     return redirect('/teacher/assignment');
+        //     return redirect('/admin/assignment');
         // } else {
-        //     return redirect('/teacher/assignment');
+        //     return redirect('/admin/assignment');
         // }
     }
 

@@ -26,7 +26,7 @@
                             <div class="card-header">
                                 <h4>Formulir Tambah Pelajaran</h4>
                             </div>
-                            <form class="form" action="/teacher/lessons" method="post">
+                            <form class="form" action="/admin/lessons" method="post">
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group row mb-4">

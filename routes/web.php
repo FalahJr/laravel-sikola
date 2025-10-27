@@ -39,6 +39,7 @@ Route::get('/dashboard-ecommerce-dashboard', function () {
 
 Route::get('/login-student', [LoginController::class, 'index_student'])->name('login-student');
 Route::get('/login-teacher', [LoginController::class, 'index_teacher'])->name('login-teacher');
+Route::get('/admin/login', [LoginController::class, 'index_admin'])->name('login-admiin');
 Route::get('/logout-action', [LoginController::class, 'logout_action']);
 
 Route::get('/forgot-password', [UserController::class, 'forgot']);
@@ -80,6 +81,56 @@ Route::middleware(['authMurid'])->prefix('student')->group(function () {
 });
 
 Route::middleware(['authGuru'])->prefix('teacher')->group(function () {
+    Route::get('/home', [DashboardController::class, 'indexDashboardGuru']);
+
+
+    // Route::get('/materi', [MateriController::class, 'index']);
+    Route::resource('/materi', MateriController::class);
+    Route::get('/add-materi', [MateriController::class, 'create'])->name("add-materi");
+    Route::get('/notification', [NotificationController::class, 'index']);
+
+    // Quiz
+    Route::resource('quizzes', QuizController::class);
+    Route::get('quizzes/edit/{id}', [QuizController::class, 'edit']);
+    Route::put('quizzes/update/{id}', [QuizController::class, 'update']);
+    Route::get('quizzes/{quiz}/questions/create', [QuizController::class, 'createQuestion'])->name('questions.create');
+    Route::post('quizzes/{quiz}/questions', [QuizController::class, 'storeQuestion'])->name('questions.store');
+    Route::get('quizzes/{quiz}/questions/{question}/edit', [QuizController::class, 'editQuestion'])->name('questions.edit');
+    Route::put('quizzes/{quiz}/questions/{question}', [QuizController::class, 'updateQuestion'])->name('questions.update');
+    Route::delete('quizzes/{quiz}/questions/{question}', [QuizController::class, 'destroyQuestion'])->name('questions.destroy');
+
+    Route::resource('/manage-student', StudentController::class);
+    Route::get('/add-student', [StudentController::class, 'create'])->name("add-student");
+
+    Route::get('quiz', [StudentQuizController::class, 'index']);
+    Route::get('quiz/score/{quiz_id}', [StudentQuizController::class, 'showAllResultByGuru'])->name('teacher.quizzes.showAllResultByGuru');
+
+    Route::resource('assignment', AssignmentController::class);
+    Route::get('/add-assignment', [AssignmentController::class, 'create'])->name("add-assignment");
+    Route::get('assignments/submission/', [AssignmentController::class, 'indexAssignmentMurid']);
+    Route::get('assignments/submission/{id}', [AssignmentController::class, 'viewSubmissions']);
+
+    Route::get('profile', [UserController::class, 'index']);
+    Route::put('profile', [UserController::class, 'update']);
+
+    // Class Management
+    Route::resource('classes', \App\Http\Controllers\ClassController::class);
+    // Route::get('/add-class', [\App\Http\Controllers\ClassController::class, 'create'])->name("add-class");
+
+    // Lesson Management
+    Route::resource('lessons', \App\Http\Controllers\LessonController::class);
+    Route::get('/add-lesson', [\App\Http\Controllers\LessonController::class, 'create'])->name("add-lesson");
+
+    // Lesson Schedule Management
+    Route::resource('lesson-schedules', \App\Http\Controllers\LessonScheduleController::class);
+    Route::get('/add-lesson-schedule', [\App\Http\Controllers\LessonScheduleController::class, 'create'])->name("add-lesson-schedule");
+
+
+
+    // Route::post('/store-materi', [MateriController::class, 'store']);
+});
+
+Route::middleware(['authAdmin'])->prefix('admin')->group(function () {
     Route::get('/home', [DashboardController::class, 'indexDashboardGuru']);
 
 

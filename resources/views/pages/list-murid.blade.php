@@ -27,7 +27,8 @@ use Illuminate\Support\Str;
                 <div class="row">
 
                     <div class="col-12 ">
-                        <a href="{{ route('add-student') }}" class="btn btn-success btn-block w-25 ">{{ __('+ Tambah Murid') }}</a>
+                        <a href="{{ route('add-student') }}"
+                            class="btn btn-success btn-block w-25 ">{{ __('+ Tambah Murid') }}</a>
                         <div class="card mt-4">
 
 
@@ -70,7 +71,7 @@ use Illuminate\Support\Str;
                                                 <td><a href="manage-student/{{ $list->id }}/edit"
                                                         class="btn btn-secondary">{{ __('Detail') }}</a>
                                                     <form class="ml-auto mr-auto mt-3" method="POST"
-                                                        action="/teacher/manage-student/{{ $list->id }}">
+                                                        action="/admin/manage-student/{{ $list->id }}">
                                                         {{ csrf_field() }}
                                                         @method('DELETE')
                                                         <button class="btn btn-danger">{{ __('Hapus') }}</button>

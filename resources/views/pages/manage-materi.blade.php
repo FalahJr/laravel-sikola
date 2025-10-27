@@ -61,7 +61,7 @@
                                                         <a href="materi/{{ $materi->id }}"
                                                             class="btn btn-info btn-sm">Detail</a>
                                                         <form class="d-inline mt-2" method="POST"
-                                                            action="/teacher/materi/{{ $materi->id }}">
+                                                            action="/admin/materi/{{ $materi->id }}">
                                                             {{ csrf_field() }}
                                                             @method('DELETE')
                                                             <button class="btn btn-danger btn-sm"

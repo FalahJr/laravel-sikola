@@ -51,11 +51,11 @@ class LessonScheduleController extends Controller
             $schedule->updated_at = Carbon::now();
 
             if ($schedule->save()) {
-                return redirect('/teacher/lesson-schedules');
+                return redirect('/admin/lesson-schedules');
             }
-            return redirect('/teacher/lesson-schedules');
+            return redirect('/admin/lesson-schedules');
         } else {
-            return redirect('/teacher/lesson-schedules');
+            return redirect('/admin/lesson-schedules');
         }
     }
 
@@ -103,9 +103,9 @@ class LessonScheduleController extends Controller
         $schedule->updated_at = Carbon::now();
 
         if ($schedule->save()) {
-            return redirect('/teacher/lesson-schedules');
+            return redirect('/admin/lesson-schedules');
         } else {
-            return redirect('/teacher/lesson-schedules');
+            return redirect('/admin/lesson-schedules');
         }
     }
 
@@ -117,9 +117,9 @@ class LessonScheduleController extends Controller
         $schedule = LessonSchedule::findOrFail($id);
 
         if ($schedule->delete()) {
-            return redirect('/teacher/lesson-schedules');
+            return redirect('/admin/lesson-schedules');
         } else {
-            return redirect('/teacher/lesson-schedules');
+            return redirect('/admin/lesson-schedules');
         }
     }
 }

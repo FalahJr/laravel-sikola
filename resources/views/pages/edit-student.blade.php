@@ -31,14 +31,15 @@
                             <div class="card-header">
                                 <h4>{{ __('Formulir Ubah Murid') }}</h4>
                             </div>
-                            <form class="form" action="/teacher/manage-student/{{ Request::segment(3) }}" method="post"
+                            <form class="form" action="/admin/manage-student/{{ Request::segment(3) }}" method="post"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="card-body">
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Nama
-                                            Lengkap') }}</label>
+                                        <label
+                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Nama
+                                                                                        Lengkap') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <input type="text" class="form-control" name="nama_lengkap"
                                                 value="{{ $murid->nama_lengkap }}">
@@ -46,7 +47,8 @@
                                     </div>
 
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Email') }}</label>
+                                        <label
+                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Email') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <input type="email" class="form-control" name="email"
                                                 value="{{ $murid->email }}">
@@ -54,8 +56,9 @@
                                     </div>
 
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Kata
-                                            Sandi') }}</label>
+                                        <label
+                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Kata
+                                                                                        Sandi') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <input type="text" class="form-control" name="password"
                                                 value="{{ $murid->password }}">
@@ -63,8 +66,9 @@
                                     </div>
 
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Nomor
-                                            Induk') }}</label>
+                                        <label
+                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Nomor
+                                                                                        Induk') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <input type="number" min="0" class="form-control" name="nomor_induk"
                                                 value="{{ $murid->nomor_induk }}">
@@ -72,7 +76,8 @@
                                     </div>
 
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Alamat') }}</label>
+                                        <label
+                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Alamat') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <textarea class="form-control" name="alamat">
                                                 {{ $murid->alamat }}
@@ -80,8 +85,9 @@
                                         </div>
                                     </div>
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Foto
-                                            Profil') }}</label>
+                                        <label
+                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Foto
+                                                                                        Profil') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <div id="image-preview" class="image-preview"
                                                 style="background-image: url('{{ asset('img/murid/' . $murid->gambar) }}') ; background-size: cover;

@@ -31,7 +31,7 @@
                             <div class="card-header">
                                 <h4>Formulir Tambah Materi</h4>
                             </div>
-                            <form class="form" action="/teacher/materi" method="post" enctype="multipart/form-data">
+                            <form class="form" action="/admin/materi" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group row mb-4">

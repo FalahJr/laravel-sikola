@@ -44,11 +44,11 @@ class LessonController extends Controller
             $lesson->updated_at = Carbon::now();
 
             if ($lesson->save()) {
-                return redirect('/teacher/lessons');
+                return redirect('/admin/lessons');
             }
-            return redirect('/teacher/lessons');
+            return redirect('/admin/lessons');
         } else {
-            return redirect('/teacher/lessons');
+            return redirect('/admin/lessons');
         }
     }
 
@@ -92,9 +92,9 @@ class LessonController extends Controller
         $lesson->updated_at = Carbon::now();
 
         if ($lesson->save()) {
-            return redirect('/teacher/lessons');
+            return redirect('/admin/lessons');
         } else {
-            return redirect('/teacher/lessons');
+            return redirect('/admin/lessons');
         }
     }
 
@@ -106,9 +106,9 @@ class LessonController extends Controller
         $lesson = Lesson::findOrFail($id);
 
         if ($lesson->delete()) {
-            return redirect('/teacher/lessons');
+            return redirect('/admin/lessons');
         } else {
-            return redirect('/teacher/lessons');
+            return redirect('/admin/lessons');
         }
     }
 }

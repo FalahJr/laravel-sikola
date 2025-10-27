@@ -146,7 +146,7 @@ class MateriController extends Controller
                 ->first();
 
             if (!$lesson) {
-                return redirect('/teacher/materi')->with('error', 'Invalid lesson selected');
+                return redirect('/admin/materi')->with('error', 'Invalid lesson selected');
             }
         }
 
@@ -178,10 +178,10 @@ class MateriController extends Controller
             $notifikasi->updated_at = Carbon::now('Asia/Jakarta');
             $notifikasi->save();
 
-            return redirect('/teacher/materi')->with('success', 'Material created successfully');
+            return redirect('/admin/materi')->with('success', 'Material created successfully');
         }
 
-        return redirect('/teacher/materi')->with('error', 'Failed to create material');
+        return redirect('/admin/materi')->with('error', 'Failed to create material');
     }
     public function edit(Request $request)
     {
@@ -192,7 +192,7 @@ class MateriController extends Controller
             ->first();
 
         if (!$materi) {
-            return redirect('/teacher/materi')->with('error', 'Material not found or access denied');
+            return redirect('/admin/materi')->with('error', 'Material not found or access denied');
         }
 
         $lessons = Lesson::where('user_id', Session('user')['id'])->get();
@@ -221,7 +221,7 @@ class MateriController extends Controller
             ->first();
 
         if (!$materi) {
-            return redirect('/teacher/materi')->with('error', 'Material not found or access denied');
+            return redirect('/admin/materi')->with('error', 'Material not found or access denied');
         }
 
         // Validate that the new lesson belongs to the current teacher
@@ -231,7 +231,7 @@ class MateriController extends Controller
                 ->first();
 
             if (!$lesson) {
-                return redirect('/teacher/materi')->with('error', 'Invalid lesson selected');
+                return redirect('/admin/materi')->with('error', 'Invalid lesson selected');
             }
         }
 
@@ -253,7 +253,7 @@ class MateriController extends Controller
         }
 
         $materi->save();
-        return redirect('/teacher/materi')->with('success', 'Material updated successfully');
+        return redirect('/admin/materi')->with('success', 'Material updated successfully');
     }
 
     public function destroy(Request $request, $id)
@@ -265,13 +265,13 @@ class MateriController extends Controller
             ->first();
 
         if (!$materi) {
-            return redirect('/teacher/materi')->with('error', 'Material not found or access denied');
+            return redirect('/admin/materi')->with('error', 'Material not found or access denied');
         }
 
         if ($materi->delete()) {
-            return redirect('/teacher/materi')->with('success', 'Material deleted successfully');
+            return redirect('/admin/materi')->with('success', 'Material deleted successfully');
         } else {
-            return redirect('/teacher/materi')->with('error', 'Failed to delete material');
+            return redirect('/admin/materi')->with('error', 'Failed to delete material');
         }
     }
 }

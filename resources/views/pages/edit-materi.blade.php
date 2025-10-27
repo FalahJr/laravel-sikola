@@ -31,7 +31,7 @@
                             <div class="card-header">
                                 <h4>Formulir Ubah Materi</h4>
                             </div>
-                            <form class="form" action="/teacher/materi/{{ Request::segment(3) }}" method="post"
+                            <form class="form" action="/admin/materi/{{ Request::segment(3) }}" method="post"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
@@ -86,7 +86,7 @@
                                     <div class="form-group row mb-4">
                                         <label
                                             class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Dokumen
-                                                                                        Tambahan (PPT / PDF)') }}</label>
+                                                                                                                                    Tambahan (PPT / PDF)') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             @if ($materi->file)
                                                 <a href="{{ asset('file_upload/materi/' . $materi->file) }}"

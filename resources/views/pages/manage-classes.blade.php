@@ -49,7 +49,7 @@
                                                         class="btn btn-secondary">Ubah</a>
                                                     <a href="classes/{{ $list->id }}" class="btn btn-info">Detail</a>
                                                     <form class="ml-auto mr-auto mt-3" method="POST"
-                                                        action="/teacher/classes/{{ $list->id }}">
+                                                        action="/admin/classes/{{ $list->id }}">
                                                         {{ csrf_field() }}
                                                         @method('DELETE')
                                                         <button class="btn btn-danger"

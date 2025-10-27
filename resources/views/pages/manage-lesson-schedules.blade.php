@@ -60,7 +60,7 @@
                                                     <a href="lesson-schedules/{{ $list->id }}"
                                                         class="btn btn-info btn-sm">Detail</a>
                                                     <form class="d-inline mt-2" method="POST"
-                                                        action="/teacher/lesson-schedules/{{ $list->id }}">
+                                                        action="/admin/lesson-schedules/{{ $list->id }}">
                                                         {{ csrf_field() }}
                                                         @method('DELETE')
                                                         <button class="btn btn-danger btn-sm"

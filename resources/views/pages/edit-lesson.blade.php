@@ -26,7 +26,7 @@
                             <div class="card-header">
                                 <h4>Formulir Ubah Pelajaran</h4>
                             </div>
-                            <form class="form" action="/teacher/lessons/{{ $lesson->id }}" method="post">
+                            <form class="form" action="/admin/lessons/{{ $lesson->id }}" method="post">
                                 @csrf
                                 @method('PUT')
                                 <div class="card-body">
