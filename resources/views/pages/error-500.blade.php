@@ -9,7 +9,7 @@
 @section('main')
     <div class="page-error">
         <div class="page-inner">
-            <h1>500</h1>
+            <h1>{{ __('500') }}</h1>
             <div class="page-description">
                 Whoopps, something went wrong.
             </div>
@@ -34,7 +34,7 @@
                     </div>
                 </form>
                 <div class="mt-3">
-                    <a href="index.html">Back to Home</a>
+                    <a href="index.html">{{ __('Back to Home') }}</a>
                 </div>
             </div>
         </div>

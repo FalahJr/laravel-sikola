@@ -10,10 +10,10 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Manage Materials</h1>
+                <h1>{{ __('Manage Materials') }}</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item">Materials</div>
+                    <div class="breadcrumb-item active"><a href="#">{{ __('Dashboard') }}</a></div>
+                    <div class="breadcrumb-item">{{ __('Materials') }}</div>
                 </div>
             </div>
 
@@ -22,9 +22,9 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Materials List</h4>
+                                <h4>{{ __('Materials List') }}</h4>
                                 <div class="card-header-action">
-                                    <a href="{{ route('add-materi') }}" class="btn btn-primary">Add New Material</a>
+                                    <a href="{{ route('add-materi') }}" class="btn btn-primary">{{ __('Add New Material') }}</a>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -33,11 +33,11 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Title</th>
-                                                <th>Lesson</th>
-                                                <th>Created By</th>
-                                                <th>Created At</th>
-                                                <th>Actions</th>
+                                                <th>{{ __('Title') }}</th>
+                                                <th>{{ __('Lesson') }}</th>
+                                                <th>{{ __('Created By') }}</th>
+                                                <th>{{ __('Created At') }}</th>
+                                                <th>{{ __('Actions') }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -49,7 +49,7 @@
                                                         @if ($materi->lesson_name)
                                                             <span class="badge badge-info">{{ $materi->lesson_name }}</span>
                                                         @else
-                                                            <span class="badge badge-secondary">No Lesson</span>
+                                                            <span class="badge badge-secondary">{{ __('No Lesson') }}</span>
                                                         @endif
                                                     </td>
                                                     <td>{{ $materi->nama_lengkap }}</td>
@@ -57,9 +57,9 @@
                                                     </td>
                                                     <td>
                                                         <a href="materi/{{ $materi->id }}/edit"
-                                                            class="btn btn-secondary btn-sm">Edit</a>
+                                                            class="btn btn-secondary btn-sm">{{ __('Edit') }}</a>
                                                         <a href="materi/{{ $materi->id }}"
-                                                            class="btn btn-info btn-sm">Detail</a>
+                                                            class="btn btn-info btn-sm">{{ __('Detail') }}</a>
                                                         <form class="d-inline mt-2" method="POST"
                                                             action="/teacher/materi/{{ $materi->id }}">
                                                             {{ csrf_field() }}

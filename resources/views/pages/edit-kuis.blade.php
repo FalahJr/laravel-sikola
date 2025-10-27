@@ -14,11 +14,11 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Edit Quiz</h1>
+                <h1>{{ __('Edit Quiz') }}</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Quiz</a></div>
-                    <div class="breadcrumb-item">Edit Quiz</div>
+                    <div class="breadcrumb-item active"><a href="#">{{ __('Dashboard') }}</a></div>
+                    <div class="breadcrumb-item"><a href="#">{{ __('Quiz') }}</a></div>
+                    <div class="breadcrumb-item">{{ __('Edit Quiz') }}</div>
                 </div>
             </div>
 
@@ -29,7 +29,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Form Edit Quiz</h4>
+                                <h4>{{ __('Form Edit Quiz') }}</h4>
                             </div>
                             <form class="form" action="/teacher/quizzes/update/{{ $quiz->id }}" method="post"
                                 enctype="multipart/form-data">
@@ -38,7 +38,7 @@
 
                                 <div class="card-body">
                                     <div class="form-group ">
-                                        <label class="">Title</label>
+                                        <label class="">{{ __('Title') }}</label>
                                         <div class=" ">
                                             <input type="text" class="form-control" name="title"
                                                 value="{{ $quiz->title }}">
@@ -46,20 +46,20 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Choose Material</label>
+                                        <label>{{ __('Choose Material') }}</label>
                                         <select class="form-control select2" name="materi_id">
-                                            <option value="" hidden>Choose Material</option>
+                                            <option value="" hidden>{{ __('Choose Material') }}</option>
                                             @foreach ($materis as $list)
                                                 <option value="{{ $list->id }}"
                                                     {{ $list->id == $quiz->materi_id ? 'selected' : '' }}>
                                                     {{ $list->judul }}</option>
                                             @endforeach
-                                            {{-- <option>Option 2</option>
-                                            <option>Option 3</option> --}}
+                                            {{-- <option>{{ __('Option 2') }}</option>
+                                            <option>{{ __('Option 3') }}</option> --}}
                                         </select>
                                     </div>
                                     <div class="form-group ">
-                                        <label class="">Timer</label>
+                                        <label class="">{{ __('Timer') }}</label>
                                         <div class=" ">
                                             <input type="number" class="form-control" name="timer"
                                                 value="{{ $quiz->timer }}">
@@ -67,7 +67,7 @@
                                     </div>
                                     <div class="form-group ">
                                         <div class="">
-                                            <button class="btn btn-primary" type="submit">Publish</button>
+                                            <button class="btn btn-primary" type="submit">{{ __('Publish') }}</button>
                                         </div>
                                     </div>
                                 </div>

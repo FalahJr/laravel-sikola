@@ -11,7 +11,7 @@
 @section('main')
     <div class="card card-primary">
         <div class="card-header">
-            <h4>Login</h4>
+            <h4>{{ __('Login') }}</h4>
         </div>
 
         <div class="card-body">
@@ -20,7 +20,7 @@
                 class="needs-validation"
                 novalidate="">
                 <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="email">{{ __('Email') }}</label>
                     <input id="email"
                         type="email"
                         class="form-control"
@@ -36,7 +36,7 @@
                 <div class="form-group">
                     <div class="d-block">
                         <label for="password"
-                            class="control-label">Password</label>
+                            class="control-label">{{ __('Password') }}</label>
                         <div class="float-right">
                             <a href="auth-forgot-password.html"
                                 class="text-small">
@@ -63,7 +63,7 @@
                             tabindex="3"
                             id="remember-me">
                         <label class="custom-control-label"
-                            for="remember-me">Remember Me</label>
+                            for="remember-me">{{ __('Remember Me') }}</label>
                     </div>
                 </div>
 
@@ -76,7 +76,7 @@
                 </div>
             </form>
             <div class="mt-4 mb-3 text-center">
-                <div class="text-job text-muted">Login With Social</div>
+                <div class="text-job text-muted">{{ __('Login With Social') }}</div>
             </div>
             <div class="row sm-gutters">
                 <div class="col-6">
@@ -94,7 +94,7 @@
         </div>
     </div>
     <div class="text-muted mt-5 text-center">
-        Don't have an account? <a href="auth-register.html">Create One</a>
+        Don't have an account? <a href="auth-register.html">{{ __('Create One') }}</a>
     </div>
 @endsection
 

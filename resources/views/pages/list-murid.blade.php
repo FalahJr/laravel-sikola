@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Management Murid')
+@section('title', 'Manajemen Murid')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -14,10 +14,10 @@ use Illuminate\Support\Str;
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Management Murid</h1>
+                <h1>{{ __('Manajemen Murid') }}</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Murid</a></div>
+                    <div class="breadcrumb-item active"><a href="#">{{ __('Dasbor') }}</a></div>
+                    <div class="breadcrumb-item"><a href="#">{{ __('Murid') }}</a></div>
 
                 </div>
             </div>
@@ -27,7 +27,7 @@ use Illuminate\Support\Str;
                 <div class="row">
 
                     <div class="col-12 ">
-                        <a href="{{ route('add-student') }}" class="btn btn-success btn-block w-25 ">+ Tambah Murid</a>
+                        <a href="{{ route('add-student') }}" class="btn btn-success btn-block w-25 ">{{ __('+ Tambah Murid') }}</a>
                         <div class="card mt-4">
 
 
@@ -37,11 +37,11 @@ use Illuminate\Support\Str;
                                     <table class="table-striped table-md table">
                                         <tr>
                                             <th>#</th>
-                                            <th>No Induk</th>
-                                            <th>Nama Lengkap</th>
-                                            <th>Email</th>
-                                            <th>Gambar</th>
-                                            <th>Action</th>
+                                            <th>{{ __('No Induk') }}</th>
+                                            <th>{{ __('Nama Lengkap') }}</th>
+                                            <th>{{ __('Email') }}</th>
+                                            <th>{{ __('Gambar') }}</th>
+                                            <th>{{ __('Aksi') }}</th>
                                         </tr>
                                         <?php $no = 1; ?>
 
@@ -62,18 +62,18 @@ use Illuminate\Support\Str;
                                                         <img src="{{ asset('img/murid/' . $list->gambar) }}" alt=""
                                                             width="150">
                                                     @else
-                                                        <i>Gambar Belum Di Setting</i>
+                                                        <i>{{ __('Gambar belum diatur') }}</i>
                                                     @endif
 
 
                                                 </td>
                                                 <td><a href="manage-student/{{ $list->id }}/edit"
-                                                        class="btn btn-secondary">Detail</a>
+                                                        class="btn btn-secondary">{{ __('Detail') }}</a>
                                                     <form class="ml-auto mr-auto mt-3" method="POST"
                                                         action="/teacher/manage-student/{{ $list->id }}">
                                                         {{ csrf_field() }}
                                                         @method('DELETE')
-                                                        <button class="btn btn-danger">Delete</button>
+                                                        <button class="btn btn-danger">{{ __('Hapus') }}</button>
                                                     </form>
                                                 </td>
                                             </tr>
@@ -92,7 +92,7 @@ use Illuminate\Support\Str;
                                                     class="fas fa-chevron-left"></i></a>
                                         </li>
                                         <li class="page-item active"><a class="page-link" href="#">1 <span
-                                                    class="sr-only">(current)</span></a></li>
+                                                    class="sr-only">{{ __('(current)') }}</span></a></li>
                                         <li class="page-item">
                                             <a class="page-link" href="#">2</a>
                                         </li>

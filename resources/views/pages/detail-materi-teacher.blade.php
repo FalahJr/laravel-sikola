@@ -10,11 +10,11 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Material Details</h1>
+                <h1>{{ __('Material Details') }}</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="{{ url('/teacher/materi') }}">Materials</a></div>
-                    <div class="breadcrumb-item">Details</div>
+                    <div class="breadcrumb-item active"><a href="#">{{ __('Dashboard') }}</a></div>
+                    <div class="breadcrumb-item"><a href="{{ url('/teacher/materi') }}">{{ __('Materials') }}</a></div>
+                    <div class="breadcrumb-item">{{ __('Details') }}</div>
                 </div>
             </div>
 
@@ -26,8 +26,8 @@
                                 <h4>{{ $materi->judul }}</h4>
                                 <div class="card-header-action">
                                     <a href="{{ url('/teacher/materi/' . $materi->id . '/edit') }}"
-                                        class="btn btn-warning">Edit</a>
-                                    <a href="{{ url('/teacher/materi') }}" class="btn btn-secondary">Back to List</a>
+                                        class="btn btn-warning">{{ __('Edit') }}</a>
+                                    <a href="{{ url('/teacher/materi') }}" class="btn btn-secondary">{{ __('Back to List') }}</a>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -36,30 +36,30 @@
                                         <table class="table table-borderless">
                                             <tbody>
                                                 <tr>
-                                                    <td><strong>Title:</strong></td>
+                                                    <td><strong>{{ __('Title:') }}</strong></td>
                                                     <td>{{ $materi->judul }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td><strong>Lesson:</strong></td>
+                                                    <td><strong>{{ __('Lesson:') }}</strong></td>
                                                     <td>
                                                         @if ($materi->lesson_name)
                                                             <span class="badge badge-info">{{ $materi->lesson_name }}</span>
                                                         @else
-                                                            <span class="badge badge-secondary">No Lesson Assigned</span>
+                                                            <span class="badge badge-secondary">{{ __('No Lesson Assigned') }}</span>
                                                         @endif
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><strong>Created By:</strong></td>
+                                                    <td><strong>{{ __('Created By:') }}</strong></td>
                                                     <td>{{ $materi->nama_lengkap }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td><strong>Created At:</strong></td>
+                                                    <td><strong>{{ __('Created At:') }}</strong></td>
                                                     <td>{{ \Carbon\Carbon::parse($materi->created_at)->format('d M Y, H:i') }}
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><strong>Updated At:</strong></td>
+                                                    <td><strong>{{ __('Updated At:') }}</strong></td>
                                                     <td>{{ \Carbon\Carbon::parse($materi->updated_at)->format('d M Y, H:i') }}
                                                     </td>
                                                 </tr>
@@ -69,7 +69,7 @@
                                     <div class="col-md-6">
                                         @if ($materi->gambar)
                                             <div class="form-group">
-                                                <label><strong>Thumbnail:</strong></label>
+                                                <label><strong>{{ __('Thumbnail:') }}</strong></label>
                                                 <div class="mt-2">
                                                     <img src="{{ asset('img/materi/' . $materi->gambar) }}"
                                                         alt="{{ $materi->judul }}" class="img-fluid"
@@ -80,7 +80,7 @@
 
                                         @if ($materi->file)
                                             <div class="form-group mt-3">
-                                                <label><strong>Additional Document:</strong></label>
+                                                <label><strong>{{ __('Additional Document:') }}</strong></label>
                                                 <div class="mt-2">
                                                     <a href="{{ asset('file_upload/materi/' . $materi->file) }}"
                                                         class="btn btn-primary btn-block" target="_blank">
@@ -95,7 +95,7 @@
                                 @if ($materi->deskripsi)
                                     <div class="row mt-4">
                                         <div class="col-12">
-                                            <h5>Description:</h5>
+                                            <h5>{{ __('Description:') }}</h5>
                                             <div class="content">
                                                 {!! $materi->deskripsi !!}
                                             </div>

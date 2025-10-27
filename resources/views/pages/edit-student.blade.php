@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Edit Materi')
+@section('title', 'Ubah Murid')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -14,11 +14,11 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Edit Student</h1>
+                <h1>{{ __('Ubah Murid') }}</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Materi</a></div>
-                    <div class="breadcrumb-item">Edit Student</div>
+                    <div class="breadcrumb-item active"><a href="#">{{ __('Dashboard') }}</a></div>
+                    <div class="breadcrumb-item"><a href="#">{{ __('Murid') }}</a></div>
+                    <div class="breadcrumb-item">{{ __('Ubah Murid') }}</div>
                 </div>
             </div>
 
@@ -29,7 +29,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Form Edit Student</h4>
+                                <h4>{{ __('Formulir Ubah Murid') }}</h4>
                             </div>
                             <form class="form" action="/teacher/manage-student/{{ Request::segment(3) }}" method="post"
                                 enctype="multipart/form-data">
@@ -37,8 +37,8 @@
                                 @method('PUT')
                                 <div class="card-body">
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Nama
-                                            Lengkap</label>
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Nama
+                                            Lengkap') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <input type="text" class="form-control" name="nama_lengkap"
                                                 value="{{ $murid->nama_lengkap }}">
@@ -46,7 +46,7 @@
                                     </div>
 
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Email</label>
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Email') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <input type="email" class="form-control" name="email"
                                                 value="{{ $murid->email }}">
@@ -54,8 +54,8 @@
                                     </div>
 
                                     <div class="form-group row mb-4">
-                                        <label
-                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Password</label>
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Kata
+                                            Sandi') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <input type="text" class="form-control" name="password"
                                                 value="{{ $murid->password }}">
@@ -63,8 +63,8 @@
                                     </div>
 
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Nomor
-                                            Induk</label>
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Nomor
+                                            Induk') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <input type="number" min="0" class="form-control" name="nomor_induk"
                                                 value="{{ $murid->nomor_induk }}">
@@ -72,7 +72,7 @@
                                     </div>
 
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Alamat</label>
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Alamat') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <textarea class="form-control" name="alamat">
                                                 {{ $murid->alamat }}
@@ -80,13 +80,13 @@
                                         </div>
                                     </div>
                                     <div class="form-group row mb-4">
-                                        <label
-                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Thumbnail</label>
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Foto
+                                            Profil') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <div id="image-preview" class="image-preview"
                                                 style="background-image: url('{{ asset('img/murid/' . $murid->gambar) }}') ; background-size: cover;
                                                 background-position: center center;">
-                                                <label for="image-upload" id="image-label">Choose File</label>
+                                                <label for="image-upload" id="image-label">{{ __('Pilih Berkas') }}</label>
                                                 <input type="file" name="gambar" id="image-upload"
                                                     value="{{ $murid->gambar }}" />
                                             </div>
@@ -95,7 +95,7 @@
                                     <div class="form-group row mb-4">
                                         <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                                         <div class="col-sm-12 col-md-7">
-                                            <button class="btn btn-primary" type="submit">Publish</button>
+                                            <button class="btn btn-primary" type="submit">{{ __('Simpan') }}</button>
                                         </div>
                                     </div>
                                 </div>

@@ -11,14 +11,14 @@
 @section('main')
     <div class="card card-primary">
         <div class="card-header">
-            <h4>Register</h4>
+            <h4>{{ __('Register') }}</h4>
         </div>
 
         <div class="card-body">
             <form method="POST">
                 <div class="row">
                     <div class="form-group col-6">
-                        <label for="frist_name">First Name</label>
+                        <label for="frist_name">{{ __('First Name') }}</label>
                         <input id="frist_name"
                             type="text"
                             class="form-control"
@@ -26,7 +26,7 @@
                             autofocus>
                     </div>
                     <div class="form-group col-6">
-                        <label for="last_name">Last Name</label>
+                        <label for="last_name">{{ __('Last Name') }}</label>
                         <input id="last_name"
                             type="text"
                             class="form-control"
@@ -35,7 +35,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="email">{{ __('Email') }}</label>
                     <input id="email"
                         type="email"
                         class="form-control"
@@ -47,7 +47,7 @@
                 <div class="row">
                     <div class="form-group col-6">
                         <label for="password"
-                            class="d-block">Password</label>
+                            class="d-block">{{ __('Password') }}</label>
                         <input id="password"
                             type="password"
                             class="form-control pwstrength"
@@ -61,7 +61,7 @@
                     </div>
                     <div class="form-group col-6">
                         <label for="password2"
-                            class="d-block">Password Confirmation</label>
+                            class="d-block">{{ __('Password Confirmation') }}</label>
                         <input id="password2"
                             type="password"
                             class="form-control"
@@ -74,31 +74,31 @@
                 </div>
                 <div class="row">
                     <div class="form-group col-6">
-                        <label>Country</label>
+                        <label>{{ __('Country') }}</label>
                         <select class="form-control selectric">
-                            <option>Indonesia</option>
-                            <option>Palestine</option>
-                            <option>Syria</option>
-                            <option>Malaysia</option>
-                            <option>Thailand</option>
+                            <option>{{ __('Indonesia') }}</option>
+                            <option>{{ __('Palestine') }}</option>
+                            <option>{{ __('Syria') }}</option>
+                            <option>{{ __('Malaysia') }}</option>
+                            <option>{{ __('Thailand') }}</option>
                         </select>
                     </div>
                     <div class="form-group col-6">
-                        <label>Province</label>
+                        <label>{{ __('Province') }}</label>
                         <select class="form-control selectric">
-                            <option>West Java</option>
-                            <option>East Java</option>
+                            <option>{{ __('West Java') }}</option>
+                            <option>{{ __('East Java') }}</option>
                         </select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-6">
-                        <label>City</label>
+                        <label>{{ __('City') }}</label>
                         <input type="text"
                             class="form-control">
                     </div>
                     <div class="form-group col-6">
-                        <label>Postal Code</label>
+                        <label>{{ __('Postal Code') }}</label>
                         <input type="text"
                             class="form-control">
                     </div>
@@ -111,7 +111,7 @@
                             class="custom-control-input"
                             id="agree">
                         <label class="custom-control-label"
-                            for="agree">I agree with the terms and conditions</label>
+                            for="agree">{{ __('I agree with the terms and conditions') }}</label>
                     </div>
                 </div>
 

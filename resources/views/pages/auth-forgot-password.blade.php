@@ -9,14 +9,14 @@
 @section('main')
     <div class="card card-primary">
         <div class="card-header">
-            <h4>Forgot Password</h4>
+            <h4>{{ __('Forgot Password') }}</h4>
         </div>
 
         <div class="card-body">
-            <p class="text-muted">We will send a link to reset your password</p>
+            <p class="text-muted">{{ __('We will send a link to reset your password') }}</p>
             <form method="POST">
                 <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="email">{{ __('Email') }}</label>
                     <input id="email"
                         type="email"
                         class="form-control"

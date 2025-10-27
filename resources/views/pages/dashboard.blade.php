@@ -14,7 +14,7 @@
         <section class="section">
             <div class="section-header">
                 <div class="d-flex flex-column">
-                    <h1>Dashboard</h1>
+                    <h1>{{ __('Dashboard') }}</h1>
 
                 </div>
             </div>
@@ -22,15 +22,15 @@
                 <div class="col-lg-12 col-md-12 col-12 col-sm-12">
                     <div class="section-header">
                         <div class="d-flex flex-column">
-                            <h1>HALO !!!</h1>
-                            <p>Yuk kita belajar bersama</p>
+                            <h1>{{ __('HALO !!!') }}</h1>
+                            <p>{{ __('Yuk kita belajar bersama') }}</p>
                         </div>
                     </div>
                 </div>
                 {{-- <div class="col-lg-6">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Calendar</h4>
+                            <h4>{{ __('Calendar') }}</h4>
                         </div>
                         <div class="card-body">
                             <div class="fc-overflow">
@@ -42,7 +42,7 @@
             </div>
             <div class="section-header flex-column align-items-start ">
                 <div class="d-flex flex-column">
-                    <h1>Announcement</h1>
+                    <h1>{{ __('Announcement') }}</h1>
                 </div>
                 <div class="col-12">
                     <div class="card  py-1 mt-4 " style="background-color: #D4DEFF; border-radius:20px">
@@ -74,7 +74,7 @@
                 <div class="col-lg-12 col-md-12 col-12 col-sm-12">
                     <div class="section-header flex-column align-items-start ">
                         <div class="d-flex flex-column">
-                            <h1>Assignments</h1>
+                            <h1>{{ __('Assignments') }}</h1>
                         </div>
                         <div class="col-12">
                             <div class="card bg-light secondary pt-3 px-4 mt-4 " style=" border-radius:20px">
@@ -116,7 +116,7 @@
                 {{-- <div class="col-lg-3 col-md-12 col-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Leaderboard</h4>
+                            <h4>{{ __('Leaderboard') }}</h4>
                         </div>
                         <div class="card-body">
                             <ul class="list-unstyled list-unstyled-border">

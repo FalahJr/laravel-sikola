@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Management Classes')
+@section('title', 'Manajemen Kelas')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -10,27 +10,27 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Management Classes</h1>
+                <h1>Manajemen Kelas</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Classes</a></div>
+                    <div class="breadcrumb-item active"><a href="#">Dasbor</a></div>
+                    <div class="breadcrumb-item"><a href="#">Kelas</a></div>
                 </div>
             </div>
 
             <div class="section-body">
                 <div class="row">
                     <div class="col-12">
-                        <a href="{{ route('add-class') }}" class="btn btn-success btn-block w-25">+ Tambah Class</a>
+                        <a href="{{ route('add-class') }}" class="btn btn-success btn-block w-25">+ Tambah Kelas</a>
                         <div class="card mt-4">
                             <div class="card-body p-0">
                                 <div class="table-responsive">
                                     <table class="table-striped table-md table">
                                         <tr>
                                             <th>#</th>
-                                            <th>Class Name</th>
-                                            <th>Total Students</th>
-                                            <th>Created At</th>
-                                            <th>Action</th>
+                                            <th>Nama Kelas</th>
+                                            <th>Total Murid</th>
+                                            <th>Dibuat Pada</th>
+                                            <th>Aksi</th>
                                         </tr>
                                         <?php $no = 1; ?>
 
@@ -40,21 +40,21 @@
                                                 <td>{{ $list->name }}</td>
                                                 <td>
                                                     <div class="badge badge-success">
-                                                        {{ $list->users()->count() }} Students
+                                                        {{ $list->users()->count() }} Murid
                                                     </div>
                                                 </td>
                                                 <td>{{ $list->created_at ? $list->created_at->format('d M Y') : '-' }}</td>
                                                 <td>
                                                     <a href="classes/{{ $list->id }}/edit"
-                                                        class="btn btn-secondary">Edit</a>
+                                                        class="btn btn-secondary">Ubah</a>
                                                     <a href="classes/{{ $list->id }}" class="btn btn-info">Detail</a>
                                                     <form class="ml-auto mr-auto mt-3" method="POST"
                                                         action="/teacher/classes/{{ $list->id }}">
                                                         {{ csrf_field() }}
                                                         @method('DELETE')
                                                         <button class="btn btn-danger"
-                                                            onclick="return confirm('Are you sure you want to delete this class?')">
-                                                            Delete
+                                                            onclick="return confirm('Anda yakin ingin menghapus kelas ini?')">
+                                                            Hapus
                                                         </button>
                                                     </form>
                                                 </td>
@@ -72,7 +72,7 @@
                                                     class="fas fa-chevron-left"></i></a>
                                         </li>
                                         <li class="page-item active"><a class="page-link" href="#">1 <span
-                                                    class="sr-only">(current)</span></a></li>
+                                                    class="sr-only">{{ __('(current)') }}</span></a></li>
                                         <li class="page-item">
                                             <a class="page-link" href="#">2</a>
                                         </li>

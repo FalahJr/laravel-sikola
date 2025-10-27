@@ -14,7 +14,7 @@
         <section class="section">
             <div class="section-header">
                 <div class="d-flex flex-column">
-                    <h1>Dashboard</h1>
+                    <h1>{{ __('Dashboard') }}</h1>
 
                 </div>
             </div>
@@ -25,8 +25,8 @@
                 <div class="col-9">
                     <div class="section-header flex-column align-items-start ">
                         <div class="d-flex justify-content-between align-items-center w-100">
-                            <h1>My Students</h1>
-                            <a href="{{ url('teacher/manage-student') }}">View All</a>
+                            <h1>{{ __('My Students') }}</h1>
+                            <a href="{{ url('teacher/manage-student') }}">{{ __('View All') }}</a>
                         </div>
                         <div class="d-flex justify-content-center align-items-center w-100 mt-5">
 
@@ -58,7 +58,7 @@
                 {{-- <div class="col-lg-3 col-md-12 col-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Leaderboard</h4>
+                            <h4>{{ __('Leaderboard') }}</h4>
                         </div>
                         <div class="card-body">
                             <ul class="list-unstyled list-unstyled-border">

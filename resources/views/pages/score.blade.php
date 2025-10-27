@@ -15,14 +15,14 @@
         <section class="section">
             <div class="section-header">
                 @if (Session('user')['role'] == 'Murid')
-                    <h1>Hasil Quiz</h1>
+                    <h1>{{ __('Hasil Quiz') }}</h1>
                 @else
-                    <h1>Leaderboard</h1>
+                    <h1>{{ __('Leaderboard') }}</h1>
                 @endif
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Materi</a></div>
-                    <div class="breadcrumb-item">Add Materi</div>
+                    <div class="breadcrumb-item active"><a href="#">{{ __('Dashboard') }}</a></div>
+                    <div class="breadcrumb-item"><a href="#">{{ __('Materi') }}</a></div>
+                    <div class="breadcrumb-item">{{ __('Add Materi') }}</div>
                 </div>
             </div>
 
@@ -53,7 +53,7 @@
                     <div class="col-12 ">
                         @if (Session('user')['role'] == 'Guru')
                             {{-- <div class="section-header">
-                                <h1>Leaderboard</h1>
+                                <h1>{{ __('Leaderboard') }}</h1>
 
                             </div> --}}
 
@@ -63,11 +63,11 @@
 
                                     <table class="table-striped table-md table">
                                         <tr>
-                                            <th>Ranking</th>
-                                            <th>Nama Lengkap</th>
-                                            <th>Nilai</th>
-                                            {{-- <th>Created By</th> --}}
-                                            {{-- <th>Action</th> --}}
+                                            <th>{{ __('Ranking') }}</th>
+                                            <th>{{ __('Nama Lengkap') }}</th>
+                                            <th>{{ __('Nilai') }}</th>
+                                            {{-- <th>{{ __('Created By') }}</th> --}}
+                                            {{-- <th>{{ __('Action') }}</th> --}}
                                         </tr>
                                         <?php $no = 1; ?>
 
@@ -98,7 +98,7 @@
                                                 class="fas fa-chevron-left"></i></a>
                                     </li>
                                     <li class="page-item active"><a class="page-link" href="#">1 <span
-                                                class="sr-only">(current)</span></a></li>
+                                                class="sr-only">{{ __('(current)') }}</span></a></li>
                                     <li class="page-item">
                                         <a class="page-link" href="#">2</a>
                                     </li>

@@ -9,14 +9,14 @@
 @section('main')
     <div class="card card-primary">
         <div class="card-header">
-            <h4>Reset Password</h4>
+            <h4>{{ __('Reset Password') }}</h4>
         </div>
 
         <div class="card-body">
-            <p class="text-muted">We will send a link to reset your password</p>
+            <p class="text-muted">{{ __('We will send a link to reset your password') }}</p>
             <form method="POST">
                 <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="email">{{ __('Email') }}</label>
                     <input id="email"
                         type="email"
                         class="form-control"
@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="password">New Password</label>
+                    <label for="password">{{ __('New Password') }}</label>
                     <input id="password"
                         type="password"
                         class="form-control pwstrength"
@@ -43,7 +43,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="password-confirm">Confirm Password</label>
+                    <label for="password-confirm">{{ __('Confirm Password') }}</label>
                     <input id="password-confirm"
                         type="password"
                         class="form-control"

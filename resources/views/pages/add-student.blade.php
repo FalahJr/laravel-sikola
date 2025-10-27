@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Add Materi')
+@section('title', 'Tambah Murid')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -14,11 +14,11 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Add Student</h1>
+                <h1>{{ __('Tambah Murid') }}</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Materi</a></div>
-                    <div class="breadcrumb-item">Add Student</div>
+                    <div class="breadcrumb-item active"><a href="#">{{ __('Dashboard') }}</a></div>
+                    <div class="breadcrumb-item"><a href="#">{{ __('Murid') }}</a></div>
+                    <div class="breadcrumb-item">{{ __('Tambah Murid') }}</div>
                 </div>
             </div>
 
@@ -29,52 +29,52 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Form Add Student</h4>
+                                <h4>{{ __('Formulir Tambah Murid') }}</h4>
                             </div>
                             <form class="form" action="/teacher/manage-student" method="post"
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Nama
-                                            Lengkap</label>
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Nama
+                                            Lengkap') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <input type="text" class="form-control" name="nama_lengkap">
                                         </div>
                                     </div>
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Email</label>
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Email') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <input type="email" class="form-control" name="email">
                                         </div>
                                     </div>
                                     <div class="form-group row mb-4">
-                                        <label
-                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Password</label>
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Kata
+                                            Sandi') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <input type="text" class="form-control" name="password">
                                         </div>
                                     </div>
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Nomor
-                                            Induk</label>
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Nomor
+                                            Induk') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <input type="number" min="0" class="form-control" name="nomor_induk">
                                         </div>
                                     </div>
 
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Alamat</label>
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Alamat') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <textarea class="form-control" name="alamat"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Foto
-                                            Profil</label>
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Foto
+                                            Profil') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <div id="image-preview" class="image-preview">
-                                                <label for="image-upload" id="image-label">Choose File</label>
+                                                <label for="image-upload" id="image-label">{{ __('Pilih Berkas') }}</label>
                                                 <input type="file" name="gambar" id="image-upload" />
                                             </div>
                                         </div>
@@ -82,7 +82,7 @@
                                     <div class="form-group row mb-4">
                                         <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                                         <div class="col-sm-12 col-md-7">
-                                            <button class="btn btn-primary" type="submit">Kirim</button>
+                                            <button class="btn btn-primary" type="submit">{{ __('Kirim') }}</button>
                                         </div>
                                     </div>
                                 </div>

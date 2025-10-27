@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Detail Class')
+@section('title', 'Detail Kelas')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -10,10 +10,10 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Detail Class: {{ $class->name }}</h1>
+                <h1>Detail Kelas: {{ $class->name }}</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Classes</a></div>
+                    <div class="breadcrumb-item active"><a href="#">Dasbor</a></div>
+                    <div class="breadcrumb-item"><a href="#">Kelas</a></div>
                     <div class="breadcrumb-item">{{ $class->name }}</div>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
-                                    <h4>Total Students</h4>
+                                    <h4>Total Murid</h4>
                                 </div>
                                 <div class="card-body">
                                     {{ $class->users()->where('role', 'Murid')->count() }}
@@ -43,7 +43,7 @@
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
-                                    <h4>Lesson Schedules</h4>
+                                    <h4>Jadwal Pelajaran</h4>
                                 </div>
                                 <div class="card-body">
                                     {{ $class->lessonSchedules()->count() }}
@@ -58,7 +58,7 @@
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
-                                    <h4>Assignments</h4>
+                                    <h4>{{ __('Assignments') }}</h4>
                                 </div>
                                 <div class="card-body">
                                     {{ $class->assignments()->count() }}
@@ -73,7 +73,7 @@
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
-                                    <h4>Created At</h4>
+                                    <h4>Dibuat Pada</h4>
                                 </div>
                                 <div class="card-body">
                                     {{ $class->created_at ? $class->created_at->format('M Y') : '-' }}
@@ -88,7 +88,7 @@
                     <div class="col-12 col-md-6">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Students in This Class</h4>
+                                <h4>Murid di Kelas Ini</h4>
                             </div>
                             <div class="card-body p-0">
                                 <div class="table-responsive">
@@ -96,9 +96,9 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Name</th>
-                                                <th>Student ID</th>
-                                                <th>Major</th>
+                                                <th>Nama</th>
+                                                <th>Nomor Induk</th>
+                                                <th>Jurusan</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -111,7 +111,8 @@
                                                 </tr>
                                             @empty
                                                 <tr>
-                                                    <td colspan="4" class="text-center">No students assigned yet</td>
+                                                    <td colspan="4" class="text-center">Belum ada murid yang ditugaskan
+                                                    </td>
                                                 </tr>
                                             @endforelse
                                         </tbody>
@@ -125,17 +126,17 @@
                     <div class="col-12 col-md-6">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Lesson Schedules</h4>
+                                <h4>Jadwal Pelajaran</h4>
                             </div>
                             <div class="card-body p-0">
                                 <div class="table-responsive">
                                     <table class="table table-striped table-md">
                                         <thead>
                                             <tr>
-                                                <th>Day</th>
-                                                <th>Time</th>
-                                                <th>Lesson</th>
-                                                <th>Room</th>
+                                                <th>Hari</th>
+                                                <th>Waktu</th>
+                                                <th>Pelajaran</th>
+                                                <th>Ruang</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -149,7 +150,7 @@
                                                 </tr>
                                             @empty
                                                 <tr>
-                                                    <td colspan="4" class="text-center">No schedules created yet</td>
+                                                    <td colspan="4" class="text-center">Belum ada jadwal dibuat</td>
                                                 </tr>
                                             @endforelse
                                         </tbody>
@@ -169,10 +170,10 @@
                         <div class="card">
                             <div class="card-body text-center">
                                 <a href="/teacher/classes/{{ $class->id }}/edit" class="btn btn-warning">
-                                    <i class="fa fa-edit"></i> Edit Class
+                                    <i class="fa fa-edit"></i> Ubah Kelas
                                 </a>
                                 <a href="/teacher/classes" class="btn btn-secondary">
-                                    <i class="fa fa-arrow-left"></i> Back to Classes
+                                    <i class="fa fa-arrow-left"></i> Kembali ke Kelas
                                 </a>
                             </div>
                         </div>

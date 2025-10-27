@@ -14,10 +14,10 @@ use Illuminate\Support\Str;
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Management Materi</h1>
+                <h1>{{ __('Management Materi') }}</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Materi</a></div>
+                    <div class="breadcrumb-item active"><a href="#">{{ __('Dashboard') }}</a></div>
+                    <div class="breadcrumb-item"><a href="#">{{ __('Materi') }}</a></div>
 
                 </div>
             </div>
@@ -27,7 +27,7 @@ use Illuminate\Support\Str;
                 <div class="row">
 
                     <div class="col-12 ">
-                        <a href="{{ route('add-materi') }}" class="btn btn-success btn-block w-25 ">+ Tambah Materi</a>
+                        <a href="{{ route('add-materi') }}" class="btn btn-success btn-block w-25 ">{{ __('+ Tambah Materi') }}</a>
                         <div class="card mt-4">
 
 
@@ -37,10 +37,10 @@ use Illuminate\Support\Str;
                                     <table class="table-striped table-md table">
                                         <tr>
                                             <th>#</th>
-                                            <th>Judul</th>
-                                            {{-- <th>Deskripsi</th> --}}
-                                            <th>Created By</th>
-                                            <th>Action</th>
+                                            <th>{{ __('Judul') }}</th>
+                                            {{-- <th>{{ __('Deskripsi') }}</th> --}}
+                                            <th>{{ __('Created By') }}</th>
+                                            <th>{{ __('Action') }}</th>
                                         </tr>
                                         <?php $no = 1; ?>
 
@@ -55,15 +55,15 @@ use Illuminate\Support\Str;
                                                 </td> --}}
                                                 <td>
                                                     {{ $list->nama_lengkap }}
-                                                    {{-- <div class="badge badge-success">Active</div> --}}
+                                                    {{-- <div class="badge badge-success">{{ __('Active') }}</div> --}}
                                                 </td>
                                                 <td><a href="materi/{{ $list->id }}/edit"
-                                                        class="btn btn-secondary">Detail</a>
+                                                        class="btn btn-secondary">{{ __('Detail') }}</a>
                                                     <form class="ml-auto mr-auto mt-3" method="POST"
                                                         action="/teacher/materi/{{ $list->id }}">
                                                         {{ csrf_field() }}
                                                         @method('DELETE')
-                                                        <button class="btn btn-danger">Delete</button>
+                                                        <button class="btn btn-danger">{{ __('Delete') }}</button>
                                                     </form>
                                                 </td>
                                             </tr>
@@ -82,7 +82,7 @@ use Illuminate\Support\Str;
                                                     class="fas fa-chevron-left"></i></a>
                                         </li>
                                         <li class="page-item active"><a class="page-link" href="#">1 <span
-                                                    class="sr-only">(current)</span></a></li>
+                                                    class="sr-only">{{ __('(current)') }}</span></a></li>
                                         <li class="page-item">
                                             <a class="page-link" href="#">2</a>
                                         </li>

@@ -20,11 +20,11 @@ use Carbon\Carbon;
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Submission</h1>
+                <h1>{{ __('Submission') }}</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Assignment</a></div>
-                    <div class="breadcrumb-item">Submission</div>
+                    <div class="breadcrumb-item active"><a href="#">{{ __('Dashboard') }}</a></div>
+                    <div class="breadcrumb-item"><a href="#">{{ __('Assignment') }}</a></div>
+                    <div class="breadcrumb-item">{{ __('Submission') }}</div>
                 </div>
             </div>
 
@@ -35,7 +35,7 @@ use Carbon\Carbon;
                     <div class="col-6">
                         <div class="card ">
                             <div class="card-header">
-                                <h4>Detail Assignment</h4>
+                                <h4>{{ __('Detail Assignment') }}</h4>
                             </div>
 
                             <div class="card-body">
@@ -69,7 +69,7 @@ use Carbon\Carbon;
                     <div class="col-6">
                         <div class="card ">
                             {{-- <div class="card-header">
-                                <h4>Submission</h4>
+                                <h4>{{ __('Submission') }}</h4>
                             </div> --}}
                             <?php
                             $cek = AssignmentSubmission::where('user_id', '=', Session('user')['id'])
@@ -101,8 +101,8 @@ use Carbon\Carbon;
                                             </a>
 
                                             <div class="form-group mt-3">
-                                                <label class="col-form-label text-md-right ">Upload Your
-                                                    Submission</label>
+                                                <label class="col-form-label text-md-right ">{{ __('Upload Your
+                                                    Submission') }}</label>
                                                 <div class="">
 
                                                     <input type="file" class="form-control" name="file">
@@ -112,7 +112,7 @@ use Carbon\Carbon;
                                             <div class="form-group mb-4">
 
                                                 <div class="col-sm-12 col-md-12">
-                                                    <button class="btn btn-success" type="submit">Submit</button>
+                                                    <button class="btn btn-success" type="submit">{{ __('Submit') }}</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -123,8 +123,8 @@ use Carbon\Carbon;
 
 
                                             <div class="form-group mt-3">
-                                                <label class="col-form-label text-md-right ">Upload Your
-                                                    Submission</label>
+                                                <label class="col-form-label text-md-right ">{{ __('Upload Your
+                                                    Submission') }}</label>
                                                 <div class="">
 
                                                     <input type="file" class="form-control" name="file">
@@ -134,7 +134,7 @@ use Carbon\Carbon;
                                             <div class="form-group mb-4">
 
                                                 <div class="col-sm-12 col-md-12">
-                                                    <button class="btn btn-success" type="submit">Submit</button>
+                                                    <button class="btn btn-success" type="submit">{{ __('Submit') }}</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -160,8 +160,8 @@ use Carbon\Carbon;
 
 
                                             <div class="form-group mt-3">
-                                                <label class="col-form-label text-md-right ">Upload Your
-                                                    Submission</label>
+                                                <label class="col-form-label text-md-right ">{{ __('Upload Your
+                                                    Submission') }}</label>
                                                 <div class="">
 
                                                     <input type="file" class="form-control" name="file">
@@ -171,7 +171,7 @@ use Carbon\Carbon;
                                             <div class="form-group mb-4">
 
                                                 <div class="col-sm-12 col-md-12">
-                                                    <button class="btn btn-success" type="submit">Submit</button>
+                                                    <button class="btn btn-success" type="submit">{{ __('Submit') }}</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -180,13 +180,13 @@ use Carbon\Carbon;
                                 {{-- @if ($cek !== null)
                                     @if ($checkDelayed == true)
                                         <div class="card-body">
-                                            <h5 class="text-primary">Submission <span class="text-danger">Delayed</span>
+                                            <h5 class="text-primary">Submission <span class="text-danger">{{ __('Delayed') }}</span>
                                             </h5>
 
 
                                             <div class="form-group mt-3">
-                                                <label class="col-form-label text-md-right ">Upload Your
-                                                    Submission</label>
+                                                <label class="col-form-label text-md-right ">{{ __('Upload Your
+                                                    Submission') }}</label>
                                                 <div class="">
 
                                                     <input type="file" class="form-control" name="file">
@@ -196,13 +196,13 @@ use Carbon\Carbon;
                                             <div class="form-group mb-4">
 
                                                 <div class="col-sm-12 col-md-12">
-                                                    <button class="btn btn-success" type="submit">Submit</button>
+                                                    <button class="btn btn-success" type="submit">{{ __('Submit') }}</button>
                                                 </div>
                                             </div>
                                         </div>
                                     @else
                                         <div class="card-body">
-                                            <h5 class="text-primary">Submission</h5>
+                                            <h5 class="text-primary">{{ __('Submission') }}</h5>
 
                                             <h6 class="text-dark mt-4"> Your Submission File</h6>
                                             <a href="{{ asset('file_upload/assignment/' . $cek->file) }}"
@@ -214,12 +214,12 @@ use Carbon\Carbon;
                                     @endif
                                 @else
                                     <div class="card-body">
-                                        <h5 class="text-primary">Submission</h5>
+                                        <h5 class="text-primary">{{ __('Submission') }}</h5>
 
 
                                         <div class="form-group mt-3">
-                                            <label class="col-form-label text-md-right ">Upload Your
-                                                Submission</label>
+                                            <label class="col-form-label text-md-right ">{{ __('Upload Your
+                                                Submission') }}</label>
                                             <div class="">
 
                                                 <input type="file" class="form-control" name="file">
@@ -229,7 +229,7 @@ use Carbon\Carbon;
                                         <div class="form-group mb-4">
 
                                             <div class="col-sm-12 col-md-12">
-                                                <button class="btn btn-success" type="submit">Submit</button>
+                                                <button class="btn btn-success" type="submit">{{ __('Submit') }}</button>
                                             </div>
                                         </div>
                                     </div>

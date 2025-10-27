@@ -16,8 +16,8 @@ use Illuminate\Support\Str;
             <div class="section-header">
                 <h1 class="text-capitalize">{{ $quiz->title }}</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Materi</a></div>
+                    <div class="breadcrumb-item active"><a href="#">{{ __('Dashboard') }}</a></div>
+                    <div class="breadcrumb-item"><a href="#">{{ __('Materi') }}</a></div>
 
                 </div>
             </div>
@@ -27,8 +27,8 @@ use Illuminate\Support\Str;
                 <div class="row">
 
                     <div class="col-12 ">
-                        <a href="{{ route('questions.create', $quiz->id) }}" class="btn btn-success btn-block w-25 ">+ Add
-                            Question</a>
+                        <a href="{{ route('questions.create', $quiz->id) }}" class="btn btn-success btn-block w-25 ">{{ __('+ Add
+                            Question') }}</a>
                         <div class="card mt-4">
 
 
@@ -38,10 +38,10 @@ use Illuminate\Support\Str;
                                     <table class="table-striped table-md table">
                                         <tr>
                                             <th>#</th>
-                                            <th>Daftar Soal</th>
-                                            {{-- <th>Deskripsi</th>
-                                            <th>Created By</th> --}}
-                                            <th>Action</th>
+                                            <th>{{ __('Daftar Soal') }}</th>
+                                            {{-- <th>{{ __('Deskripsi') }}</th>
+                                            <th>{{ __('Created By') }}</th> --}}
+                                            <th>{{ __('Action') }}</th>
                                         </tr>
                                         <?php $no = 1; ?>
 
@@ -65,13 +65,13 @@ use Illuminate\Support\Str;
 
                                                 </td>
                                                 <td> <a href="{{ route('questions.edit', [$quiz->id, $question->id]) }}"
-                                                        class="btn btn-secondary">Edit</a>
+                                                        class="btn btn-secondary">{{ __('Edit') }}</a>
                                                     <form
                                                         action="{{ route('questions.destroy', [$quiz->id, $question->id]) }}"
                                                         method="POST" style="display:inline;">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger">Hapus</button>
+                                                        <button type="submit" class="btn btn-danger">{{ __('Hapus') }}</button>
                                                     </form>
                                                 </td>
                                                 {{-- <td>{{ $no }}</td>
@@ -81,14 +81,14 @@ use Illuminate\Support\Str;
                                                 <td>
                                                     <div class="d-flex">
                                                         <a href="{{ route('quizzes.show', $quiz->id) }}"
-                                                            class="btn btn-info mr-4">Detail</a>
+                                                            class="btn btn-info mr-4">{{ __('Detail') }}</a>
                                                         <a href="materi/{{ $list->id }}/edit"
-                                                            class="btn btn-success mr-4">Edit</a>
+                                                            class="btn btn-success mr-4">{{ __('Edit') }}</a>
                                                         <form class="" method="POST"
                                                             action="/teacher/materi/{{ $list->id }}">
                                                             {{ csrf_field() }}
                                                             @method('DELETE')
-                                                            <button class="btn btn-danger">Delete</button>
+                                                            <button class="btn btn-danger">{{ __('Delete') }}</button>
                                                         </form>
                                                     </div>
                                                 </td> --}}
@@ -108,7 +108,7 @@ use Illuminate\Support\Str;
                                                     class="fas fa-chevron-left"></i></a>
                                         </li>
                                         <li class="page-item active"><a class="page-link" href="#">1 <span
-                                                    class="sr-only">(current)</span></a></li>
+                                                    class="sr-only">{{ __('(current)') }}</span></a></li>
                                         <li class="page-item">
                                             <a class="page-link" href="#">2</a>
                                         </li>

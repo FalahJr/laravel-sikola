@@ -3,7 +3,7 @@
         <div class="sidebar-brand">
             <a href="index.html" class="" style="width:100%">
                 <img alt="image" class="rounded-circle mr-3" width="50" src="{{ asset('img/logo-lms.png') }}">
-                <span style="width: 50%">Sikola App</span>
+                <span style="width: 50%">{{ __('Sikola App') }}</span>
             </a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
@@ -19,61 +19,61 @@
                 @if (Session('user')['role'] == 'Murid')
                     <li class="{{ Request::is('home') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('student/home') }}"><i class="fas fa-th-large"></i>
-                            <span>Dashboard</span></a>
+                            <span>{{ __('Dashboard') }}</span></a>
                     </li>
                     <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('student/materi') }}"><i class="fas fa-home"></i>
-                            <span>Material</span></a>
+                            <span>{{ __('Material') }}</span></a>
                     </li>
                     {{-- <li class="{{ Request::is('quizzes') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('student/quizzes') }}"><i class="fas fa-file-pen"></i>
-                            <span>Quiz</span></a>
+                            <span>{{ __('Quiz') }}</span></a>
                     </li> --}}
                     <li class="{{ Request::is('assignment') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('student/assignment') }}"><i class="fas fa-file-pen"></i>
-                            <span>Assignment</span></a>
+                            <span>{{ __('Assignment') }}</span></a>
                     </li>
                 @endif
-                {{-- <li class="menu-header">Dashboard</li> --}}
+                {{-- <li class="menu-header">{{ __('Dashboard') }}</li> --}}
 
                 @if (Session('user')['role'] == 'Guru')
                     <li class="{{ Request::is('/teacher/home') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('teacher/home') }}"><i class="fas fa-th-large"></i>
-                            <span>Dashboard</span></a>
+                            <span>{{ __('Dashboard') }}</span></a>
                     </li>
                     <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('teacher/materi') }}"><i class="fas fa-home"></i>
-                            <span>Material</span></a>
+                            <span>{{ __('Material') }}</span></a>
                     </li>
                     {{-- <li class="{{ Request::is('quizzes/score') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('teacher/quiz') }}"><i class="fas fa-file-pen"></i>
-                            <span>Result Quiz</span></a>
+                            <span>{{ __('Result Quiz') }}</span></a>
                     </li> --}}
 
                     <li class="{{ Request::is('manage-student') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('teacher/manage-student') }}"><i class="fas fa-user"></i>
-                            <span>Manage Students</span></a>
+                            <span>{{ __('Manage Students') }}</span></a>
                     </li>
                     <li class="{{ Request::is('classes') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('teacher/classes') }}"><i class="fas fa-school"></i>
-                            <span>Manage Classes</span></a>
+                            <span>{{ __('Manage Classes') }}</span></a>
                     </li>
                     <li class="{{ Request::is('lessons') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('teacher/lessons') }}"><i class="fas fa-book"></i>
-                            <span>Manage Lessons</span></a>
+                            <span>{{ __('Manage Lessons') }}</span></a>
                     </li>
                     <li class="{{ Request::is('lesson-schedules') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('teacher/lesson-schedules') }}"><i
                                 class="fas fa-calendar-alt"></i>
-                            <span>Lesson Schedules</span></a>
+                            <span>{{ __('Lesson Schedules') }}</span></a>
                     </li>
                     {{-- <li class="nav-item dropdown">
                         <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                                 class="fas fa-columns"></i>
-                            <span>Manage Quiz</span></a>
+                            <span>{{ __('Manage Quiz') }}</span></a>
                         <ul class="dropdown-menu">
                             <li class="{{ Request::is('teacher/quizzes') ? 'active' : '' }}">
-                                <a class="nav-link" href="{{ url('teacher/quizzes') }}">Quiz</a>
+                                <a class="nav-link" href="{{ url('teacher/quizzes') }}">{{ __('Quiz') }}</a>
                             </li>
                         
 
@@ -82,13 +82,13 @@
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                                 class="fas fa-columns"></i>
-                            <span>Assignment</span></a>
+                            <span>{{ __('Assignment') }}</span></a>
                         <ul class="dropdown-menu">
                             <li class="{{ Request::is('teacher/assignment') ? 'active' : '' }}">
-                                <a class="nav-link" href="{{ url('teacher/assignment') }}">Manage Assignment</a>
+                                <a class="nav-link" href="{{ url('teacher/assignment') }}">{{ __('Manage Assignment') }}</a>
                             </li>
                             <li class="{{ Request::is('submission/') ? 'active' : '' }}">
-                                <a class="nav-link" href="{{ url('teacher/assignments/submission/') }}">Result</a>
+                                <a class="nav-link" href="{{ url('teacher/assignments/submission/') }}">{{ __('Result') }}</a>
                             </li>
 
                         </ul>

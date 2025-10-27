@@ -14,11 +14,11 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Edit Question</h1>
+                <h1>{{ __('Edit Question') }}</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Materi</a></div>
-                    <div class="breadcrumb-item">Add Materi</div>
+                    <div class="breadcrumb-item active"><a href="#">{{ __('Dashboard') }}</a></div>
+                    <div class="breadcrumb-item"><a href="#">{{ __('Materi') }}</a></div>
+                    <div class="breadcrumb-item">{{ __('Add Materi') }}</div>
                 </div>
             </div>
 
@@ -29,7 +29,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Form Edit Question</h4>
+                                <h4>{{ __('Form Edit Question') }}</h4>
                             </div>
                             <form class="form" action="{{ route('questions.update', [$quiz_id, $question->id]) }}"
                                 method="post" enctype="multipart/form-data">
@@ -38,52 +38,52 @@
 
                                 <div class="card-body">
                                     <div class="form-group ">
-                                        <label class="">Question</label>
+                                        <label class="">{{ __('Question') }}</label>
                                         <div class=" ">
                                             <input type="text" class="form-control" name="question"
                                                 value="{{ $question->question }}">
                                         </div>
                                     </div>
                                     <div class="form-group ">
-                                        <label class="">Option A</label>
+                                        <label class="">{{ __('Option A') }}</label>
                                         <div class=" ">
                                             <input type="text" class="form-control" name="option_a"
                                                 value="{{ $question->option_a }}">
                                         </div>
                                     </div>
                                     <div class="form-group ">
-                                        <label class="">Option B</label>
+                                        <label class="">{{ __('Option B') }}</label>
                                         <div class=" ">
                                             <input type="text" class="form-control" name="option_b"
                                                 value="{{ $question->option_b }}">
                                         </div>
                                     </div>
                                     <div class="form-group ">
-                                        <label class="">Option C</label>
+                                        <label class="">{{ __('Option C') }}</label>
                                         <div class=" ">
                                             <input type="text" class="form-control" name="option_c"
                                                 value="{{ $question->option_c }}">
                                         </div>
                                     </div>
                                     <div class="form-group ">
-                                        <label class="">Option D</label>
+                                        <label class="">{{ __('Option D') }}</label>
                                         <div class=" ">
                                             <input type="text" class="form-control" name="option_d"
                                                 value="{{ $question->option_d }}">
                                         </div>
                                     </div>
                                     <div class="form-group ">
-                                        <label class="">Option E</label>
+                                        <label class="">{{ __('Option E') }}</label>
                                         <div class=" ">
                                             <input type="text" class="form-control" name="option_e"
                                                 value="{{ $question->option_e }}">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label>Correct Answer</label>
+                                        <label>{{ __('Correct Answer') }}</label>
                                         <select class="form-control select2" name="correct_answer"
                                             placeholder="Correct Answer">
-                                            <option value="" hidden>Correct Answer</option>
+                                            <option value="" hidden>{{ __('Correct Answer') }}</option>
                                             <option value="A" @if ($question->correct_answer == 'A') selected @endif>A
                                             </option>
                                             <option value="B" @if ($question->correct_answer == 'B') selected @endif>B
@@ -100,7 +100,7 @@
 
                                     <div class="form-group ">
                                         <div class="">
-                                            <button class="btn btn-primary" type="submit">Publish</button>
+                                            <button class="btn btn-primary" type="submit">{{ __('Publish') }}</button>
                                         </div>
                                     </div>
                                 </div>

@@ -15,16 +15,16 @@ use App\Models\QuizAttempts;
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Assignment</h1>
+                <h1>{{ __('Assignment') }}</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item">Assignment</div>
+                    <div class="breadcrumb-item active"><a href="#">{{ __('Dashboard') }}</a></div>
+                    <div class="breadcrumb-item">{{ __('Assignment') }}</div>
                 </div>
             </div>
 
             <div class="section-body">
 
-                <h2 class="section-title">All Assignment</h2>
+                <h2 class="section-title">{{ __('All Assignment') }}</h2>
                 <div class="row">
 
                     @foreach ($data as $list)
@@ -89,7 +89,7 @@ use App\Models\QuizAttempts;
                             </div>
                             <div class="article-details">
                                 <div class="article-title">
-                                    <h2><a href="#">Excepteur sint occaecat cupidatat non proident</a></h2>
+                                    <h2><a href="#">{{ __('Excepteur sint occaecat cupidatat non proident') }}</a></h2>
                                 </div>
                                 <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
                                     cillum dolore eu fugiat nulla pariatur. </p>
@@ -107,7 +107,7 @@ use App\Models\QuizAttempts;
                             </div>
                             <div class="article-details">
                                 <div class="article-title">
-                                    <h2><a href="#">Excepteur sint occaecat cupidatat non proident</a></h2>
+                                    <h2><a href="#">{{ __('Excepteur sint occaecat cupidatat non proident') }}</a></h2>
                                 </div>
                                 <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
                                     cillum dolore eu fugiat nulla pariatur. </p>

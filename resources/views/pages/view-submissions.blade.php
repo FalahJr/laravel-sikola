@@ -15,14 +15,14 @@
         <section class="section">
             <div class="section-header">
                 @if (Session('user')['role'] == 'Murid')
-                    <h1>Hasil Quiz</h1>
+                    <h1>{{ __('Hasil Quiz') }}</h1>
                 @else
-                    <h1>List Submissions</h1>
+                    <h1>{{ __('List Submissions') }}</h1>
                 @endif
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Assignment</a></div>
-                    <div class="breadcrumb-item">All Submissions</div>
+                    <div class="breadcrumb-item active"><a href="#">{{ __('Dashboard') }}</a></div>
+                    <div class="breadcrumb-item"><a href="#">{{ __('Assignment') }}</a></div>
+                    <div class="breadcrumb-item">{{ __('All Submissions') }}</div>
                 </div>
             </div>
 
@@ -42,11 +42,11 @@
 
                                 <table class="table-striped table-md table text-dark">
                                     <tr>
-                                        <th>No</th>
-                                        <th>Name</th>
-                                        <th>Status</th>
-                                        <th>Date of Collection</th>
-                                        <th>File Submission</th>
+                                        <th>{{ __('No') }}</th>
+                                        <th>{{ __('Name') }}</th>
+                                        <th>{{ __('Status') }}</th>
+                                        <th>{{ __('Date of Collection') }}</th>
+                                        <th>{{ __('File Submission') }}</th>
                                     </tr>
                                     <?php $no = 1; ?>
 
@@ -100,7 +100,7 @@
                                                 class="fas fa-chevron-left"></i></a>
                                     </li>
                                     <li class="page-item active"><a class="page-link" href="#">1 <span
-                                                class="sr-only">(current)</span></a></li>
+                                                class="sr-only">{{ __('(current)') }}</span></a></li>
                                     <li class="page-item">
                                         <a class="page-link" href="#">2</a>
                                     </li>

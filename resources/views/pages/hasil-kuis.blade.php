@@ -14,11 +14,11 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Hasil Quiz</h1>
+                <h1>{{ __('Hasil Quiz') }}</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Materi</a></div>
-                    <div class="breadcrumb-item">Add Materi</div>
+                    <div class="breadcrumb-item active"><a href="#">{{ __('Dashboard') }}</a></div>
+                    <div class="breadcrumb-item"><a href="#">{{ __('Materi') }}</a></div>
+                    <div class="breadcrumb-item">{{ __('Add Materi') }}</div>
                 </div>
             </div>
 
@@ -39,7 +39,7 @@
                     <div class="col-12 ">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Result Quiz</h4>
+                                <h4>{{ __('Result Quiz') }}</h4>
                             </div>
                             <div class="card-body">
                                 <div class="empty-state" data-height="400">
@@ -54,8 +54,8 @@
                                         {{-- Sekarang anda bisa melihat peringkat skor anda melalui tombol dibawah ini --}}
                                     </p>
                                     {{-- <a href="{{ route('student.quizzes.resultByUser', ['user_id' => Session('user')['id'], 'quiz_id' => $quiz->id]) }}"
-                                        class="btn btn-primary mt-4">Leaderboard</a> --}}
-                                    {{-- <a href="#" class="bb mt-4">Need Help?</a> --}}
+                                        class="btn btn-primary mt-4">{{ __('Leaderboard') }}</a> --}}
+                                    {{-- <a href="#" class="bb mt-4">{{ __('Need Help?') }}</a> --}}
                                 </div>
                             </div>
                         </div>

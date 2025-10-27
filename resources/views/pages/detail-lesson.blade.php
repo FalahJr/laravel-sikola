@@ -15,8 +15,8 @@ use Illuminate\Support\Str;
             <div class="section-header">
                 <h1>Detail Lesson: {{ $lesson->name }}</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Lessons</a></div>
+                    <div class="breadcrumb-item active"><a href="#">{{ __('Dashboard') }}</a></div>
+                    <div class="breadcrumb-item"><a href="#">{{ __('Lessons') }}</a></div>
                     <div class="breadcrumb-item">{{ $lesson->name }}</div>
                 </div>
             </div>
@@ -31,7 +31,7 @@ use Illuminate\Support\Str;
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
-                                    <h4>Lesson Schedules</h4>
+                                    <h4>{{ __('Lesson Schedules') }}</h4>
                                 </div>
                                 <div class="card-body">
                                     {{ $lesson->lessonSchedules()->count() }}
@@ -46,7 +46,7 @@ use Illuminate\Support\Str;
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
-                                    <h4>Materials</h4>
+                                    <h4>{{ __('Materials') }}</h4>
                                 </div>
                                 <div class="card-body">
                                     {{ $lesson->materials()->count() }}
@@ -61,7 +61,7 @@ use Illuminate\Support\Str;
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
-                                    <h4>Teacher</h4>
+                                    <h4>{{ __('Teacher') }}</h4>
                                 </div>
                                 <div class="card-body">
                                     {{ $lesson->user->nama_lengkap ?? '-' }}
@@ -76,7 +76,7 @@ use Illuminate\Support\Str;
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
-                                    <h4>Created At</h4>
+                                    <h4>{{ __('Created At') }}</h4>
                                 </div>
                                 <div class="card-body">
                                     {{ $lesson->created_at ? $lesson->created_at->format('M Y') : '-' }}
@@ -91,17 +91,17 @@ use Illuminate\Support\Str;
                     <div class="col-12 col-md-6">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Lesson Schedules</h4>
+                                <h4>{{ __('Lesson Schedules') }}</h4>
                             </div>
                             <div class="card-body p-0">
                                 <div class="table-responsive">
                                     <table class="table table-striped table-md">
                                         <thead>
                                             <tr>
-                                                <th>Day</th>
-                                                <th>Time</th>
-                                                <th>Class</th>
-                                                <th>Room</th>
+                                                <th>{{ __('Day') }}</th>
+                                                <th>{{ __('Time') }}</th>
+                                                <th>{{ __('Class') }}</th>
+                                                <th>{{ __('Room') }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -115,7 +115,7 @@ use Illuminate\Support\Str;
                                                 </tr>
                                             @empty
                                                 <tr>
-                                                    <td colspan="4" class="text-center">No schedules created yet</td>
+                                                    <td colspan="4" class="text-center">{{ __('No schedules created yet') }}</td>
                                                 </tr>
                                             @endforelse
                                         </tbody>
@@ -129,7 +129,7 @@ use Illuminate\Support\Str;
                     <div class="col-12 col-md-6">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Materials</h4>
+                                <h4>{{ __('Materials') }}</h4>
                             </div>
                             <div class="card-body p-0">
                                 <div class="table-responsive">
@@ -137,9 +137,9 @@ use Illuminate\Support\Str;
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Title</th>
-                                                <th>Created By</th>
-                                                <th>Created At</th>
+                                                <th>{{ __('Title') }}</th>
+                                                <th>{{ __('Created By') }}</th>
+                                                <th>{{ __('Created At') }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -153,7 +153,7 @@ use Illuminate\Support\Str;
                                                 </tr>
                                             @empty
                                                 <tr>
-                                                    <td colspan="4" class="text-center">No materials created yet</td>
+                                                    <td colspan="4" class="text-center">{{ __('No materials created yet') }}</td>
                                                 </tr>
                                             @endforelse
                                         </tbody>
@@ -169,17 +169,17 @@ use Illuminate\Support\Str;
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Recent Attendances</h4>
+                                <h4>{{ __('Recent Attendances') }}</h4>
                             </div>
                             <div class="card-body p-0">
                                 <div class="table-responsive">
                                     <table class="table table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Student</th>
-                                                <th>Schedule</th>
-                                                <th>Status</th>
-                                                <th>Date</th>
+                                                <th>{{ __('Student') }}</th>
+                                                <th>{{ __('Schedule') }}</th>
+                                                <th>{{ __('Status') }}</th>
+                                                <th>{{ __('Date') }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -204,7 +204,7 @@ use Illuminate\Support\Str;
                                                 </tr>
                                             @empty
                                                 <tr>
-                                                    <td colspan="4" class="text-center">No attendance records yet</td>
+                                                    <td colspan="4" class="text-center">{{ __('No attendance records yet') }}</td>
                                                 </tr>
                                             @endforelse
                                         </tbody>

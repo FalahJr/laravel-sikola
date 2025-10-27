@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>Login &mdash; Stisla</title>
+    <title>{{ __('Login &mdash; Stisla') }}</title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="{{ asset('library/bootstrap/dist/css/bootstrap.min.css') }}">
@@ -38,7 +38,7 @@
                         <form method="post" action="/reset-password-action" class="needs-validation" novalidate="">
                             @csrf
                             {{-- <div class="form-group">
-                                <label for="email">Email</label>
+                                <label for="email">{{ __('Email') }}</label>
                                 <input id="email" type="email" class="form-control" name="email" tabindex="1"
                                     required autofocus>
                                 <div class="invalid-feedback">
@@ -48,7 +48,7 @@
 
                             <div class="form-group">
                                 <div class="d-block">
-                                    <label for="password" class="control-label">Password</label>
+                                    <label for="password" class="control-label">{{ __('Password') }}</label>
                                 </div>
                                 <input id="email" type="hidden" class="form-control" name="email" tabindex="2"
                                     required hidden value="{{ $user->email }}">
@@ -60,7 +60,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="d-block">
-                                    <label for="confirm_password" class="control-label">Confirm Password</label>
+                                    <label for="confirm_password" class="control-label">{{ __('Confirm Password') }}</label>
                                 </div>
                                 <input id="confirm_password" type="password" class="form-control"
                                     name="confirm_password" tabindex="2" required>
@@ -73,7 +73,7 @@
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" name="remember" class="custom-control-input" tabindex="3"
                                         id="remember-me">
-                                    <label class="custom-control-label" for="remember-me">Remember Me</label>
+                                    <label class="custom-control-label" for="remember-me">{{ __('Remember Me') }}</label>
                                 </div>
                             </div> --}}
 
@@ -88,7 +88,7 @@
                             </div>
                             {{-- 
                             <div class="mt-5 text-center">
-                                Don't have an account? <a href="auth-register.html">Create new one</a>
+                                Don't have an account? <a href="auth-register.html">{{ __('Create new one') }}</a>
                             </div> --}}
                         </form>
 
@@ -100,12 +100,12 @@
                     {{-- <div class="absolute-bottom-left index-2">
                         <div class="text-light p-5 pb-2">
                             <div class="mb-5 pb-3">
-                                <h1 class="display-4 font-weight-bold mb-2">Good Morning</h1>
-                                <h5 class="font-weight-normal text-muted-transparent">Bali, Indonesia</h5>
+                                <h1 class="display-4 font-weight-bold mb-2">{{ __('Good Morning') }}</h1>
+                                <h5 class="font-weight-normal text-muted-transparent">{{ __('Bali, Indonesia') }}</h5>
                             </div>
                             Photo by <a class="text-light bb" target="_blank"
-                                href="https://unsplash.com/photos/a8lTjWJJgLA">Justin Kauffman</a> on <a
-                                class="text-light bb" target="_blank" href="https://unsplash.com">Unsplash</a>
+                                href="https://unsplash.com/photos/a8lTjWJJgLA">{{ __('Justin Kauffman') }}</a> on <a
+                                class="text-light bb" target="_blank" href="https://unsplash.com">{{ __('Unsplash') }}</a>
                         </div>
                     </div> --}}
                 </div>

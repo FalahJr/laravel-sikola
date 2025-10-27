@@ -14,10 +14,10 @@ use Illuminate\Support\Str;
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Management Assignment</h1>
+                <h1>{{ __('Management Assignment') }}</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Assignment</a></div>
+                    <div class="breadcrumb-item active"><a href="#">{{ __('Dashboard') }}</a></div>
+                    <div class="breadcrumb-item"><a href="#">{{ __('Assignment') }}</a></div>
 
                 </div>
             </div>
@@ -27,7 +27,7 @@ use Illuminate\Support\Str;
                 <div class="row">
 
                     <div class="col-12 ">
-                        <a href="{{ route('add-assignment') }}" class="btn btn-success btn-block w-25 ">+ Add Assignment</a>
+                        <a href="{{ route('add-assignment') }}" class="btn btn-success btn-block w-25 ">{{ __('+ Add Assignment') }}</a>
                         <div class="card mt-4">
 
 
@@ -37,11 +37,11 @@ use Illuminate\Support\Str;
                                     <table class="table-striped table-md table">
                                         <tr>
                                             <th>#</th>
-                                            <th>Judul</th>
-                                            <th>Deskripsi</th>
-                                            <th>File</th>
-                                            <th>Created By</th>
-                                            <th>Action</th>
+                                            <th>{{ __('Judul') }}</th>
+                                            <th>{{ __('Deskripsi') }}</th>
+                                            <th>{{ __('File') }}</th>
+                                            <th>{{ __('Created By') }}</th>
+                                            <th>{{ __('Action') }}</th>
                                         </tr>
                                         <?php $no = 1; ?>
 
@@ -67,12 +67,12 @@ use Illuminate\Support\Str;
                                                     {{-- {{ $list->nama_lengkap }} --}}
                                                 </td>
                                                 <td><a href="assignment/{{ $list->id }}/edit"
-                                                        class="btn btn-secondary">Detail</a>
+                                                        class="btn btn-secondary">{{ __('Detail') }}</a>
                                                     <form class="ml-auto mr-auto mt-3" method="POST"
                                                         action="/teacher/assignment/{{ $list->id }}">
                                                         {{ csrf_field() }}
                                                         @method('DELETE')
-                                                        <button class="btn btn-danger">Delete</button>
+                                                        <button class="btn btn-danger">{{ __('Delete') }}</button>
                                                     </form>
                                                 </td>
                                             </tr>
@@ -91,7 +91,7 @@ use Illuminate\Support\Str;
                                                     class="fas fa-chevron-left"></i></a>
                                         </li>
                                         <li class="page-item active"><a class="page-link" href="#">1 <span
-                                                    class="sr-only">(current)</span></a></li>
+                                                    class="sr-only">{{ __('(current)') }}</span></a></li>
                                         <li class="page-item">
                                             <a class="page-link" href="#">2</a>
                                         </li>

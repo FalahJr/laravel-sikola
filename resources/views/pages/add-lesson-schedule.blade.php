@@ -12,11 +12,11 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Add Lesson Schedule</h1>
+                <h1>{{ __('Add Lesson Schedule') }}</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Lesson Schedules</a></div>
-                    <div class="breadcrumb-item">Add Schedule</div>
+                    <div class="breadcrumb-item active"><a href="#">{{ __('Dashboard') }}</a></div>
+                    <div class="breadcrumb-item"><a href="#">{{ __('Lesson Schedules') }}</a></div>
+                    <div class="breadcrumb-item">{{ __('Add Schedule') }}</div>
                 </div>
             </div>
 
@@ -25,16 +25,16 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Form Add Lesson Schedule</h4>
+                                <h4>{{ __('Form Add Lesson Schedule') }}</h4>
                             </div>
                             <form class="form" action="/teacher/lesson-schedules" method="post">
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Lesson</label>
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Lesson') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <select class="form-control selectric" name="lesson_id" required>
-                                                <option value="">Select Lesson</option>
+                                                <option value="">{{ __('Select Lesson') }}</option>
                                                 @foreach ($lessons as $lesson)
                                                     <option value="{{ $lesson->id }}">{{ $lesson->name }} -
                                                         {{ $lesson->user->nama_lengkap ?? 'No Teacher' }}</option>
@@ -44,10 +44,10 @@
                                     </div>
 
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Class</label>
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Class') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <select class="form-control selectric" name="class_id" required>
-                                                <option value="">Select Class</option>
+                                                <option value="">{{ __('Select Class') }}</option>
                                                 @foreach ($classes as $class)
                                                     <option value="{{ $class->id }}">{{ $class->name }}</option>
                                                 @endforeach
@@ -56,30 +56,30 @@
                                     </div>
 
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Day</label>
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Day') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <select class="form-control selectric" name="day" required>
-                                                <option value="">Select Day</option>
-                                                <option value="Monday">Monday</option>
-                                                <option value="Tuesday">Tuesday</option>
-                                                <option value="Wednesday">Wednesday</option>
-                                                <option value="Thursday">Thursday</option>
-                                                <option value="Friday">Friday</option>
-                                                <option value="Saturday">Saturday</option>
-                                                <option value="Sunday">Sunday</option>
+                                                <option value="">{{ __('Select Day') }}</option>
+                                                <option value="Monday">{{ __('Monday') }}</option>
+                                                <option value="Tuesday">{{ __('Tuesday') }}</option>
+                                                <option value="Wednesday">{{ __('Wednesday') }}</option>
+                                                <option value="Thursday">{{ __('Thursday') }}</option>
+                                                <option value="Friday">{{ __('Friday') }}</option>
+                                                <option value="Saturday">{{ __('Saturday') }}</option>
+                                                <option value="Sunday">{{ __('Sunday') }}</option>
                                             </select>
                                         </div>
                                     </div>
 
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Time</label>
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Time') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <input type="time" class="form-control" name="time" required>
                                         </div>
                                     </div>
 
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Room</label>
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Room') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <input type="text" class="form-control" name="room"
                                                 placeholder="Enter room number or location (e.g., Lab 101, Room A1)">
@@ -89,7 +89,7 @@
                                     <div class="form-group row mb-4">
                                         <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                                         <div class="col-sm-12 col-md-7">
-                                            <button class="btn btn-primary" type="submit">Create Schedule</button>
+                                            <button class="btn btn-primary" type="submit">{{ __('Create Schedule') }}</button>
                                         </div>
                                     </div>
                                 </div>

@@ -30,15 +30,15 @@ if ($role == 'Murid') {
                     Histories
                 </div>
                 <div class="search-item">
-                    <a href="#">How to hack NASA using CSS</a>
+                    <a href="#">{{ __('How to hack NASA using CSS') }}</a>
                     <a href="#" class="search-close"><i class="fas fa-times"></i></a>
                 </div>
                 <div class="search-item">
-                    <a href="#">Kodinger.com</a>
+                    <a href="#">{{ __('Kodinger.com') }}</a>
                     <a href="#" class="search-close"><i class="fas fa-times"></i></a>
                 </div>
                 <div class="search-item">
-                    <a href="#">#Stisla</a>
+                    <a href="#">{{ __('#Stisla') }}</a>
                     <a href="#" class="search-close"><i class="fas fa-times"></i></a>
                 </div>
                 <div class="search-header">
@@ -94,7 +94,7 @@ if ($role == 'Murid') {
             <div class="dropdown-menu dropdown-list dropdown-menu-right">
                 <div class="dropdown-header">Notifications
                     {{-- <div class="float-right">
-                        <a href="#">Mark All As Read</a>
+                        <a href="#">{{ __('Mark All As Read') }}</a>
                     </div> --}}
                 </div>
                 <div class="dropdown-list-content dropdown-list-icons">
@@ -122,7 +122,7 @@ if ($role == 'Murid') {
                 <div class="d-sm-none d-lg-inline-block">Hi, {{ Session('user')['nama'] }}</div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-                <div class="dropdown-title">Logged in 5 min ago</div>
+                <div class="dropdown-title">{{ __('Logged in 5 min ago') }}</div>
                 <a href="{{ Session('user')['role'] == 'Guru' ? '/teacher/profile' : '/student/profile' }}"
                     class="dropdown-item has-icon">
                     <i class="far fa-user"></i> Profile

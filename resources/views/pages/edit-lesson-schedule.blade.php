@@ -12,11 +12,11 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Edit Lesson Schedule</h1>
+                <h1>{{ __('Edit Lesson Schedule') }}</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Lesson Schedules</a></div>
-                    <div class="breadcrumb-item">Edit Schedule</div>
+                    <div class="breadcrumb-item active"><a href="#">{{ __('Dashboard') }}</a></div>
+                    <div class="breadcrumb-item"><a href="#">{{ __('Lesson Schedules') }}</a></div>
+                    <div class="breadcrumb-item">{{ __('Edit Schedule') }}</div>
                 </div>
             </div>
 
@@ -25,17 +25,17 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Form Edit Lesson Schedule</h4>
+                                <h4>{{ __('Form Edit Lesson Schedule') }}</h4>
                             </div>
                             <form class="form" action="/teacher/lesson-schedules/{{ $schedule->id }}" method="post">
                                 @csrf
                                 @method('PUT')
                                 <div class="card-body">
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Lesson</label>
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Lesson') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <select class="form-control selectric" name="lesson_id" required>
-                                                <option value="">Select Lesson</option>
+                                                <option value="">{{ __('Select Lesson') }}</option>
                                                 @foreach ($lessons as $lesson)
                                                     <option value="{{ $lesson->id }}"
                                                         {{ $schedule->lesson_id == $lesson->id ? 'selected' : '' }}>
@@ -48,10 +48,10 @@
                                     </div>
 
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Class</label>
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Class') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <select class="form-control selectric" name="class_id" required>
-                                                <option value="">Select Class</option>
+                                                <option value="">{{ __('Select Class') }}</option>
                                                 @foreach ($classes as $class)
                                                     <option value="{{ $class->id }}"
                                                         {{ $schedule->class_id == $class->id ? 'selected' : '' }}>
@@ -63,23 +63,23 @@
                                     </div>
 
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Day</label>
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Day') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <select class="form-control selectric" name="day" required>
-                                                <option value="">Select Day</option>
+                                                <option value="">{{ __('Select Day') }}</option>
                                                 <option value="Monday" {{ $schedule->day == 'Monday' ? 'selected' : '' }}>
                                                     Monday</option>
                                                 <option value="Tuesday"
-                                                    {{ $schedule->day == 'Tuesday' ? 'selected' : '' }}>Tuesday</option>
+                                                    {{ $schedule->day == 'Tuesday' ? 'selected' : '' }}>{{ __('Tuesday') }}</option>
                                                 <option value="Wednesday"
                                                     {{ $schedule->day == 'Wednesday' ? 'selected' : '' }}>Wednesday
                                                 </option>
                                                 <option value="Thursday"
-                                                    {{ $schedule->day == 'Thursday' ? 'selected' : '' }}>Thursday</option>
+                                                    {{ $schedule->day == 'Thursday' ? 'selected' : '' }}>{{ __('Thursday') }}</option>
                                                 <option value="Friday" {{ $schedule->day == 'Friday' ? 'selected' : '' }}>
                                                     Friday</option>
                                                 <option value="Saturday"
-                                                    {{ $schedule->day == 'Saturday' ? 'selected' : '' }}>Saturday</option>
+                                                    {{ $schedule->day == 'Saturday' ? 'selected' : '' }}>{{ __('Saturday') }}</option>
                                                 <option value="Sunday" {{ $schedule->day == 'Sunday' ? 'selected' : '' }}>
                                                     Sunday</option>
                                             </select>
@@ -87,7 +87,7 @@
                                     </div>
 
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Time</label>
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Time') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <input type="time" class="form-control" name="time"
                                                 value="{{ $schedule->time ? date('H:i', strtotime($schedule->time)) : '' }}"
@@ -96,7 +96,7 @@
                                     </div>
 
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Room</label>
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Room') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <input type="text" class="form-control" name="room"
                                                 value="{{ $schedule->room }}"
@@ -107,7 +107,7 @@
                                     <div class="form-group row mb-4">
                                         <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                                         <div class="col-sm-12 col-md-7">
-                                            <button class="btn btn-primary" type="submit">Update Schedule</button>
+                                            <button class="btn btn-primary" type="submit">{{ __('Update Schedule') }}</button>
                                         </div>
                                     </div>
                                 </div>
@@ -119,7 +119,7 @@
                     <div class="col-12 mt-4">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Schedule Statistics</h4>
+                                <h4>{{ __('Schedule Statistics') }}</h4>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -130,7 +130,7 @@
                                             </div>
                                             <div class="card-wrap">
                                                 <div class="card-header">
-                                                    <h4>Lesson</h4>
+                                                    <h4>{{ __('Lesson') }}</h4>
                                                 </div>
                                                 <div class="card-body">
                                                     {{ $schedule->lesson->name ?? '-' }}
@@ -145,7 +145,7 @@
                                             </div>
                                             <div class="card-wrap">
                                                 <div class="card-header">
-                                                    <h4>Class</h4>
+                                                    <h4>{{ __('Class') }}</h4>
                                                 </div>
                                                 <div class="card-body">
                                                     {{ $schedule->class->name ?? '-' }}
@@ -160,7 +160,7 @@
                                             </div>
                                             <div class="card-wrap">
                                                 <div class="card-header">
-                                                    <h4>Attendances</h4>
+                                                    <h4>{{ __('Attendances') }}</h4>
                                                 </div>
                                                 <div class="card-body">
                                                     {{ $schedule->lessonAttendances()->count() }}
@@ -175,7 +175,7 @@
                                             </div>
                                             <div class="card-wrap">
                                                 <div class="card-header">
-                                                    <h4>Created At</h4>
+                                                    <h4>{{ __('Created At') }}</h4>
                                                 </div>
                                                 <div class="card-body">
                                                     {{ $schedule->created_at ? $schedule->created_at->format('M Y') : '-' }}

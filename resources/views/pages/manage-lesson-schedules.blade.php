@@ -10,31 +10,31 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Management Lesson Schedules</h1>
+                <h1>{{ __('Management Lesson Schedules') }}</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Lesson Schedules</a></div>
+                    <div class="breadcrumb-item active"><a href="#">{{ __('Dashboard') }}</a></div>
+                    <div class="breadcrumb-item"><a href="#">{{ __('Lesson Schedules') }}</a></div>
                 </div>
             </div>
 
             <div class="section-body">
                 <div class="row">
                     <div class="col-12">
-                        <a href="{{ route('add-lesson-schedule') }}" class="btn btn-success btn-block w-25">+ Tambah
-                            Schedule</a>
+                        <a href="{{ route('add-lesson-schedule') }}" class="btn btn-success btn-block w-25">{{ __('+ Tambah
+                            Schedule') }}</a>
                         <div class="card mt-4">
                             <div class="card-body p-0">
                                 <div class="table-responsive">
                                     <table class="table-striped table-md table">
                                         <tr>
                                             <th>#</th>
-                                            <th>Day</th>
-                                            <th>Time</th>
-                                            <th>Lesson</th>
-                                            <th>Class</th>
-                                            <th>Room</th>
-                                            <th>Attendances</th>
-                                            <th>Action</th>
+                                            <th>{{ __('Day') }}</th>
+                                            <th>{{ __('Time') }}</th>
+                                            <th>{{ __('Lesson') }}</th>
+                                            <th>{{ __('Class') }}</th>
+                                            <th>{{ __('Room') }}</th>
+                                            <th>{{ __('Attendances') }}</th>
+                                            <th>{{ __('Action') }}</th>
                                         </tr>
                                         <?php $no = 1; ?>
 
@@ -56,9 +56,9 @@
                                                 </td>
                                                 <td>
                                                     <a href="lesson-schedules/{{ $list->id }}/edit"
-                                                        class="btn btn-secondary btn-sm">Edit</a>
+                                                        class="btn btn-secondary btn-sm">{{ __('Edit') }}</a>
                                                     <a href="lesson-schedules/{{ $list->id }}"
-                                                        class="btn btn-info btn-sm">Detail</a>
+                                                        class="btn btn-info btn-sm">{{ __('Detail') }}</a>
                                                     <form class="d-inline mt-2" method="POST"
                                                         action="/teacher/lesson-schedules/{{ $list->id }}">
                                                         {{ csrf_field() }}
@@ -83,7 +83,7 @@
                                                     class="fas fa-chevron-left"></i></a>
                                         </li>
                                         <li class="page-item active"><a class="page-link" href="#">1 <span
-                                                    class="sr-only">(current)</span></a></li>
+                                                    class="sr-only">{{ __('(current)') }}</span></a></li>
                                         <li class="page-item">
                                             <a class="page-link" href="#">2</a>
                                         </li>

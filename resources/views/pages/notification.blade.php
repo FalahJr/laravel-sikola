@@ -14,10 +14,10 @@ use Carbon\Carbon;
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1 class="text-capitalize">List Notification</h1>
+                <h1 class="text-capitalize">{{ __('List Notification') }}</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a
-                            href="/{{ Session('user')['role'] == 'Guru' ? 'teacher' : 'student' }}/home">Dashboard</a></div>
+                            href="/{{ Session('user')['role'] == 'Guru' ? 'teacher' : 'student' }}/home">{{ __('Dashboard') }}</a></div>
                     <div class="breadcrumb-item"><a href="#"> List Notification </a></div>
                 </div>
             </div>
