@@ -224,7 +224,8 @@ use Illuminate\Support\Str;
                                     class="btn btn-warning">
                                     <i class="fa fa-edit"></i> Ubah Pelajaran
                                 </a>
-                                <a href="/teacher/lessons" class="btn btn-secondary">
+                                <a href="{{ Session('user')['role'] == 'Guru' ? url('/teacher/lessons') : url('/admin/lessons') }}"
+                                    class="btn btn-secondary">
                                     <i class="fa fa-arrow-left"></i> Kembali ke Pelajaran
                                 </a>
                             </div>

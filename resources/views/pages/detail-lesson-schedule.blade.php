@@ -241,10 +241,12 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body text-center">
-                                <a href="/teacher/lesson-schedules/{{ $schedule->id }}/edit" class="btn btn-warning">
+                                <a href="{{ Session('user')['role'] == 'Guru' ? url('/teacher/lesson-schedules/' . $schedule->id . '/edit') : url('/admin/lesson-schedules/' . $schedule->id . '/edit') }}"
+                                    class="btn btn-warning">
                                     <i class="fa fa-edit"></i> Ubah Jadwal
                                 </a>
-                                <a href="/teacher/lesson-schedules" class="btn btn-secondary">
+                                <a href="{{ Session('user')['role'] == 'Guru' ? url('/teacher/lesson-schedules') : url('/admin/lesson-schedules') }}"
+                                    class="btn btn-secondary">
                                     <i class="fa fa-arrow-left"></i> Kembali ke Jadwal
                                 </a>
                             </div>
