@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Management Assignment')
+@section('title', 'Manajemen Tugas')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -14,10 +14,10 @@ use Illuminate\Support\Str;
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>{{ __('Management Assignment') }}</h1>
+                <h1>{{ __('Manajemen Tugas') }}</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">{{ __('Dashboard') }}</a></div>
-                    <div class="breadcrumb-item"><a href="#">{{ __('Assignment') }}</a></div>
+                    <div class="breadcrumb-item active"><a href="#">{{ __('Dasbor') }}</a></div>
+                    <div class="breadcrumb-item"><a href="#">{{ __('Tugas') }}</a></div>
 
                 </div>
             </div>
@@ -27,7 +27,8 @@ use Illuminate\Support\Str;
                 <div class="row">
 
                     <div class="col-12 ">
-                        <a href="{{ route('add-assignment') }}" class="btn btn-success btn-block w-25 ">{{ __('+ Add Assignment') }}</a>
+                        <a href="{{ route('add-assignment') }}"
+                            class="btn btn-success btn-block w-25 ">{{ __('+ Tambah Tugas') }}</a>
                         <div class="card mt-4">
 
 
@@ -40,8 +41,8 @@ use Illuminate\Support\Str;
                                             <th>{{ __('Judul') }}</th>
                                             <th>{{ __('Deskripsi') }}</th>
                                             <th>{{ __('File') }}</th>
-                                            <th>{{ __('Created By') }}</th>
-                                            <th>{{ __('Action') }}</th>
+                                            <th>{{ __('Dibuat Oleh') }}</th>
+                                            <th>{{ __('Aksi') }}</th>
                                         </tr>
                                         <?php $no = 1; ?>
 
@@ -59,7 +60,7 @@ use Illuminate\Support\Str;
 
                                                     <a href="{{ asset('file_upload/assignment/' . $list->file) }}"
                                                         class="btn btn-primary btn-sm" download>
-                                                        Download
+                                                        Unduh
                                                     </a>
                                                 </td>
                                                 <td>
@@ -72,7 +73,7 @@ use Illuminate\Support\Str;
                                                         action="/teacher/assignment/{{ $list->id }}">
                                                         {{ csrf_field() }}
                                                         @method('DELETE')
-                                                        <button class="btn btn-danger">{{ __('Delete') }}</button>
+                                                        <button class="btn btn-danger">{{ __('Hapus') }}</button>
                                                     </form>
                                                 </td>
                                             </tr>
@@ -91,7 +92,7 @@ use Illuminate\Support\Str;
                                                     class="fas fa-chevron-left"></i></a>
                                         </li>
                                         <li class="page-item active"><a class="page-link" href="#">1 <span
-                                                    class="sr-only">{{ __('(current)') }}</span></a></li>
+                                                    class="sr-only">{{ __('(saat ini)') }}</span></a></li>
                                         <li class="page-item">
                                             <a class="page-link" href="#">2</a>
                                         </li>

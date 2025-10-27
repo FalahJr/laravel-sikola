@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Management Lesson Schedules')
+@section('title', 'Manajemen Jadwal Pelajaran')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -10,31 +10,31 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>{{ __('Management Lesson Schedules') }}</h1>
+                <h1>Manajemen Jadwal Pelajaran</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">{{ __('Dashboard') }}</a></div>
-                    <div class="breadcrumb-item"><a href="#">{{ __('Lesson Schedules') }}</a></div>
+                    <div class="breadcrumb-item active"><a href="#">Dasbor</a></div>
+                    <div class="breadcrumb-item"><a href="#">Jadwal Pelajaran</a></div>
                 </div>
             </div>
 
             <div class="section-body">
                 <div class="row">
                     <div class="col-12">
-                        <a href="{{ route('add-lesson-schedule') }}" class="btn btn-success btn-block w-25">{{ __('+ Tambah
-                            Schedule') }}</a>
+                        <a href="{{ route('add-lesson-schedule') }}" class="btn btn-success btn-block w-25">+ Tambah
+                            Jadwal</a>
                         <div class="card mt-4">
                             <div class="card-body p-0">
                                 <div class="table-responsive">
                                     <table class="table-striped table-md table">
                                         <tr>
                                             <th>#</th>
-                                            <th>{{ __('Day') }}</th>
-                                            <th>{{ __('Time') }}</th>
-                                            <th>{{ __('Lesson') }}</th>
-                                            <th>{{ __('Class') }}</th>
-                                            <th>{{ __('Room') }}</th>
-                                            <th>{{ __('Attendances') }}</th>
-                                            <th>{{ __('Action') }}</th>
+                                            <th>Hari</th>
+                                            <th>Waktu</th>
+                                            <th>Pelajaran</th>
+                                            <th>Kelas</th>
+                                            <th>Ruang</th>
+                                            <th>Kehadiran</th>
+                                            <th>Aksi</th>
                                         </tr>
                                         <?php $no = 1; ?>
 
@@ -51,21 +51,21 @@
                                                 <td>
                                                     <div class="badge badge-info">
                                                         {{ \App\Models\LessonAttendance::where('lesson_schedule_id', $list->id)->count() }}
-                                                        Records
+                                                        Catatan
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <a href="lesson-schedules/{{ $list->id }}/edit"
-                                                        class="btn btn-secondary btn-sm">{{ __('Edit') }}</a>
+                                                        class="btn btn-secondary btn-sm">Ubah</a>
                                                     <a href="lesson-schedules/{{ $list->id }}"
-                                                        class="btn btn-info btn-sm">{{ __('Detail') }}</a>
+                                                        class="btn btn-info btn-sm">Detail</a>
                                                     <form class="d-inline mt-2" method="POST"
                                                         action="/teacher/lesson-schedules/{{ $list->id }}">
                                                         {{ csrf_field() }}
                                                         @method('DELETE')
                                                         <button class="btn btn-danger btn-sm"
-                                                            onclick="return confirm('Are you sure you want to delete this schedule?')">
-                                                            Delete
+                                                            onclick="return confirm('Anda yakin ingin menghapus jadwal ini?')">
+                                                            Hapus
                                                         </button>
                                                     </form>
                                                 </td>

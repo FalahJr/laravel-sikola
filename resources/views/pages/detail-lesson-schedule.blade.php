@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Detail Lesson Schedule')
+@section('title', 'Detail Jadwal Pelajaran')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -10,11 +10,11 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>{{ __('Detail Lesson Schedule') }}</h1>
+                <h1>Detail Jadwal Pelajaran</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">{{ __('Dashboard') }}</a></div>
-                    <div class="breadcrumb-item"><a href="#">{{ __('Lesson Schedules') }}</a></div>
-                    <div class="breadcrumb-item">{{ __('Detail') }}</div>
+                    <div class="breadcrumb-item active"><a href="#">Dasbor</a></div>
+                    <div class="breadcrumb-item"><a href="#">Jadwal Pelajaran</a></div>
+                    <div class="breadcrumb-item">Detail</div>
                 </div>
             </div>
 
@@ -24,22 +24,22 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>{{ __('Schedule Information') }}</h4>
+                                <h4>Informasi Jadwal</h4>
                             </div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <table class="table table-borderless">
                                             <tr>
-                                                <td width="150"><strong>{{ __('Lesson:') }}</strong></td>
+                                                <td width="150"><strong>Pelajaran:</strong></td>
                                                 <td>{{ $schedule->lesson->name ?? '-' }}</td>
                                             </tr>
                                             <tr>
-                                                <td><strong>{{ __('Teacher:') }}</strong></td>
+                                                <td><strong>Guru:</strong></td>
                                                 <td>{{ $schedule->lesson->user->nama_lengkap ?? '-' }}</td>
                                             </tr>
                                             <tr>
-                                                <td><strong>{{ __('Class:') }}</strong></td>
+                                                <td><strong>Kelas:</strong></td>
                                                 <td>{{ $schedule->class->name ?? '-' }}</td>
                                             </tr>
                                         </table>
@@ -47,20 +47,20 @@
                                     <div class="col-md-6">
                                         <table class="table table-borderless">
                                             <tr>
-                                                <td width="150"><strong>{{ __('Day:') }}</strong></td>
+                                                <td width="150"><strong>Hari:</strong></td>
                                                 <td><span class="badge badge-primary badge-lg">{{ $schedule->day }}</span>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td><strong>{{ __('Time:') }}</strong></td>
+                                                <td><strong>Waktu:</strong></td>
                                                 <td><span
                                                         class="badge badge-info badge-lg">{{ $schedule->time ? date('H:i', strtotime($schedule->time)) : '-' }}</span>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td><strong>{{ __('Room:') }}</strong></td>
+                                                <td><strong>Ruang:</strong></td>
                                                 <td><span
-                                                        class="badge badge-warning badge-lg">{{ $schedule->room ?? 'Not specified' }}</span>
+                                                        class="badge badge-warning badge-lg">{{ $schedule->room ?? 'Tidak ditentukan' }}</span>
                                                 </td>
                                             </tr>
                                         </table>
@@ -80,7 +80,7 @@
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
-                                    <h4>{{ __('Total Students') }}</h4>
+                                    <h4>Total Murid</h4>
                                 </div>
                                 <div class="card-body">
                                     {{ $schedule->class->users()->where('role', 'Murid')->count() }}
@@ -95,7 +95,7 @@
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
-                                    <h4>{{ __('Present') }}</h4>
+                                    <h4>Hadir</h4>
                                 </div>
                                 <div class="card-body">
                                     {{ $schedule->lessonAttendances()->where('status', 'Hadir')->count() }}
@@ -110,7 +110,7 @@
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
-                                    <h4>{{ __('Absent') }}</h4>
+                                    <h4>Tidak Hadir</h4>
                                 </div>
                                 <div class="card-body">
                                     {{ $schedule->lessonAttendances()->where('status', 'Tidak Hadir')->count() }}
@@ -125,7 +125,7 @@
                             </div>
                             <div class="card-wrap">
                                 <div class="card-header">
-                                    <h4>{{ __('Created At') }}</h4>
+                                    <h4>Dibuat Pada</h4>
                                 </div>
                                 <div class="card-body">
                                     {{ $schedule->created_at ? $schedule->created_at->format('M Y') : '-' }}
@@ -140,7 +140,7 @@
                     <div class="col-12 col-md-6">
                         <div class="card">
                             <div class="card-header">
-                                <h4>{{ __('Students in This Class') }}</h4>
+                                <h4>Murid di Kelas Ini</h4>
                             </div>
                             <div class="card-body p-0">
                                 <div class="table-responsive">
@@ -148,9 +148,9 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>{{ __('Name') }}</th>
-                                                <th>{{ __('Student ID') }}</th>
-                                                <th>{{ __('Status') }}</th>
+                                                <th>Nama</th>
+                                                <th>Nomor Induk</th>
+                                                <th>Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -175,13 +175,13 @@
                                                                     class="badge badge-danger">{{ $attendance->status }}</span>
                                                             @endif
                                                         @else
-                                                            <span class="badge badge-secondary">{{ __('No Record') }}</span>
+                                                            <span class="badge badge-secondary">Belum ada catatan</span>
                                                         @endif
                                                     </td>
                                                 </tr>
                                             @empty
                                                 <tr>
-                                                    <td colspan="4" class="text-center">{{ __('No students in this class') }}</td>
+                                                    <td colspan="4" class="text-center">Belum ada murid di kelas ini</td>
                                                 </tr>
                                             @endforelse
                                         </tbody>
@@ -195,16 +195,16 @@
                     <div class="col-12 col-md-6">
                         <div class="card">
                             <div class="card-header">
-                                <h4>{{ __('Attendance History') }}</h4>
+                                <h4>Riwayat Kehadiran</h4>
                             </div>
                             <div class="card-body p-0">
                                 <div class="table-responsive">
                                     <table class="table table-striped table-md">
                                         <thead>
                                             <tr>
-                                                <th>{{ __('Student') }}</th>
-                                                <th>{{ __('Status') }}</th>
-                                                <th>{{ __('Date') }}</th>
+                                                <th>Murid</th>
+                                                <th>Status</th>
+                                                <th>Tanggal</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -225,7 +225,7 @@
                                                 </tr>
                                             @empty
                                                 <tr>
-                                                    <td colspan="3" class="text-center">{{ __('No attendance records yet') }}</td>
+                                                    <td colspan="3" class="text-center">Belum ada catatan kehadiran</td>
                                                 </tr>
                                             @endforelse
                                         </tbody>
@@ -242,10 +242,10 @@
                         <div class="card">
                             <div class="card-body text-center">
                                 <a href="/teacher/lesson-schedules/{{ $schedule->id }}/edit" class="btn btn-warning">
-                                    <i class="fa fa-edit"></i> Edit Schedule
+                                    <i class="fa fa-edit"></i> Ubah Jadwal
                                 </a>
                                 <a href="/teacher/lesson-schedules" class="btn btn-secondary">
-                                    <i class="fa fa-arrow-left"></i> Back to Schedules
+                                    <i class="fa fa-arrow-left"></i> Kembali ke Jadwal
                                 </a>
                             </div>
                         </div>

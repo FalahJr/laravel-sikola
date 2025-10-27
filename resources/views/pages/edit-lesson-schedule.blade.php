@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Edit Lesson Schedule')
+@section('title', 'Ubah Jadwal Pelajaran')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -12,11 +12,11 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>{{ __('Edit Lesson Schedule') }}</h1>
+                <h1>Ubah Jadwal Pelajaran</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">{{ __('Dashboard') }}</a></div>
-                    <div class="breadcrumb-item"><a href="#">{{ __('Lesson Schedules') }}</a></div>
-                    <div class="breadcrumb-item">{{ __('Edit Schedule') }}</div>
+                    <div class="breadcrumb-item active"><a href="#">Dasbor</a></div>
+                    <div class="breadcrumb-item"><a href="#">Jadwal Pelajaran</a></div>
+                    <div class="breadcrumb-item">Ubah Jadwal</div>
                 </div>
             </div>
 
@@ -25,22 +25,23 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>{{ __('Form Edit Lesson Schedule') }}</h4>
+                                <h4>Formulir Ubah Jadwal Pelajaran</h4>
                             </div>
                             <form class="form" action="/teacher/lesson-schedules/{{ $schedule->id }}" method="post">
                                 @csrf
                                 @method('PUT')
                                 <div class="card-body">
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Lesson') }}</label>
+                                        <label
+                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Pelajaran</label>
                                         <div class="col-sm-12 col-md-7">
                                             <select class="form-control selectric" name="lesson_id" required>
-                                                <option value="">{{ __('Select Lesson') }}</option>
+                                                <option value="">Pilih Pelajaran</option>
                                                 @foreach ($lessons as $lesson)
                                                     <option value="{{ $lesson->id }}"
                                                         {{ $schedule->lesson_id == $lesson->id ? 'selected' : '' }}>
                                                         {{ $lesson->name }} -
-                                                        {{ $lesson->user->nama_lengkap ?? 'No Teacher' }}
+                                                        {{ $lesson->user->nama_lengkap ?? 'Tanpa Guru' }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -48,10 +49,10 @@
                                     </div>
 
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Class') }}</label>
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Kelas</label>
                                         <div class="col-sm-12 col-md-7">
                                             <select class="form-control selectric" name="class_id" required>
-                                                <option value="">{{ __('Select Class') }}</option>
+                                                <option value="">Pilih Kelas</option>
                                                 @foreach ($classes as $class)
                                                     <option value="{{ $class->id }}"
                                                         {{ $schedule->class_id == $class->id ? 'selected' : '' }}>
@@ -63,31 +64,30 @@
                                     </div>
 
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Day') }}</label>
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Hari</label>
                                         <div class="col-sm-12 col-md-7">
                                             <select class="form-control selectric" name="day" required>
-                                                <option value="">{{ __('Select Day') }}</option>
+                                                <option value="">Pilih Hari</option>
                                                 <option value="Monday" {{ $schedule->day == 'Monday' ? 'selected' : '' }}>
-                                                    Monday</option>
+                                                    Senin</option>
                                                 <option value="Tuesday"
-                                                    {{ $schedule->day == 'Tuesday' ? 'selected' : '' }}>{{ __('Tuesday') }}</option>
+                                                    {{ $schedule->day == 'Tuesday' ? 'selected' : '' }}>Selasa</option>
                                                 <option value="Wednesday"
-                                                    {{ $schedule->day == 'Wednesday' ? 'selected' : '' }}>Wednesday
-                                                </option>
+                                                    {{ $schedule->day == 'Wednesday' ? 'selected' : '' }}>Rabu</option>
                                                 <option value="Thursday"
-                                                    {{ $schedule->day == 'Thursday' ? 'selected' : '' }}>{{ __('Thursday') }}</option>
+                                                    {{ $schedule->day == 'Thursday' ? 'selected' : '' }}>Kamis</option>
                                                 <option value="Friday" {{ $schedule->day == 'Friday' ? 'selected' : '' }}>
-                                                    Friday</option>
+                                                    Jumat</option>
                                                 <option value="Saturday"
-                                                    {{ $schedule->day == 'Saturday' ? 'selected' : '' }}>{{ __('Saturday') }}</option>
+                                                    {{ $schedule->day == 'Saturday' ? 'selected' : '' }}>Sabtu</option>
                                                 <option value="Sunday" {{ $schedule->day == 'Sunday' ? 'selected' : '' }}>
-                                                    Sunday</option>
+                                                    Minggu</option>
                                             </select>
                                         </div>
                                     </div>
 
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Time') }}</label>
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Waktu</label>
                                         <div class="col-sm-12 col-md-7">
                                             <input type="time" class="form-control" name="time"
                                                 value="{{ $schedule->time ? date('H:i', strtotime($schedule->time)) : '' }}"
@@ -96,18 +96,18 @@
                                     </div>
 
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Room') }}</label>
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Ruang</label>
                                         <div class="col-sm-12 col-md-7">
                                             <input type="text" class="form-control" name="room"
                                                 value="{{ $schedule->room }}"
-                                                placeholder="Enter room number or location (e.g., Lab 101, Room A1)">
+                                                placeholder="Masukkan nomor ruang atau lokasi (mis. Lab 101, Ruang A1)">
                                         </div>
                                     </div>
 
                                     <div class="form-group row mb-4">
                                         <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                                         <div class="col-sm-12 col-md-7">
-                                            <button class="btn btn-primary" type="submit">{{ __('Update Schedule') }}</button>
+                                            <button class="btn btn-primary" type="submit">Perbarui Jadwal</button>
                                         </div>
                                     </div>
                                 </div>
@@ -119,7 +119,7 @@
                     <div class="col-12 mt-4">
                         <div class="card">
                             <div class="card-header">
-                                <h4>{{ __('Schedule Statistics') }}</h4>
+                                <h4>Statistik Jadwal</h4>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -130,7 +130,7 @@
                                             </div>
                                             <div class="card-wrap">
                                                 <div class="card-header">
-                                                    <h4>{{ __('Lesson') }}</h4>
+                                                    <h4>Pelajaran</h4>
                                                 </div>
                                                 <div class="card-body">
                                                     {{ $schedule->lesson->name ?? '-' }}
@@ -145,7 +145,7 @@
                                             </div>
                                             <div class="card-wrap">
                                                 <div class="card-header">
-                                                    <h4>{{ __('Class') }}</h4>
+                                                    <h4>Kelas</h4>
                                                 </div>
                                                 <div class="card-body">
                                                     {{ $schedule->class->name ?? '-' }}
@@ -160,7 +160,7 @@
                                             </div>
                                             <div class="card-wrap">
                                                 <div class="card-header">
-                                                    <h4>{{ __('Attendances') }}</h4>
+                                                    <h4>Kehadiran</h4>
                                                 </div>
                                                 <div class="card-body">
                                                     {{ $schedule->lessonAttendances()->count() }}
@@ -175,7 +175,7 @@
                                             </div>
                                             <div class="card-wrap">
                                                 <div class="card-header">
-                                                    <h4>{{ __('Created At') }}</h4>
+                                                    <h4>Dibuat Pada</h4>
                                                 </div>
                                                 <div class="card-body">
                                                     {{ $schedule->created_at ? $schedule->created_at->format('M Y') : '-' }}

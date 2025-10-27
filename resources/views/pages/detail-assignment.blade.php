@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Edit Assignment')
+@section('title', 'Pengumpulan Tugas')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -20,11 +20,11 @@ use Carbon\Carbon;
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>{{ __('Submission') }}</h1>
+                <h1>{{ __('Pengumpulan') }}</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">{{ __('Dashboard') }}</a></div>
-                    <div class="breadcrumb-item"><a href="#">{{ __('Assignment') }}</a></div>
-                    <div class="breadcrumb-item">{{ __('Submission') }}</div>
+                    <div class="breadcrumb-item active"><a href="#">{{ __('Dasbor') }}</a></div>
+                    <div class="breadcrumb-item"><a href="#">{{ __('Tugas') }}</a></div>
+                    <div class="breadcrumb-item">{{ __('Pengumpulan') }}</div>
                 </div>
             </div>
 
@@ -35,7 +35,7 @@ use Carbon\Carbon;
                     <div class="col-6">
                         <div class="card ">
                             <div class="card-header">
-                                <h4>{{ __('Detail Assignment') }}</h4>
+                                <h4>{{ __('Detail Tugas') }}</h4>
                             </div>
 
                             <div class="card-body">
@@ -44,7 +44,7 @@ use Carbon\Carbon;
                                 <h4 class="text-capitalize text-dark">{{ $assignment->judul }} ( Materi :
                                     {{ $assignment->materi->judul }})</h4>
 
-                                <h6 class="text-danger">Deadline :
+                                <h6 class="text-danger">Batas Waktu :
                                     {{ Carbon::parse($assignment->end_date)->format('j F Y') }}</h6>
 
                                 <h6 class="mt-4 text-capitalize text-dark">
@@ -55,10 +55,10 @@ use Carbon\Carbon;
                                     {{ $assignment->deskripsi }}
                                 </p>
 
-                                <h6 class="text-dark mt-4"> Download File Assignment</h6>
+                                <h6 class="text-dark mt-4"> Unduh Berkas Tugas</h6>
                                 <a href="{{ asset('file_upload/assignment/' . $assignment->file) }}"
                                     class="btn btn-info btn-md" download>
-                                    Download
+                                    Unduh
                                 </a>
 
                             </div>
@@ -72,9 +72,7 @@ use Carbon\Carbon;
                                 <h4>{{ __('Submission') }}</h4>
                             </div> --}}
                             <?php
-                            $cek = AssignmentSubmission::where('user_id', '=', Session('user')['id'])
-                                ->where('assignment_id', '=', $assignment->id)
-                                ->first();
+                            $cek = AssignmentSubmission::where('user_id', '=', Session('user')['id'])->where('assignment_id', '=', $assignment->id)->first();
                             
                             // dd($cek);
                             $currentDateTime = Carbon::now();
@@ -92,17 +90,17 @@ use Carbon\Carbon;
                                 @if ($checkDelayed == true)
                                     @if ($cek)
                                         <div class="card-body">
-                                            <h5 class="text-primary">Submission
+                                            <h5 class="text-primary">{{ __('Pengumpulan') }}
                                             </h5>
-                                            <h6 class="text-dark mt-4"> Your Submission File</h6>
+                                            <h6 class="text-dark mt-4">{{ __('Berkas Pengumpulan Anda') }}</h6>
                                             <a href="{{ asset('file_upload/assignment/' . $cek->file) }}"
                                                 class="btn btn-info btn-md" download>
-                                                Download
+                                                Unduh
                                             </a>
 
                                             <div class="form-group mt-3">
-                                                <label class="col-form-label text-md-right ">{{ __('Upload Your
-                                                    Submission') }}</label>
+                                                <label
+                                                    class="col-form-label text-md-right ">{{ __('Unggah Berkas Anda') }}</label>
                                                 <div class="">
 
                                                     <input type="file" class="form-control" name="file">
@@ -112,19 +110,20 @@ use Carbon\Carbon;
                                             <div class="form-group mb-4">
 
                                                 <div class="col-sm-12 col-md-12">
-                                                    <button class="btn btn-success" type="submit">{{ __('Submit') }}</button>
+                                                    <button class="btn btn-success"
+                                                        type="submit">{{ __('Kirim') }}</button>
                                                 </div>
                                             </div>
                                         </div>
                                     @else
                                         <div class="card-body">
-                                            <h5 class="text-primary">Submission
+                                            <h5 class="text-primary">{{ __('Pengumpulan') }}
                                             </h5>
 
 
                                             <div class="form-group mt-3">
-                                                <label class="col-form-label text-md-right ">{{ __('Upload Your
-                                                    Submission') }}</label>
+                                                <label
+                                                    class="col-form-label text-md-right ">{{ __('Unggah Berkas Anda') }}</label>
                                                 <div class="">
 
                                                     <input type="file" class="form-control" name="file">
@@ -134,7 +133,8 @@ use Carbon\Carbon;
                                             <div class="form-group mb-4">
 
                                                 <div class="col-sm-12 col-md-12">
-                                                    <button class="btn btn-success" type="submit">{{ __('Submit') }}</button>
+                                                    <button class="btn btn-success"
+                                                        type="submit">{{ __('Kirim') }}</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -142,26 +142,26 @@ use Carbon\Carbon;
                                 @else
                                     @if ($cek)
                                         <div class="card-body">
-                                            <h5 class="text-primary">Submission
+                                            <h5 class="text-primary">{{ __('Pengumpulan') }}
                                             </h5>
-                                            <h6 class="text-dark mt-4"> Your Submission File</h6>
+                                            <h6 class="text-dark mt-4">{{ __('Berkas Pengumpulan Anda') }}</h6>
                                             <a href="{{ asset('file_upload/assignment/' . $cek->file) }}"
                                                 class="btn btn-info btn-md" download>
-                                                Download
+                                                Unduh
                                             </a>
 
 
                                         </div>
                                     @else
                                         <div class="card-body">
-                                            <h5 class="text-primary">Submission <span class="text-danger"
-                                                    style="font-size: 18px"> (Overdue)</span>
+                                            <h5 class="text-primary">{{ __('Pengumpulan') }} <span class="text-danger"
+                                                    style="font-size: 18px"> ({{ __('Terlambat') }})</span>
                                             </h5>
 
 
                                             <div class="form-group mt-3">
-                                                <label class="col-form-label text-md-right ">{{ __('Upload Your
-                                                    Submission') }}</label>
+                                                <label
+                                                    class="col-form-label text-md-right ">{{ __('Unggah Berkas Anda') }}</label>
                                                 <div class="">
 
                                                     <input type="file" class="form-control" name="file">
@@ -171,7 +171,8 @@ use Carbon\Carbon;
                                             <div class="form-group mb-4">
 
                                                 <div class="col-sm-12 col-md-12">
-                                                    <button class="btn btn-success" type="submit">{{ __('Submit') }}</button>
+                                                    <button class="btn btn-success"
+                                                        type="submit">{{ __('Kirim') }}</button>
                                                 </div>
                                             </div>
                                         </div>

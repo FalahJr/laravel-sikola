@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Assignment')
+@section('title', 'Tugas')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -15,16 +15,16 @@ use App\Models\QuizAttempts;
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>{{ __('Assignment') }}</h1>
+                <h1>{{ __('Tugas') }}</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">{{ __('Dashboard') }}</a></div>
-                    <div class="breadcrumb-item">{{ __('Assignment') }}</div>
+                    <div class="breadcrumb-item active"><a href="#">{{ __('Dasbor') }}</a></div>
+                    <div class="breadcrumb-item">{{ __('Tugas') }}</div>
                 </div>
             </div>
 
             <div class="section-body">
 
-                <h2 class="section-title">{{ __('All Assignment') }}</h2>
+                <h2 class="section-title">{{ __('Semua Tugas') }}</h2>
                 <div class="row">
 
                     @foreach ($data as $list)
@@ -59,11 +59,11 @@ use App\Models\QuizAttempts;
                                         {{-- @else --}}
                                         @if (Session('user')['role'] == 'Murid')
                                             <a href="/student/assignment/submission/{{ $list->id }}"
-                                                class="btn btn-success w-100 mt-5">View Detail
+                                                class="btn btn-success w-100 mt-5">Lihat Detail
                                                 <i class="fas fa-chevron-right"></i></a>
                                         @else
                                             <a href="/teacher/assignments/submission/{{ $list->id }}"
-                                                class="btn btn-info w-100 mt-5">View Submissions
+                                                class="btn btn-info w-100 mt-5">Lihat Pengumpulan
                                                 <i class="fas fa-chevron-right"></i></a>
                                         @endif
                                         {{--  @endif

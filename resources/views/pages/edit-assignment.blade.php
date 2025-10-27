@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Edit Assignment')
+@section('title', 'Ubah Tugas')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -16,11 +16,11 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>{{ __('Edit Assignment') }}</h1>
+                <h1>{{ __('Ubah Tugas') }}</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">{{ __('Dashboard') }}</a></div>
-                    <div class="breadcrumb-item"><a href="#">{{ __('Assignment') }}</a></div>
-                    <div class="breadcrumb-item">{{ __('Edit Assignment') }}</div>
+                    <div class="breadcrumb-item active"><a href="#">{{ __('Dasbor') }}</a></div>
+                    <div class="breadcrumb-item"><a href="#">{{ __('Tugas') }}</a></div>
+                    <div class="breadcrumb-item">{{ __('Ubah Tugas') }}</div>
                 </div>
             </div>
 
@@ -31,7 +31,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>{{ __('Form Edit Assignment') }}</h4>
+                                <h4>{{ __('Form Ubah Tugas') }}</h4>
                             </div>
                             <form class="form" action="/teacher/assignment/{{ Request::segment(3) }}" method="post"
                                 enctype="multipart/form-data">
@@ -41,10 +41,10 @@
 
                                     <div class="form-group row mb-4">
                                         <label
-                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Category') }}</label>
+                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Materi') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <select class="form-control selectric" name="materi_id">
-                                                <option value="" disabled selected>{{ __('Choose Material') }}</option>
+                                                <option value="" disabled selected>{{ __('Pilih Materi') }}</option>
 
                                                 @foreach ($materi as $list)
                                                     <option value="{{ $list->id }}"
@@ -57,7 +57,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Title') }}</label>
+                                        <label
+                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Judul') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <input type="text" class="form-control" name="judul"
                                                 value="{{ $assignment->judul }}">
@@ -66,7 +67,7 @@
 
                                     <div class="form-group row mb-4">
                                         <label
-                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Description') }}</label>
+                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Deskripsi') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <textarea class="w-100" rows="6" name="deskripsi">
                                                 {{ $assignment->deskripsi }}
@@ -75,23 +76,24 @@
                                     </div>
                                     <div class="form-group row mb-4">
                                         <label
-                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Thumbnail') }}</label>
+                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Gambar') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <div id="image-preview" class="image-preview"
                                                 style="background-image: url('{{ asset('img/assignment/' . $assignment->gambar) }}') ; background-size: cover;
                                                 background-position: center center;">
-                                                <label for="image-upload" id="image-label">{{ __('Choose Thumbnail') }}</label>
+                                                <label for="image-upload" id="image-label">{{ __('Pilih Gambar') }}</label>
                                                 <input type="file" name="gambar" id="image-upload"
                                                     value="{{ asset('img/assignment/' . $assignment->gambar) }}" />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('File') }}</label>
+                                        <label
+                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Berkas') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <a href="{{ asset('file_upload/assignment/' . $assignment->file) }}"
                                                 class="btn btn-primary btn-md mb-3" target="_blank">
-                                                View File
+                                                {{ __('Lihat Berkas') }}
                                             </a>
                                             <input type="file" class="form-control" name="file">
 
@@ -99,8 +101,9 @@
                                     </div>
                                     <div class="form-group row mb-4">
 
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Start
-                                            Date') }}</label>
+                                        <label
+                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Tanggal
+                                                                                        Mulai') }}</label>
                                         <div class="col-sm-12 col-md-7">
 
                                             <input type="text" class="form-control datepicker" name="start_date"
@@ -109,8 +112,9 @@
                                     </div>
                                     <div class="form-group row mb-4">
 
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('End
-                                            Date') }}</label>
+                                        <label
+                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Tanggal
+                                                                                        Selesai') }}</label>
                                         <div class="col-sm-12 col-md-7">
 
                                             <input type="text" class="form-control datepicker" name="end_date"
@@ -121,7 +125,7 @@
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                                     <div class="col-sm-12 col-md-7">
-                                        <button class="btn btn-primary" type="submit">{{ __('Publish') }}</button>
+                                        <button class="btn btn-primary" type="submit">{{ __('Simpan') }}</button>
                                     </div>
                                 </div>
                             </form>

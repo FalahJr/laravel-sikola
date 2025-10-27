@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Add Assignment')
+@section('title', 'Tambah Tugas')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -16,11 +16,11 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>{{ __('Add Assignment') }}</h1>
+                <h1>{{ __('Tambah Tugas') }}</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="#">{{ __('Dashboard') }}</a></div>
-                    <div class="breadcrumb-item"><a href="#">{{ __('Assignment') }}</a></div>
-                    <div class="breadcrumb-item">{{ __('Add Assignment') }}</div>
+                    <div class="breadcrumb-item active"><a href="#">{{ __('Dasbor') }}</a></div>
+                    <div class="breadcrumb-item"><a href="#">{{ __('Tugas') }}</a></div>
+                    <div class="breadcrumb-item">{{ __('Tambah Tugas') }}</div>
                 </div>
             </div>
 
@@ -31,7 +31,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>{{ __('Form Add Assignment') }}</h4>
+                                <h4>{{ __('Form Tambah Tugas') }}</h4>
                             </div>
                             <form class="form" action="/teacher/assignment" method="post" enctype="multipart/form-data">
                                 @csrf
@@ -39,10 +39,10 @@
 
                                     <div class="form-group row mb-4">
                                         <label
-                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Material') }}</label>
+                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Materi') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <select class="form-control selectric" name="materi_id">
-                                                <option value="" disabled selected>{{ __('Choose Material') }}</option>
+                                                <option value="" disabled selected>{{ __('Pilih Materi') }}</option>
 
                                                 @foreach ($materi as $list)
                                                     <option value="{{ $list->id }}">{{ $list->judul }}</option>
@@ -52,7 +52,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Title') }}</label>
+                                        <label
+                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Judul') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <input type="text" class="form-control" name="judul">
                                         </div>
@@ -60,23 +61,24 @@
 
                                     <div class="form-group row mb-4">
                                         <label
-                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Description') }}</label>
+                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Deskripsi') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <textarea class="w-100" rows="6" name="deskripsi"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row mb-4">
                                         <label
-                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Thumbnail') }}</label>
+                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Gambar') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <div id="image-preview" class="image-preview">
-                                                <label for="image-upload" id="image-label">{{ __('Choose Thumbnail') }}</label>
+                                                <label for="image-upload" id="image-label">{{ __('Pilih Gambar') }}</label>
                                                 <input type="file" name="gambar" id="image-upload" />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('File') }}</label>
+                                        <label
+                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Berkas') }}</label>
                                         <div class="col-sm-12 col-md-7">
 
                                             <input type="file" class="form-control" name="file">
@@ -84,8 +86,9 @@
                                     </div>
                                     <div class="form-group row mb-4">
 
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Start
-                                            Date') }}</label>
+                                        <label
+                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Tanggal
+                                                                                        Mulai') }}</label>
                                         <div class="col-sm-12 col-md-7">
 
                                             <input type="text" class="form-control datepicker" name="start_date">
@@ -93,8 +96,9 @@
                                     </div>
                                     <div class="form-group row mb-4">
 
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('End
-                                            Date') }}</label>
+                                        <label
+                                            class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Tanggal
+                                                                                        Selesai') }}</label>
                                         <div class="col-sm-12 col-md-7">
 
                                             <input type="text" class="form-control datepicker" name="end_date">
@@ -105,7 +109,7 @@
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                                     <div class="col-sm-12 col-md-7">
-                                        <button class="btn btn-primary" type="submit">{{ __('Publish') }}</button>
+                                        <button class="btn btn-primary" type="submit">{{ __('Terbitkan') }}</button>
                                     </div>
                                 </div>
                         </div>
