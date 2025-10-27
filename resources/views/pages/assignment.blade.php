@@ -61,6 +61,10 @@ use App\Models\QuizAttempts;
                                             <a href="/student/assignment/submission/{{ $list->id }}"
                                                 class="btn btn-success w-100 mt-5">Lihat Detail
                                                 <i class="fas fa-chevron-right"></i></a>
+                                        @elseif(Session('user')['role'] == 'Admin')
+                                            <a href="/admin/assignments/submission/{{ $list->id }}"
+                                                class="btn btn-info w-100 mt-5">Lihat Pengumpulan
+                                                <i class="fas fa-chevron-right"></i></a>
                                         @else
                                             <a href="/teacher/assignments/submission/{{ $list->id }}"
                                                 class="btn btn-info w-100 mt-5">Lihat Pengumpulan

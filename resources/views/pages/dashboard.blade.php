@@ -71,7 +71,51 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-12 col-md-12 col-12 col-sm-12">
+                <div class="col-12">
+                    <div class="section-header flex-column align-items-start ">
+                        <div class="d-flex flex-column">
+                            <h1>{{ __('Jadwal Pelajaran') }}</h1>
+                        </div>
+                        <div class="col-12">
+                            <div class="card mt-4">
+                                <div class="card-body p-0">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Hari</th>
+                                                    <th>Waktu</th>
+                                                    <th>Mata Pelajaran</th>
+                                                    <th>Ruang</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @forelse($lessonSchedules as $schedule)
+                                                    <tr>
+                                                        <td>{{ $schedule->day }}</td>
+                                                        <td>{{ $schedule->time ? date('H:i', strtotime($schedule->time)) : '-' }}
+                                                        </td>
+                                                        <td>{{ $schedule->lesson->name ?? '-' }}</td>
+                                                        <td>{{ $schedule->room ?? '-' }}</td>
+                                                    </tr>
+                                                @empty
+                                                    <tr>
+                                                        <td colspan="4" class="text-center">Belum ada jadwal untuk kelas
+                                                            Anda</td>
+                                                    </tr>
+                                                @endforelse
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                {{-- <div class="col-lg-12 col-md-12 col-12 col-sm-12">
                     <div class="section-header flex-column align-items-start ">
                         <div class="d-flex flex-column">
                             <h1>{{ __('Assignments') }}</h1>
@@ -112,7 +156,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 {{-- <div class="col-lg-3 col-md-12 col-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">

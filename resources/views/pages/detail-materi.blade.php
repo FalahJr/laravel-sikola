@@ -83,7 +83,7 @@
             </div>
         </section>
     </div>
-    <script>
+    {{-- <script>
         function logEndTime() {
             var xhr = new XMLHttpRequest();
             xhr.open("POST", '{{ route('materi.logEndTime') }}', false); // 'false' makes the request synchronous
@@ -105,7 +105,7 @@
                 });
             });
         });
-    </script>
+    </script> --}}
 @endsection
 
 @push('scripts')

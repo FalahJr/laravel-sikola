@@ -11,6 +11,7 @@ use App\Models\Notifikasi;
 use App\Models\QuizAttempts;
 use App\Models\Quizzes;
 use App\Models\User;
+use App\Models\LessonSchedule;
 use Carbon\Carbon;
 
 class DashboardController extends Controller
@@ -25,19 +26,31 @@ class DashboardController extends Controller
     {
         $newest_notifikasi = Notifikasi::where('role', '=', 'Murid')->orderBy('id', 'desc')->first();
         $get_new_materi = Materi::latest()->first();
-        $get_new_quiz = Quizzes::where("materi_id", "=", $get_new_materi->id)->first();
-        if ($get_new_quiz !== null) {
-            $list_leaderboard = QuizAttempts::join('user', 'user.id',  '=', 'quiz_attempts.user_id')->where("quizzes_id", "=", $get_new_quiz->id)->select('quiz_attempts.*', 'user.nama_lengkap')->get();
+        $get_new_quiz = [];
+        // Ambil jadwal pelajaran untuk murid berdasarkan class_id milik murid
+        $classId = Session('user')['class_id'] ?? null;
+        if ($classId) {
+            $lessonSchedules = LessonSchedule::with('lesson')
+                ->where('class_id', $classId)
+                ->orderBy('day')
+                ->orderBy('time')
+                ->get();
         } else {
-            $get_newest_quiz = Quizzes::orderBy('id', 'desc')->first();
-            $list_leaderboard = QuizAttempts::join('user', 'user.id',  '=', 'quiz_attempts.user_id')->where("quizzes_id", "=", $get_newest_quiz->id)->select('quiz_attempts.*', 'user.nama_lengkap')->get();
+            $lessonSchedules = collect();
         }
+
+        // if ($get_new_quiz !== null) {
+        //     $list_leaderboard = QuizAttempts::join('user', 'user.id',  '=', 'quiz_attempts.user_id')->where("quizzes_id", "=", $get_new_quiz->id)->select('quiz_attempts.*', 'user.nama_lengkap')->get();
+        // } else {
+        //     $get_newest_quiz = Quizzes::orderBy('id', 'desc')->first();
+        //     $list_leaderboard = QuizAttempts::join('user', 'user.id',  '=', 'quiz_attempts.user_id')->where("quizzes_id", "=", $get_newest_quiz->id)->select('quiz_attempts.*', 'user.nama_lengkap')->get();
+        // }
         // dd($list_leaderboard);
 
 
 
         // dd($data);
-        return view('pages.dashboard', compact('newest_notifikasi', 'list_leaderboard'));
+        return view('pages.dashboard', compact('newest_notifikasi', 'lessonSchedules'));
     }
     public function indexDashboardGuru()
     {

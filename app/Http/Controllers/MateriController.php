@@ -66,11 +66,11 @@ class MateriController extends Controller
             ->where('materi.id', $request->segment(3))
             ->first();
 
-        $activityLog = ActivityLog::create([
-            'user_id' => Session('user')['id'],
-            'materi_id' => $request->segment(3),
-            'start_time' => Carbon::now('Asia/Jakarta'),
-        ]);
+        // $activityLog = ActivityLog::create([
+        //     'user_id' => Session('user')['id'],
+        //     'materi_id' => $request->segment(3),
+        //     'start_time' => Carbon::now('Asia/Jakarta'),
+        // ]);
 
         // $activityLogs = ActivityLog::
 
@@ -81,7 +81,7 @@ class MateriController extends Controller
         //     ->first();
 
         // dd($activityLogs);
-        return view('pages.detail-materi', compact('materi', 'activityLog'));
+        return view('pages.detail-materi', compact('materi'));
     }
 
     public function logEndTime(Request $request)

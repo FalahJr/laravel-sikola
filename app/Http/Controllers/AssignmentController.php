@@ -119,13 +119,20 @@ class AssignmentController extends Controller
             $materi = Materi::all();
 
             return view('pages.edit-assignment', compact('assignment', 'materi'));
+        } else if (Session('user')['role'] == 'Admin') {
+            $assignment = Assignment::where([
+                'id' => $request->segment(3)
+            ])->with('materi')->first();
+
+            // dd($assignment);
+
+            return view('pages.edit-assignment', compact('assignment'));
         } else {
             $assignment = Assignment::where([
                 'id' => $request->segment(4)
             ])->with('materi')->first();
 
-            // dd($assignment->materi->judul);
-
+            // dd($assignment);
             return view('pages.detail-assignment', compact('assignment'));
         }
     }
