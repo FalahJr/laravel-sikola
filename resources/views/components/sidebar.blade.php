@@ -33,6 +33,11 @@
                         <a class="nav-link" href="{{ url('student/assignment') }}"><i class="fas fa-file-pen"></i>
                             <span>{{ __('Assignment') }}</span></a>
                     </li>
+                    <li class="{{ Request::is('student/lesson-schedules*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('student/lesson-schedules') }}"><i
+                                class="fas fa-calendar-alt"></i>
+                            <span>{{ __('Jadwal Pelajaran') }}</span></a>
+                    </li>
                 @endif
                 {{-- <li class="menu-header">{{ __('Dashboard') }}</li> --}}
 

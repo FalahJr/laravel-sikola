@@ -8,6 +8,7 @@ use App\Models\Classes;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Models\LessonAttendance;
 
 class LessonScheduleController extends Controller
 {
@@ -101,6 +102,59 @@ class LessonScheduleController extends Controller
     }
 
     /**
+     * Student index - show schedules for student's class
+     */
+    public function studentIndex()
+    {
+        $classId = Session('user')['class_id'] ?? null;
+        $userId = Session('user')['id'] ?? null;
+        $data = collect();
+        if ($classId) {
+            $data = LessonSchedule::with(['lesson', 'class', 'lessonAttendances' => function ($q) use ($userId) {
+                if ($userId) {
+                    $q->where('user_id', $userId);
+                }
+            }])
+                ->where('class_id', $classId)
+                ->orderBy('day')
+                ->orderBy('time')
+                ->get();
+        }
+
+        return view('pages.lesson-schedules-student', compact('data'));
+    }
+
+    /**
+     * Student attend (mark hadir)
+     */
+    public function attend(Request $request, $id)
+    {
+        $userId = Session('user')['id'] ?? null;
+        if (!$userId) {
+            return back();
+        }
+
+        $existing = LessonAttendance::where('lesson_schedule_id', $id)
+            ->where('user_id', $userId)
+            ->first();
+
+        if ($existing) {
+            // already marked
+            return back();
+        }
+
+        $att = new LessonAttendance();
+        $att->lesson_schedule_id = $id;
+        $att->user_id = $userId;
+        $att->status = 'Hadir';
+        $att->created_at = Carbon::now();
+        $att->updated_at = Carbon::now();
+        $att->save();
+
+        return back();
+    }
+
+    /**
      * Show the form for editing the specified lesson schedule.
      */
     public function edit(Request $request)
@@ -160,6 +214,32 @@ class LessonScheduleController extends Controller
         $schedule->is_absensi = 'N';
         $schedule->updated_at = Carbon::now();
         $schedule->save();
+
+        // For any student in the schedule's class who hasn't marked attendance yet,
+        // create a LessonAttendance record with status 'Tidak Hadir'.
+        try {
+            $students = \App\Models\User::where('class_id', $schedule->class_id)
+                ->where('role', 'Murid')
+                ->get();
+
+            foreach ($students as $student) {
+                $exists = LessonAttendance::where('lesson_schedule_id', $schedule->id)
+                    ->where('user_id', $student->id)
+                    ->first();
+
+                if (! $exists) {
+                    $att = new LessonAttendance();
+                    $att->lesson_schedule_id = $schedule->id;
+                    $att->user_id = $student->id;
+                    $att->status = 'Tidak Hadir';
+                    $att->created_at = Carbon::now();
+                    $att->updated_at = Carbon::now();
+                    $att->save();
+                }
+            }
+        } catch (\Exception $e) {
+            // swallow any error to avoid breaking the close flow; consider logging in production
+        }
 
         return back();
     }

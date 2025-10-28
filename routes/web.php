@@ -65,6 +65,10 @@ Route::middleware(['authMurid'])->prefix('student')->group(function () {
     Route::post('/materi/log-end-time', [MateriController::class, 'logEndTime'])->name('materi.logEndTime');
     Route::get('/notification', [NotificationController::class, 'index']);
 
+    // Lesson schedules (student)
+    Route::get('/lesson-schedules', [LessonScheduleController::class, 'studentIndex']);
+    Route::post('/lesson-schedules/{id}/attend', [LessonScheduleController::class, 'attend']);
+
     // Quiz
 
     Route::get('quizzes', [StudentQuizController::class, 'index']);
@@ -124,6 +128,9 @@ Route::middleware(['authGuru'])->prefix('teacher')->group(function () {
     // Lesson Schedule Management
     Route::resource('lesson-schedules', \App\Http\Controllers\LessonScheduleController::class);
     Route::get('/add-lesson-schedule', [\App\Http\Controllers\LessonScheduleController::class, 'create'])->name("add-lesson-schedule-teacher");
+    // Open/Close attendance (teacher)
+    Route::post('/lesson-schedules/{id}/open-attendance', [LessonScheduleController::class, 'openAttendance']);
+    Route::post('/lesson-schedules/{id}/close-attendance', [LessonScheduleController::class, 'closeAttendance']);
 
 
 
@@ -174,6 +181,9 @@ Route::middleware(['authAdmin'])->prefix('admin')->group(function () {
     // Lesson Schedule Management
     Route::resource('lesson-schedules', \App\Http\Controllers\LessonScheduleController::class);
     Route::get('/add-lesson-schedule', [\App\Http\Controllers\LessonScheduleController::class, 'create'])->name("add-lesson-schedule");
+    // Open/Close attendance (admin)
+    Route::post('/lesson-schedules/{id}/open-attendance', [LessonScheduleController::class, 'openAttendance']);
+    Route::post('/lesson-schedules/{id}/close-attendance', [LessonScheduleController::class, 'closeAttendance']);
 
 
 
