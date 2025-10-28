@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\LessonSchedule;
 use App\Models\Lesson;
 use App\Models\Classes;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -15,12 +16,25 @@ class LessonScheduleController extends Controller
      */
     public function index()
     {
-        $data = LessonSchedule::join('lesson', 'lesson.id', '=', 'lesson_schedule.lesson_id')
+        // Build base query joining lesson and class
+        $query = LessonSchedule::join('lesson', 'lesson.id', '=', 'lesson_schedule.lesson_id')
             ->join('class', 'class.id', '=', 'lesson_schedule.class_id')
-            ->select('lesson_schedule.*', 'lesson.name as lesson_name', 'class.name as class_name')
-            ->orderBy('lesson_schedule.day')
+            // ->join('lesson', 'lesson.id', '=', 'lesson_schedule.lesson_id')
+            ->select('lesson_schedule.*', 'lesson.name as lesson_name', 'class.name as class_name', 'lesson.user_id as teacher_id');
+
+        // If current user is a Guru, limit schedules to the Guru's class_id
+        $userRole = Session('user')['role'] ?? null;
+        $guruId = Session('user')['id'] ?? null;
+        // $classId = Session('user')['class_id'] ?? null;
+        if ($userRole === 'Guru' && $guruId) {
+            $query = $query->where('lesson.user_id', $guruId);
+        }
+
+        $data = $query->orderBy('lesson_schedule.day')
             ->orderBy('lesson_schedule.time')
             ->get();
+
+        // dd($data);
 
         return view('pages.manage-lesson-schedules', compact('data'));
     }
@@ -30,7 +44,12 @@ class LessonScheduleController extends Controller
      */
     public function create()
     {
-        $lessons = Lesson::with('user')->get();
+        if (Session('user')['role'] == 'Guru') {
+            $lessons = Lesson::where('user_id', Session('user')['id'])->get();
+        } else {
+            $lessons = Lesson::all();
+        }
+        // $lessons = Lesson::with('user')->get();
         $classes = Classes::all();
         return view('pages.add-lesson-schedule', compact('lessons', 'classes'));
     }
@@ -50,11 +69,21 @@ class LessonScheduleController extends Controller
             $schedule->created_at = Carbon::now();
             $schedule->updated_at = Carbon::now();
 
-            if ($schedule->save()) {
-                return redirect('/admin/lesson-schedules');
+            $schedule->save();
+            // if ($schedule->save()) {
+            //     if (Session('user')['role'] == 'Guru') {
+            //         return redirect('/teacher/lesson-schedules');
+            //     }
+            //     return redirect('/admin/lesson-schedules');
+            // }
+            if (Session('user')['role'] == 'Guru') {
+                return redirect('/teacher/lesson-schedules');
             }
             return redirect('/admin/lesson-schedules');
         } else {
+            if (Session('user')['role'] == 'Guru') {
+                return redirect('/teacher/lesson-schedules');
+            }
             return redirect('/admin/lesson-schedules');
         }
     }
@@ -107,6 +136,32 @@ class LessonScheduleController extends Controller
         } else {
             return redirect('/admin/lesson-schedules');
         }
+    }
+
+    /**
+     * Open attendance for a lesson schedule (set is_absensi = 'Y')
+     */
+    public function openAttendance(Request $request, $id)
+    {
+        $schedule = LessonSchedule::findOrFail($id);
+        $schedule->is_absensi = 'Y';
+        $schedule->updated_at = Carbon::now();
+        $schedule->save();
+
+        return back();
+    }
+
+    /**
+     * Close attendance for a lesson schedule (set is_absensi = 'N')
+     */
+    public function closeAttendance(Request $request, $id)
+    {
+        $schedule = LessonSchedule::findOrFail($id);
+        $schedule->is_absensi = 'N';
+        $schedule->updated_at = Carbon::now();
+        $schedule->save();
+
+        return back();
     }
 
     /**

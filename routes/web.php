@@ -123,7 +123,7 @@ Route::middleware(['authGuru'])->prefix('teacher')->group(function () {
 
     // Lesson Schedule Management
     Route::resource('lesson-schedules', \App\Http\Controllers\LessonScheduleController::class);
-    Route::get('/add-lesson-schedule', [\App\Http\Controllers\LessonScheduleController::class, 'create'])->name("add-lesson-schedule");
+    Route::get('/add-lesson-schedule', [\App\Http\Controllers\LessonScheduleController::class, 'create'])->name("add-lesson-schedule-teacher");
 
 
 

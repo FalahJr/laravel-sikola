@@ -98,6 +98,38 @@
                 @endif
 
 
+                @if (Session('user')['role'] == 'Guru')
+                    <li class="{{ Request::is('/teacher/home') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('teacher/home') }}"><i class="fas fa-th-large"></i>
+                            <span>{{ __('Dashboard') }}</span></a>
+                    </li>
+                    <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('teacher/materi') }}"><i class="fas fa-home"></i>
+                            <span>{{ __('Material') }}</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
+                                class="fas fa-columns"></i>
+                            <span>{{ __('Assignment') }}</span></a>
+                        <ul class="dropdown-menu">
+                            <li class="{{ Request::is('teacher/assignment') ? 'active' : '' }}">
+                                <a class="nav-link"
+                                    href="{{ url('teacher/assignment') }}">{{ __('Manage Assignment') }}</a>
+                            </li>
+                            <li class="{{ Request::is('submission/') ? 'active' : '' }}">
+                                <a class="nav-link"
+                                    href="{{ url('teacher/assignments/submission/') }}">{{ __('Result') }}</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="{{ Request::is('lesson-schedules') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('teacher/lesson-schedules') }}"><i
+                                class="fas fa-calendar-alt"></i>
+                            <span>{{ __('Lesson Schedules') }}</span></a>
+                    </li>
+                @endif
+
             </ul>
 
             {{-- <div class="hide-sidebar-mini mt-4 mb-4 p-3">

@@ -241,6 +241,27 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body text-center">
+                                @if (Session('user')['role'] == 'Guru' || Session('user')['role'] == 'Admin')
+                                    @if (isset($schedule->is_absensi) && $schedule->is_absensi == 'Y')
+                                        <form method="POST"
+                                            action="{{ Session('user')['role'] == 'Guru' ? url('/teacher/lesson-schedules/' . $schedule->id . '/close-attendance') : url('/admin/lesson-schedules/' . $schedule->id . '/close-attendance') }}"
+                                            class="d-inline">
+                                            @csrf
+                                            <button class="btn btn-danger"
+                                                onclick="return confirm('Tutup absensi untuk murid?')">Tutup
+                                                Absensi</button>
+                                        </form>
+                                    @else
+                                        <form method="POST"
+                                            action="{{ Session('user')['role'] == 'Guru' ? url('/teacher/lesson-schedules/' . $schedule->id . '/open-attendance') : url('/admin/lesson-schedules/' . $schedule->id . '/open-attendance') }}"
+                                            class="d-inline">
+                                            @csrf
+                                            <button class="btn btn-success"
+                                                onclick="return confirm('Buka absensi untuk murid?')">Buka Absensi</button>
+                                        </form>
+                                    @endif
+                                @endif
+
                                 <a href="{{ Session('user')['role'] == 'Guru' ? url('/teacher/lesson-schedules/' . $schedule->id . '/edit') : url('/admin/lesson-schedules/' . $schedule->id . '/edit') }}"
                                     class="btn btn-warning">
                                     <i class="fa fa-edit"></i> Ubah Jadwal

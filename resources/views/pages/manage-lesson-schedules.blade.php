@@ -20,7 +20,8 @@
             <div class="section-body">
                 <div class="row">
                     <div class="col-12">
-                        <a href="{{ route('add-lesson-schedule') }}" class="btn btn-success btn-block w-25">+ Tambah
+                        <a href="{{ Session('user')['role'] == 'Guru' ? url('/teacher/lesson-schedules/create') : url('/admin/lesson-schedules/create') }}"
+                            class="btn btn-success btn-block w-25">+ Tambah
                             Jadwal</a>
                         <div class="card mt-4">
                             <div class="card-body p-0">
@@ -55,12 +56,12 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <a href="lesson-schedules/{{ $list->id }}/edit"
+                                                    <a href="{{ Session('user')['role'] == 'Guru' ? url('/teacher/lesson-schedules/' . $list->id . '/edit') : url('/admin/lesson-schedules/' . $list->id . '/edit') }}"
                                                         class="btn btn-secondary btn-sm">Ubah</a>
-                                                    <a href="lesson-schedules/{{ $list->id }}"
+                                                    <a href="{{ Session('user')['role'] == 'Guru' ? url('/teacher/lesson-schedules/' . $list->id) : url('/admin/lesson-schedules/' . $list->id) }}"
                                                         class="btn btn-info btn-sm">Detail</a>
                                                     <form class="d-inline mt-2" method="POST"
-                                                        action="/admin/lesson-schedules/{{ $list->id }}">
+                                                        action="{{ Session('user')['role'] == 'Guru' ? url('/teacher/lesson-schedules/' . $list->id) : url('/admin/lesson-schedules/' . $list->id) }}">
                                                         {{ csrf_field() }}
                                                         @method('DELETE')
                                                         <button class="btn btn-danger btn-sm"

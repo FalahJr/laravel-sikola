@@ -27,6 +27,7 @@ class LessonSchedule extends Model
         'room',
         'day',
         'time',
+        'is_absensi'
     ];
 
     /**

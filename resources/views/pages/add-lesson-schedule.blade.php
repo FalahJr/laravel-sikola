@@ -27,7 +27,9 @@
                             <div class="card-header">
                                 <h4>Formulir Tambah Jadwal Pelajaran</h4>
                             </div>
-                            <form class="form" action="/admin/lesson-schedules" method="post">
+                            <form class="form"
+                                action="{{ Session('user')['role'] == 'Guru' ? url('/teacher/lesson-schedules') : url('/admin/lesson-schedules') }}"
+                                method="post">
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group row mb-4">
