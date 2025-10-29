@@ -39,7 +39,7 @@
                                     <div class="form-group row mb-4">
                                         <label
                                             class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Nama
-                                                                                                                                    Lengkap') }}</label>
+                                                                                                                                                                                                                            Lengkap') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <input type="text" class="form-control" name="nama_lengkap"
                                                 value="{{ $murid->nama_lengkap }}">
@@ -58,7 +58,7 @@
                                     <div class="form-group row mb-4">
                                         <label
                                             class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Kata
-                                                                                                                                    Sandi') }}</label>
+                                                                                                                                                                                                                            Sandi') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <input type="text" class="form-control" name="password"
                                                 value="{{ $murid->password }}">
@@ -68,7 +68,7 @@
                                     <div class="form-group row mb-4">
                                         <label
                                             class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Nomor
-                                                                                                                                    Induk') }}</label>
+                                                                                                                                                                                                                            Induk') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <input type="number" min="0" class="form-control" name="nomor_induk"
                                                 value="{{ $murid->nomor_induk }}">
@@ -79,7 +79,7 @@
                                         <label
                                             class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Kelas') }}</label>
                                         <div class="col-sm-12 col-md-7">
-                                            <select name="class_id" class="form-control">
+                                            <select name="class_id" class="form-control selectric">
                                                 <option value="">-- Pilih Kelas --</option>
                                                 @foreach ($classes as $c)
                                                     <option value="{{ $c->id }}"
@@ -102,7 +102,7 @@
                                     <div class="form-group row mb-4">
                                         <label
                                             class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Foto
-                                                                                                                                    Profil') }}</label>
+                                                                                                                                                                                                                            Profil') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <div id="image-preview" class="image-preview"
                                                 style="background-image: url('{{ asset('img/murid/' . $murid->gambar) }}') ; background-size: cover;
