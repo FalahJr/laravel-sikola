@@ -87,11 +87,21 @@
                                     </div>
 
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Waktu</label>
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Waktu
+                                            Mulai</label>
                                         <div class="col-sm-12 col-md-7">
-                                            <input type="time" class="form-control" name="time"
-                                                value="{{ $schedule->time ? date('H:i', strtotime($schedule->time)) : '' }}"
+                                            <input type="time" class="form-control" name="start_time"
+                                                value="{{ $schedule->start_time ? date('H:i', strtotime($schedule->start_time)) : '' }}"
                                                 required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row mb-4">
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Waktu Selesai
+                                            (opsional)</label>
+                                        <div class="col-sm-12 col-md-7">
+                                            <input type="time" class="form-control" name="end_time"
+                                                value="{{ $schedule->end_time ? date('H:i', strtotime($schedule->end_time)) : '' }}">
                                         </div>
                                     </div>
 

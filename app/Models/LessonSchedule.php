@@ -26,7 +26,8 @@ class LessonSchedule extends Model
         'class_id',
         'room',
         'day',
-        'time',
+        'start_time',
+        'end_time',
         'is_absensi'
     ];
 
@@ -36,7 +37,8 @@ class LessonSchedule extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'time' => 'datetime:H:i:s',
+        'start_time' => 'datetime:H:i:s',
+        'end_time' => 'datetime:H:i:s',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];

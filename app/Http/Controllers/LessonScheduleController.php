@@ -32,7 +32,7 @@ class LessonScheduleController extends Controller
         }
 
         $data = $query->orderBy('lesson_schedule.day')
-            ->orderBy('lesson_schedule.time')
+            ->orderBy('lesson_schedule.start_time')
             ->get();
 
         // dd($data);
@@ -66,7 +66,8 @@ class LessonScheduleController extends Controller
             $schedule->class_id = $request->class_id;
             $schedule->room = $request->room;
             $schedule->day = $request->day;
-            $schedule->time = $request->time;
+            $schedule->start_time = $request->start_time;
+            $schedule->end_time = $request->end_time;
             $schedule->created_at = Carbon::now();
             $schedule->updated_at = Carbon::now();
 
@@ -117,7 +118,7 @@ class LessonScheduleController extends Controller
             }])
                 ->where('class_id', $classId)
                 ->orderBy('day')
-                ->orderBy('time')
+                ->orderBy('start_time')
                 ->get();
         }
 
@@ -182,7 +183,8 @@ class LessonScheduleController extends Controller
         $schedule->class_id = $request->class_id;
         $schedule->room = $request->room;
         $schedule->day = $request->day;
-        $schedule->time = $request->time;
+        $schedule->start_time = $request->start_time;
+        $schedule->end_time = $request->end_time;
         $schedule->updated_at = Carbon::now();
 
         if ($schedule->save()) {

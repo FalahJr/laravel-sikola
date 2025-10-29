@@ -117,6 +117,8 @@ Route::middleware(['authGuru'])->prefix('teacher')->group(function () {
     Route::get('profile', [UserController::class, 'index']);
     Route::put('profile', [UserController::class, 'update']);
 
+
+
     // Class Management
     Route::resource('classes', \App\Http\Controllers\ClassController::class);
     // Route::get('/add-class', [\App\Http\Controllers\ClassController::class, 'create'])->name("add-class");
@@ -185,7 +187,13 @@ Route::middleware(['authAdmin'])->prefix('admin')->group(function () {
     Route::post('/lesson-schedules/{id}/open-attendance', [LessonScheduleController::class, 'openAttendance']);
     Route::post('/lesson-schedules/{id}/close-attendance', [LessonScheduleController::class, 'closeAttendance']);
 
-
+    // Guru (teacher) user management by Admin
+    Route::get('/gurus', [UserController::class, 'indexGurus']);
+    Route::get('/gurus/create', [UserController::class, 'createGuru'])->name('admin.gurus.create');
+    Route::post('/gurus', [UserController::class, 'storeGuru'])->name('admin.gurus.store');
+    Route::get('/gurus/{id}/edit', [UserController::class, 'editGuru'])->name('admin.gurus.edit');
+    Route::put('/gurus/{id}', [UserController::class, 'updateGuru'])->name('admin.gurus.update');
+    Route::delete('/gurus/{id}', [UserController::class, 'destroyGuru'])->name('admin.gurus.destroy');
 
     // Route::post('/store-materi', [MateriController::class, 'store']);
 });

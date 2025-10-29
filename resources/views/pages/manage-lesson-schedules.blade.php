@@ -45,7 +45,18 @@
                                                 <td>
                                                     <div class="badge badge-primary">{{ $list->day }}</div>
                                                 </td>
-                                                <td>{{ $list->time ? date('H:i', strtotime($list->time)) : '-' }}</td>
+                                                <td>
+                                                    @if ($list->start_time)
+                                                        @if ($list->end_time)
+                                                            {{ date('H:i', strtotime($list->start_time)) }} -
+                                                            {{ date('H:i', strtotime($list->end_time)) }}
+                                                        @else
+                                                            {{ date('H:i', strtotime($list->start_time)) }}
+                                                        @endif
+                                                    @else
+                                                        -
+                                                    @endif
+                                                </td>
                                                 <td>{{ $list->lesson_name }}</td>
                                                 <td>{{ $list->class_name }}</td>
                                                 <td>{{ $list->room ?? '-' }}</td>

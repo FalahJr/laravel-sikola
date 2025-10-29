@@ -46,19 +46,30 @@
                         <a class="nav-link" href="{{ url('admin/home') }}"><i class="fas fa-th-large"></i>
                             <span>{{ __('Dashboard') }}</span></a>
                     </li>
-                    <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('admin/materi') }}"><i class="fas fa-home"></i>
-                            <span>{{ __('Material') }}</span></a>
-                    </li>
+
                     {{-- <li class="{{ Request::is('quizzes/score') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('admin/quiz') }}"><i class="fas fa-file-pen"></i>
                             <span>{{ __('Result Quiz') }}</span></a>
                     </li> --}}
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
+                                class="fas fa-columns"></i>
+                            <span>{{ __('Manajemen Pengguna') }}</span></a>
+                        <ul class="dropdown-menu">
+                            <li class="{{ Request::is('gurus') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ url('admin/gurus') }}"><i class="fas fa-user"></i>
+                                    <span>Manajemen Guru</span></a>
+                            </li>
+                            <li class="{{ Request::is('manage-student') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ url('admin/manage-student') }}"><i
+                                        class="fas fa-user"></i>
+                                    <span>{{ __('Manage Students') }}</span></a>
+                            </li>
 
-                    <li class="{{ Request::is('manage-student') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('admin/manage-student') }}"><i class="fas fa-user"></i>
-                            <span>{{ __('Manage Students') }}</span></a>
+
+                        </ul>
                     </li>
+
                     <li class="{{ Request::is('classes') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('admin/classes') }}"><i class="fas fa-school"></i>
                             <span>{{ __('Manage Classes') }}</span></a>
@@ -66,6 +77,10 @@
                     <li class="{{ Request::is('lessons') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('admin/lessons') }}"><i class="fas fa-book"></i>
                             <span>{{ __('Manage Lessons') }}</span></a>
+                    </li>
+                    <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('admin/materi') }}"><i class="fas fa-home"></i>
+                            <span>{{ __('Material') }}</span></a>
                     </li>
                     <li class="{{ Request::is('lesson-schedules') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('admin/lesson-schedules') }}"><i

@@ -75,9 +75,18 @@
                                     </div>
 
                                     <div class="form-group row mb-4">
-                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Waktu</label>
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Waktu
+                                            Mulai</label>
                                         <div class="col-sm-12 col-md-7">
-                                            <input type="time" class="form-control" name="time" required>
+                                            <input type="time" class="form-control" name="start_time" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row mb-4">
+                                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Waktu Selesai
+                                            (opsional)</label>
+                                        <div class="col-sm-12 col-md-7">
+                                            <input type="time" class="form-control" name="end_time">
                                         </div>
                                     </div>
 

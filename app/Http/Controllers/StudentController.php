@@ -10,6 +10,7 @@ use App\models\Admin;
 use App\Models\Materi;
 use App\Models\Notifikasi;
 use App\Models\User;
+use App\Models\Classes;
 use Carbon\Carbon;
 
 class StudentController extends Controller
@@ -17,7 +18,7 @@ class StudentController extends Controller
 
     public function index()
     {
-        $data = User::where("role", "=", "Murid")
+        $data = User::where("role", "=", "Murid")->with('class')
             ->get();
 
         // dd($data);
@@ -31,7 +32,9 @@ class StudentController extends Controller
     public function create()
     {
 
-        return view('pages.add-student');
+        $classes = Classes::orderBy('name')->get();
+        // dd($classes);
+        return view('pages.add-student', compact('classes'));
     }
 
     public function store(Request $request)
@@ -52,7 +55,8 @@ class StudentController extends Controller
                 $user->password = $request->password;
                 $user->alamat = $request->alamat;
                 $user->nomor_induk = $request->nomor_induk;
-                $user->class_id = Session('user')['class_id'];
+                // assign selected class from form (if provided)
+                $user->class_id = $request->class_id ?? Session('user')['class_id'] ?? null;
                 $user->jurusan = Session('user')['jurusan'];
                 $user->gambar = $fileName;
                 $user->created_at = Carbon::now();
@@ -83,7 +87,9 @@ class StudentController extends Controller
             'id' => $request->segment(3)
         ])->first();
 
-        return view('pages.edit-student', compact('murid'));
+        $classes = Classes::orderBy('name')->get();
+
+        return view('pages.edit-student', compact('murid', 'classes'));
     }
 
     public function update(Request $request)
@@ -96,6 +102,7 @@ class StudentController extends Controller
         $user->nama_lengkap = $request->nama_lengkap;
         $user->email = $request->email;
         $user->password = $request->password;
+        $user->class_id = $request->class_id ?? $user->class_id;
         $user->alamat = $request->alamat;
         $user->nomor_induk = $request->nomor_induk;
         // $user->gambar = "Tes";

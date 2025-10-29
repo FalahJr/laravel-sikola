@@ -41,6 +41,7 @@ use Illuminate\Support\Str;
                                             <th>{{ __('No Induk') }}</th>
                                             <th>{{ __('Nama Lengkap') }}</th>
                                             <th>{{ __('Email') }}</th>
+                                            <th>{{ __('Kelas') }}</th>
                                             <th>{{ __('Gambar') }}</th>
                                             <th>{{ __('Aksi') }}</th>
                                         </tr>
@@ -57,6 +58,9 @@ use Illuminate\Support\Str;
                                                 <td>
                                                     {{ $list->email }}
 
+                                                </td>
+                                                <td>
+                                                    {{ $list->class ? $list->class->name : '-' }}
                                                 </td>
                                                 <td>
                                                     @if ($list->gambar)
