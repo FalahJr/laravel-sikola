@@ -33,7 +33,7 @@ class DashboardController extends Controller
             $lessonSchedules = LessonSchedule::with('lesson')
                 ->where('class_id', $classId)
                 ->orderBy('day')
-                ->orderBy('time')
+                ->orderBy('start_time')
                 ->get();
         } else {
             $lessonSchedules = collect();

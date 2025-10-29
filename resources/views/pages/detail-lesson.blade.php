@@ -105,10 +105,20 @@ use Illuminate\Support\Str;
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse($lesson->lessonSchedules()->with('class')->orderBy('day')->orderBy('time')->limit(10)->get() as $schedule)
+                                            @forelse($lesson->lessonSchedules()->with('class')->orderBy('day')->orderBy('start_time')->limit(10)->get() as $schedule)
                                                 <tr>
                                                     <td>{{ $schedule->day }}</td>
-                                                    <td>{{ $schedule->time ? date('H:i', strtotime($schedule->time)) : '-' }}
+                                                    <td>
+                                                        @if ($schedule->start_time)
+                                                            @if ($schedule->end_time)
+                                                                {{ date('H:i', strtotime($schedule->start_time)) }} -
+                                                                {{ date('H:i', strtotime($schedule->end_time)) }}
+                                                            @else
+                                                                {{ date('H:i', strtotime($schedule->start_time)) }}
+                                                            @endif
+                                                        @else
+                                                            -
+                                                        @endif
                                                     </td>
                                                     <td>{{ $schedule->class->name ?? '-' }}</td>
                                                     <td>{{ $schedule->room ?? '-' }}</td>
@@ -188,7 +198,17 @@ use Illuminate\Support\Str;
                                                     <td>{{ $attendance->user->nama_lengkap ?? '-' }}</td>
                                                     <td>
                                                         {{ $attendance->lessonSchedule->day ?? '-' }} -
-                                                        {{ $attendance->lessonSchedule->time ? date('H:i', strtotime($attendance->lessonSchedule->time)) : '-' }}
+                                                        @if ($attendance->lessonSchedule->start_time)
+                                                            @if ($attendance->lessonSchedule->end_time)
+                                                                {{ date('H:i', strtotime($attendance->lessonSchedule->start_time)) }}
+                                                                -
+                                                                {{ date('H:i', strtotime($attendance->lessonSchedule->end_time)) }}
+                                                            @else
+                                                                {{ date('H:i', strtotime($attendance->lessonSchedule->start_time)) }}
+                                                            @endif
+                                                        @else
+                                                            -
+                                                        @endif
                                                     </td>
                                                     <td>
                                                         @if ($attendance->status == 'Hadir')

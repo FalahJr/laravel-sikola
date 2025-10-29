@@ -53,8 +53,18 @@
                                             </tr>
                                             <tr>
                                                 <td><strong>Waktu:</strong></td>
-                                                <td><span
-                                                        class="badge badge-info badge-lg">{{ $schedule->time ? date('H:i', strtotime($schedule->time)) : '-' }}</span>
+                                                <td><span class="badge badge-info badge-lg">
+                                                        @if ($schedule->start_time)
+                                                            @if ($schedule->end_time)
+                                                                {{ date('H:i', strtotime($schedule->start_time)) }} -
+                                                                {{ date('H:i', strtotime($schedule->end_time)) }}
+                                                            @else
+                                                                {{ date('H:i', strtotime($schedule->start_time)) }}
+                                                            @endif
+                                                        @else
+                                                            -
+                                                        @endif
+                                                    </span>
                                                 </td>
                                             </tr>
                                             <tr>

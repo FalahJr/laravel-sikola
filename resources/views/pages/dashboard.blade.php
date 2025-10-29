@@ -93,7 +93,17 @@
                                                 @forelse($lessonSchedules as $schedule)
                                                     <tr>
                                                         <td>{{ $schedule->day }}</td>
-                                                        <td>{{ $schedule->time ? date('H:i', strtotime($schedule->time)) : '-' }}
+                                                        <td>
+                                                            @if ($schedule->start_time)
+                                                                @if ($schedule->end_time)
+                                                                    {{ date('H:i', strtotime($schedule->start_time)) }} -
+                                                                    {{ date('H:i', strtotime($schedule->end_time)) }}
+                                                                @else
+                                                                    {{ date('H:i', strtotime($schedule->start_time)) }}
+                                                                @endif
+                                                            @else
+                                                                -
+                                                            @endif
                                                         </td>
                                                         <td>{{ $schedule->lesson->name ?? '-' }}</td>
                                                         <td>{{ $schedule->room ?? '-' }}</td>
