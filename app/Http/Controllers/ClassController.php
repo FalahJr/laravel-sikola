@@ -30,19 +30,27 @@ class ClassController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request) {
-            $class = new Classes;
-            $class->name = $request->name;
-            $class->created_at = Carbon::now();
-            $class->updated_at = Carbon::now();
+        // normalize input
+        $request->merge(['name' => trim($request->name ?? '')]);
 
-            if ($class->save()) {
-                return redirect('/admin/classes')->with('success', 'Kelas berhasil dibuat');
-            }
-            return redirect('/admin/classes')->with('error', 'Gagal membuat kelas');
-        } else {
-            return redirect('/admin/classes')->with('error', 'Gagal membuat kelas');
+        // validate name is required and unique in the class table (messages in Indonesian)
+        $request->validate([
+            'name' => 'required|string|max:255|unique:class,name',
+        ], [
+            'name.required' => 'Nama kelas wajib diisi.',
+            'name.unique' => 'Nama kelas sudah digunakan.',
+            'name.max' => 'Nama kelas maksimal :max karakter.',
+        ]);
+
+        $class = new Classes;
+        $class->name = $request->name;
+        $class->created_at = Carbon::now();
+        $class->updated_at = Carbon::now();
+
+        if ($class->save()) {
+            return redirect('/admin/classes')->with('success', 'Kelas berhasil dibuat');
         }
+        return redirect('/admin/classes')->with('error', 'Gagal membuat kelas');
     }
 
     /**
@@ -74,9 +82,22 @@ class ClassController extends Controller
      */
     public function update(Request $request)
     {
+        $id = $request->segment(3);
         $class = Classes::where([
-            'id' => $request->segment(3)
+            'id' => $id
         ])->first();
+
+        // normalize input
+        $request->merge(['name' => trim($request->name ?? '')]);
+
+        // validate name is required and unique except for current record (messages in Indonesian)
+        $request->validate([
+            'name' => 'required|string|max:255|unique:class,name,' . $id,
+        ], [
+            'name.required' => 'Nama kelas wajib diisi.',
+            'name.unique' => 'Nama kelas sudah digunakan.',
+            'name.max' => 'Nama kelas maksimal :max karakter.',
+        ]);
 
         $class->name = $request->name;
         $class->updated_at = Carbon::now();
