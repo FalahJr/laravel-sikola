@@ -13,13 +13,11 @@
                 </div>
             </div>
 
+            @include('components.alerts')
+
             <div class="section-body">
                 <div class="row">
                     <div class="col-12">
-                        @if (session('success'))
-                            <div class="alert alert-success">{{ session('success') }}</div>
-                        @endif
-
                         <a href="{{ url('/admin/gurus/create') }}" class="btn btn-success btn-block w-25">+ Tambah Guru</a>
 
                         <div class="card mt-4">

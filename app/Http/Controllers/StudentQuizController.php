@@ -66,7 +66,7 @@ class StudentQuizController extends Controller
         $score = ($correctAnswers / $quiz->questions->count()) * 100;
         $quizAttempt->update(['score' => $score]);
 
-        return redirect()->route('student.quizzes.result', ['id' => $quiz->id, 'attempt_id' => $quizAttempt->id]);
+        return redirect()->route('student.quizzes.result', ['id' => $quiz->id, 'attempt_id' => $quizAttempt->id])->with('success', 'Kuis selesai — Skor: ' . number_format($score, 2));
     }
 
 

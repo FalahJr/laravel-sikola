@@ -42,7 +42,7 @@ class QuizController extends Controller
         ]);
 
 
-        return redirect()->route('quizzes.index')->with('success', 'Quiz created successfully.');
+        return redirect()->route('quizzes.index')->with('success', 'Kuis berhasil dibuat.');
     }
 
     public function show($id)
@@ -74,7 +74,7 @@ class QuizController extends Controller
 
         ]);
 
-        return redirect()->route('quizzes.index')->with('success', 'Quiz updated successfully.');
+        return redirect()->route('quizzes.index')->with('success', 'Kuis berhasil diperbarui.');
     }
 
     public function destroy($id)
@@ -98,7 +98,7 @@ class QuizController extends Controller
 
                         if ($deleteQuestion) {
                             Quizzes::where('id', $id)->delete();
-                            return redirect()->route('quizzes.index')->with('success', 'Quiz deleted successfully.');
+                            return redirect()->route('quizzes.index')->with('success', 'Kuis berhasil dihapus.');
                         }
                     }
                 }
@@ -107,17 +107,17 @@ class QuizController extends Controller
 
                 if ($deleteQuestion) {
                     Quizzes::where('id', $id)->delete();
-                    return redirect()->route('quizzes.index')->with('success', 'Quiz deleted successfully.');
+                    return redirect()->route('quizzes.index')->with('success', 'Kuis berhasil dihapus.');
                 }
             }
         } else {
             Quizzes::where('id', $id)->delete();
-            return redirect()->route('quizzes.index')->with('success', 'Quiz deleted successfully.');
+            return redirect()->route('quizzes.index')->with('success', 'Kuis berhasil dihapus.');
         }
 
 
 
-        return redirect()->route('quizzes.index')->with('success', 'Quiz deleted successfully.');
+        return redirect()->route('quizzes.index')->with('success', 'Kuis berhasil dihapus.');
     }
 
     public function createQuestion($quiz_id)
@@ -150,7 +150,7 @@ class QuizController extends Controller
             'correct_answer' => $request->correct_answer,
         ]);
 
-        return redirect()->route('quizzes.show', $quiz_id)->with('success', 'Question added successfully.');
+        return redirect()->route('quizzes.show', $quiz_id)->with('success', 'Pertanyaan berhasil ditambahkan.');
     }
 
     public function editQuestion($quiz_id, $question_id)
@@ -182,7 +182,7 @@ class QuizController extends Controller
             'correct_answer' => $request->correct_answer,
         ]);
 
-        return redirect()->route('quizzes.show', $quiz_id)->with('success', 'Question updated successfully.');
+        return redirect()->route('quizzes.show', $quiz_id)->with('success', 'Pertanyaan berhasil diperbarui.');
     }
 
     public function destroyQuestion($quiz_id, $question_id)
@@ -190,6 +190,6 @@ class QuizController extends Controller
         $question = Questions::findOrFail($question_id);
         $question->delete();
 
-        return redirect()->route('quizzes.show', $quiz_id)->with('success', 'Question deleted successfully.');
+        return redirect()->route('quizzes.show', $quiz_id)->with('success', 'Pertanyaan berhasil dihapus.');
     }
 }

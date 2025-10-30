@@ -43,6 +43,9 @@
             <!-- Sidebar -->
             @include('components.sidebar')
 
+            <!-- Alerts (flash messages) -->
+            <!-- Note: moved into page views so alerts can be rendered beneath the page title/header -->
+
             <!-- Content -->
             @yield('main')
 

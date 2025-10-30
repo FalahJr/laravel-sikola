@@ -41,6 +41,8 @@ class UserController extends Controller
 
         $user->save();
 
+        // provide a flash message for the profile update (CUD success)
+        session()->flash('success', 'Profil berhasil diperbarui.');
         return view('pages.profile', compact('user'));
 
 

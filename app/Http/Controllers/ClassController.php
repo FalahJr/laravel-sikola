@@ -37,11 +37,11 @@ class ClassController extends Controller
             $class->updated_at = Carbon::now();
 
             if ($class->save()) {
-                return redirect('/admin/classes');
+                return redirect('/admin/classes')->with('success', 'Kelas berhasil dibuat');
             }
-            return redirect('/admin/classes');
+            return redirect('/admin/classes')->with('error', 'Gagal membuat kelas');
         } else {
-            return redirect('/admin/classes');
+            return redirect('/admin/classes')->with('error', 'Gagal membuat kelas');
         }
     }
 
@@ -82,9 +82,9 @@ class ClassController extends Controller
         $class->updated_at = Carbon::now();
 
         if ($class->save()) {
-            return redirect('/admin/classes');
+            return redirect('/admin/classes')->with('success', 'Kelas berhasil diperbarui');
         } else {
-            return redirect('/admin/classes');
+            return redirect('/admin/classes')->with('error', 'Gagal memperbarui kelas');
         }
     }
 
@@ -96,9 +96,9 @@ class ClassController extends Controller
         $class = Classes::findOrFail($id);
 
         if ($class->delete()) {
-            return redirect('/admin/classes');
+            return redirect('/admin/classes')->with('success', 'Kelas berhasil dihapus');
         } else {
-            return redirect('/admin/classes');
+            return redirect('/admin/classes')->with('error', 'Gagal menghapus kelas');
         }
     }
 }

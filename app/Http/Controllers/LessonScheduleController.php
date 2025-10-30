@@ -71,18 +71,20 @@ class LessonScheduleController extends Controller
             $schedule->created_at = Carbon::now();
             $schedule->updated_at = Carbon::now();
 
-            $schedule->save();
             // if ($schedule->save()) {
             //     if (Session('user')['role'] == 'Guru') {
             //         return redirect('/teacher/lesson-schedules');
             //     }
             //     return redirect('/admin/lesson-schedules');
             // }
+            $schedule->save();
+            session()->flash('success', 'Jadwal berhasil dibuat.');
             if (Session('user')['role'] == 'Guru') {
                 return redirect('/teacher/lesson-schedules');
             }
             return redirect('/admin/lesson-schedules');
         } else {
+            session()->flash('error', 'Gagal membuat jadwal.');
             if (Session('user')['role'] == 'Guru') {
                 return redirect('/teacher/lesson-schedules');
             }
@@ -141,6 +143,7 @@ class LessonScheduleController extends Controller
 
         if ($existing) {
             // already marked
+            session()->flash('info', 'Anda sudah melakukan absensi untuk jadwal ini.');
             return back();
         }
 
@@ -151,7 +154,7 @@ class LessonScheduleController extends Controller
         $att->created_at = Carbon::now();
         $att->updated_at = Carbon::now();
         $att->save();
-
+        session()->flash('success', 'Absensi berhasil dicatat.');
         return back();
     }
 
@@ -188,8 +191,10 @@ class LessonScheduleController extends Controller
         $schedule->updated_at = Carbon::now();
 
         if ($schedule->save()) {
+            session()->flash('success', 'Jadwal berhasil diperbarui.');
             return redirect('/admin/lesson-schedules');
         } else {
+            session()->flash('error', 'Gagal memperbarui jadwal.');
             return redirect('/admin/lesson-schedules');
         }
     }
@@ -203,7 +208,7 @@ class LessonScheduleController extends Controller
         $schedule->is_absensi = 'Y';
         $schedule->updated_at = Carbon::now();
         $schedule->save();
-
+        session()->flash('success', 'Absensi dibuka.');
         return back();
     }
 
@@ -219,6 +224,7 @@ class LessonScheduleController extends Controller
 
         // For any student in the schedule's class who hasn't marked attendance yet,
         // create a LessonAttendance record with status 'Tidak Hadir'.
+        $created = 0;
         try {
             $students = \App\Models\User::where('class_id', $schedule->class_id)
                 ->where('role', 'Murid')
@@ -237,12 +243,14 @@ class LessonScheduleController extends Controller
                     $att->created_at = Carbon::now();
                     $att->updated_at = Carbon::now();
                     $att->save();
+                    $created++;
                 }
             }
         } catch (\Exception $e) {
             // swallow any error to avoid breaking the close flow; consider logging in production
         }
 
+        session()->flash('success', 'Absensi ditutup.' . ($created ? " $created murid ditandai Tidak Hadir." : ''));
         return back();
     }
 
@@ -254,8 +262,10 @@ class LessonScheduleController extends Controller
         $schedule = LessonSchedule::findOrFail($id);
 
         if ($schedule->delete()) {
+            session()->flash('success', 'Jadwal berhasil dihapus.');
             return redirect('/admin/lesson-schedules');
         } else {
+            session()->flash('error', 'Gagal menghapus jadwal.');
             return redirect('/admin/lesson-schedules');
         }
     }

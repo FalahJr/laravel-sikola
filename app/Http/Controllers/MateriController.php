@@ -175,13 +175,28 @@ class MateriController extends Controller
         $materi->updated_at = Carbon::now('Asia/Jakarta');
 
         if ($request->hasFile('gambar')) {
-            $gambarName = $request->file('gambar')->getClientOriginalName();
+            $originalName = $request->file('gambar')->getClientOriginalName();
+            // sanitize filename to avoid 4-byte/emoji DB issues
+            $safeName = iconv('UTF-8', 'ASCII//TRANSLIT', pathinfo($originalName, PATHINFO_FILENAME));
+            $safeName = preg_replace('/[^A-Za-z0-9_\-]/', '_', $safeName);
+            if (empty($safeName)) {
+                $safeName = uniqid('img_');
+            }
+            $extension = $request->file('gambar')->getClientOriginalExtension();
+            $gambarName = time() . '_' . $safeName . '.' . $extension;
             $request->file('gambar')->move('img/materi', $gambarName);
             $materi->gambar = $gambarName;
         }
 
         if ($request->hasFile('file')) {
-            $fileName = $request->file('file')->getClientOriginalName();
+            $originalFile = $request->file('file')->getClientOriginalName();
+            $safeFile = iconv('UTF-8', 'ASCII//TRANSLIT', pathinfo($originalFile, PATHINFO_FILENAME));
+            $safeFile = preg_replace('/[^A-Za-z0-9_\-]/', '_', $safeFile);
+            if (empty($safeFile)) {
+                $safeFile = uniqid('file_');
+            }
+            $fileExt = $request->file('file')->getClientOriginalExtension();
+            $fileName = time() . '_' . $safeFile . '.' . $fileExt;
             $request->file('file')->move('file_upload/materi', $fileName);
             $materi->file = $fileName;
         }
@@ -195,10 +210,10 @@ class MateriController extends Controller
             $notifikasi->updated_at = Carbon::now('Asia/Jakarta');
             $notifikasi->save();
 
-            return redirect('/admin/materi')->with('success', 'Material created successfully');
+            return redirect('/admin/materi')->with('success', 'Materi berhasil dibuat');
         }
 
-        return redirect('/admin/materi')->with('error', 'Failed to create material');
+        return redirect('/admin/materi')->with('error', 'Gagal membuat materi');
     }
     public function edit(Request $request)
     {
@@ -283,19 +298,33 @@ class MateriController extends Controller
         $materi->updated_at = Carbon::now('Asia/Jakarta');
 
         if ($request->hasFile('gambar')) {
-            $gambarName = $request->file('gambar')->getClientOriginalName();
+            $originalName = $request->file('gambar')->getClientOriginalName();
+            $safeName = iconv('UTF-8', 'ASCII//TRANSLIT', pathinfo($originalName, PATHINFO_FILENAME));
+            $safeName = preg_replace('/[^A-Za-z0-9_\-]/', '_', $safeName);
+            if (empty($safeName)) {
+                $safeName = uniqid('img_');
+            }
+            $extension = $request->file('gambar')->getClientOriginalExtension();
+            $gambarName = time() . '_' . $safeName . '.' . $extension;
             $request->file('gambar')->move('img/materi', $gambarName);
             $materi->gambar = $gambarName;
         }
 
         if ($request->hasFile('file')) {
-            $fileName = $request->file('file')->getClientOriginalName();
+            $originalFile = $request->file('file')->getClientOriginalName();
+            $safeFile = iconv('UTF-8', 'ASCII//TRANSLIT', pathinfo($originalFile, PATHINFO_FILENAME));
+            $safeFile = preg_replace('/[^A-Za-z0-9_\-]/', '_', $safeFile);
+            if (empty($safeFile)) {
+                $safeFile = uniqid('file_');
+            }
+            $fileExt = $request->file('file')->getClientOriginalExtension();
+            $fileName = time() . '_' . $safeFile . '.' . $fileExt;
             $request->file('file')->move('file_upload/materi', $fileName);
             $materi->file = $fileName;
         }
 
         $materi->save();
-        return redirect('/admin/materi')->with('success', 'Material updated successfully');
+        return redirect('/admin/materi')->with('success', 'Materi berhasil diperbarui');
     }
 
     public function destroy(Request $request, $id)
@@ -307,13 +336,13 @@ class MateriController extends Controller
             ->first();
 
         if (!$materi) {
-            return redirect('/admin/materi')->with('error', 'Material not found or access denied');
+            return redirect('/admin/materi')->with('error', 'Materi tidak ditemukan atau akses ditolak');
         }
 
         if ($materi->delete()) {
-            return redirect('/admin/materi')->with('success', 'Material deleted successfully');
+            return redirect('/admin/materi')->with('success', 'Materi berhasil dihapus');
         } else {
-            return redirect('/admin/materi')->with('error', 'Failed to delete material');
+            return redirect('/admin/materi')->with('error', 'Gagal menghapus materi');
         }
     }
 }

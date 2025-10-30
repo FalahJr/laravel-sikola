@@ -45,8 +45,20 @@ class StudentController extends Controller
 
                 // $getPegawaiBaru = Pegawai::orderBy('created_at', 'desc')->first();
                 // $getKonfigCuti = Konfig_cuti::where('tahun',(new \DateTime())->format('Y'))->first();
-                $fileName = $request->file('gambar')->getClientOriginalName();
-                $request->file('gambar')->move('img/murid', $fileName);
+                // sanitize filename: avoid emojis/special chars which can cause DB charset errors
+                $uploaded = $request->file('gambar');
+                $originalName = $uploaded->getClientOriginalName();
+                $extension = $uploaded->getClientOriginalExtension();
+                // take filename (without extension) and keep only ascii alnum, dash and underscore
+                $base = pathinfo($originalName, PATHINFO_FILENAME);
+                // transliterate to ASCII where possible then remove unsafe chars
+                $base = @iconv('UTF-8', 'ASCII//TRANSLIT', $base) ?: $base;
+                $base = preg_replace('/[^A-Za-z0-9_\-]/', '', $base);
+                if (empty($base)) {
+                    $base = uniqid('img_');
+                }
+                $fileName = time() . '_' . $base . '.' . $extension;
+                $uploaded->move('img/murid', $fileName);
 
                 $user = new User;
                 $user->nama_lengkap = $request->nama_lengkap;
@@ -64,14 +76,15 @@ class StudentController extends Controller
 
                 $user->save();
 
+                session()->flash('success', 'Murid berhasil ditambahkan.');
                 return redirect('/admin/manage-student');
 
 
 
                 // ->with('success', 'Berhasil membuat Materi');
             } else {
+                session()->flash('error', 'Gagal menambahkan murid: file gambar tidak ditemukan.');
                 return redirect('/admin/manage-student');
-                // ->with('failed', 'Gagal membuat Materi');
             }
         } else {
             return redirect('/admin/materi');
@@ -111,14 +124,25 @@ class StudentController extends Controller
         // $karyawan->image=$request->image;
 
         if ($request->hasFile('gambar')) {
-            $fileName = $request->file('gambar')->getClientOriginalName();
-            $request->file('gambar')->move('img/murid', $fileName);
+            $uploaded = $request->file('gambar');
+            $originalName = $uploaded->getClientOriginalName();
+            $extension = $uploaded->getClientOriginalExtension();
+            $base = pathinfo($originalName, PATHINFO_FILENAME);
+            $base = @iconv('UTF-8', 'ASCII//TRANSLIT', $base) ?: $base;
+            $base = preg_replace('/[^A-Za-z0-9_\-]/', '', $base);
+            if (empty($base)) {
+                $base = uniqid('img_');
+            }
+            $fileName = time() . '_' . $base . '.' . $extension;
+            $uploaded->move('img/murid', $fileName);
 
             $user->gambar = $fileName;
             $user->save();
+            session()->flash('success', 'Data murid berhasil diperbarui.');
             return redirect('/admin/manage-student');
         } else {
             $user->save();
+            session()->flash('success', 'Data murid berhasil diperbarui.');
             return redirect('/admin/manage-student');
         }
     }
@@ -130,8 +154,10 @@ class StudentController extends Controller
 
 
         if ($user->delete()) {
+            session()->flash('success', 'Murid berhasil dihapus.');
             return redirect('/admin/manage-student');
         } else {
+            session()->flash('error', 'Gagal menghapus murid.');
             return redirect('/admin/manage-student');
         }
     }

@@ -22,6 +22,8 @@ use Illuminate\Support\Str;
                 </div>
             </div>
 
+            @include('components.alerts')
+
             <div class="section-body">
 
                 <div class="row">

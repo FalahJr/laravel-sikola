@@ -44,11 +44,11 @@ class LessonController extends Controller
             $lesson->updated_at = Carbon::now();
 
             if ($lesson->save()) {
-                return redirect('/admin/lessons');
+                return redirect('/admin/lessons')->with('success', 'Mata pelajaran berhasil dibuat');
             }
-            return redirect('/admin/lessons');
+            return redirect('/admin/lessons')->with('error', 'Gagal membuat mata pelajaran');
         } else {
-            return redirect('/admin/lessons');
+            return redirect('/admin/lessons')->with('error', 'Gagal membuat mata pelajaran');
         }
     }
 
@@ -92,9 +92,9 @@ class LessonController extends Controller
         $lesson->updated_at = Carbon::now();
 
         if ($lesson->save()) {
-            return redirect('/admin/lessons');
+            return redirect('/admin/lessons')->with('success', 'Mata pelajaran berhasil diperbarui');
         } else {
-            return redirect('/admin/lessons');
+            return redirect('/admin/lessons')->with('error', 'Gagal memperbarui mata pelajaran');
         }
     }
 
@@ -106,9 +106,9 @@ class LessonController extends Controller
         $lesson = Lesson::findOrFail($id);
 
         if ($lesson->delete()) {
-            return redirect('/admin/lessons');
+            return redirect('/admin/lessons')->with('success', 'Mata pelajaran berhasil dihapus');
         } else {
-            return redirect('/admin/lessons');
+            return redirect('/admin/lessons')->with('error', 'Gagal menghapus mata pelajaran');
         }
     }
 }

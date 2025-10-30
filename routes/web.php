@@ -37,7 +37,7 @@ Route::get('/dashboard-ecommerce-dashboard', function () {
 
 // Login 
 
-Route::get('/login-student', [LoginController::class, 'index_student'])->name('login-student');
+Route::get('/login', [LoginController::class, 'index_student'])->name('login-student');
 Route::get('/login-teacher', [LoginController::class, 'index_teacher'])->name('login-teacher');
 Route::get('/admin/login', [LoginController::class, 'index_admin'])->name('login-admiin');
 Route::get('/logout-action', [LoginController::class, 'logout_action']);
@@ -369,9 +369,9 @@ Route::get('/auth-forgot-password', function () {
 Route::get('/auth-login', function () {
     return view('pages.auth-login', ['type_menu' => 'auth']);
 });
-Route::get('/login', function () {
-    return view('pages.login', ['type_menu' => 'auth']);
-});
+// Route::get('/login', function () {
+//     return view('pages.login', ['type_menu' => 'auth']);
+// });
 Route::get('/auth-register', function () {
     return view('pages.auth-register', ['type_menu' => 'auth']);
 });

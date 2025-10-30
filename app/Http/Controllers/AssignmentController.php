@@ -17,13 +17,9 @@ use Carbon\Carbon;
 
 class AssignmentController extends Controller
 {
-
     public function index()
     {
-        $data = Assignment::orderBy('id', 'desc')
-            ->get();
-
-        // dd($data);
+        $data = Assignment::orderBy('id', 'desc')->get();
         return view('pages.assignment-guru', compact('data'));
     }
 
@@ -31,249 +27,198 @@ class AssignmentController extends Controller
     {
         $data = Assignment::join('materi', 'materi.id', '=', 'assignment.materi_id')
             ->select('assignment.*', 'materi.judul as judul_materi')
-            // ->orderBy('id', 'desc')
             ->get();
-
-
-
-
-        // dd($data);
         return view('pages.assignment', compact('data'));
     }
-
-
-
-
 
     public function create()
     {
         $materi = Materi::all();
-        // dd($materi);
-
-
         return view('pages.add-assignment', compact('materi'));
     }
 
     public function store(Request $request)
     {
-        // dd($request->all());
-        if ($request) {
-            if ($request->hasFile('gambar') && $request->hasFile('file')) {
-                // save gambar ke folder public
-                $fileGambarName = $request->file('gambar')->getClientOriginalName();
-                $request->file('gambar')->move('img/assignment', $fileGambarName);
-
-                // save file ke folder public
-                $fileName = $request->file('file')->getClientOriginalName();
-                $request->file('file')->move('file_upload/assignment', $fileName);
-
-                $assignment = new Assignment;
-                $assignment->judul = $request->judul;
-                $assignment->materi_id = $request->materi_id;
-                $assignment->deskripsi = $request->deskripsi;
-                $assignment->gambar = $fileGambarName;
-                $assignment->file = $fileName;
-                $assignment->start_date = $request->start_date;
-                $assignment->end_date = $request->end_date;
-                $assignment->created_at = Carbon::now();
-                $assignment->updated_at = Carbon::now();
-
-
-                // if ($materi->save()) {
-
-                //     $notifikasi = new Notifikasi;
-                //     $notifikasi->role = "Murid";
-                //     $notifikasi->judul = "Materi baru dengan judul '" . $request->judul  . "' telah diunggah, yuk pelajari !!!";
-                //     $notifikasi->is_seen = "N";
-                //     $notifikasi->created_at = Carbon::now();
-                //     $notifikasi->updated_at = Carbon::now();
-
-                //     $notifikasi->save();
-
-                //     return redirect('/admin/materi');
-                // }
-
-                $assignment->save();
-                return redirect('/admin/assignment');
+        if ($request->hasFile('gambar') && $request->hasFile('file')) {
+            // gambar
+            $originalGambar = $request->file('gambar')->getClientOriginalName();
+            $safeGambar = @iconv('UTF-8', 'ASCII//TRANSLIT', pathinfo($originalGambar, PATHINFO_FILENAME)) ?: pathinfo($originalGambar, PATHINFO_FILENAME);
+            $safeGambar = preg_replace('/[^A-Za-z0-9_\-]/', '_', $safeGambar);
+            if (empty($safeGambar)) {
+                $safeGambar = uniqid('img_');
             }
-            // ->with('success', 'Berhasil membuat Materi');
-        } else {
-            return redirect('/admin/assignment');
-            // ->with('failed', 'Gagal membuat Materi');
+            $extGambar = $request->file('gambar')->getClientOriginalExtension();
+            $fileGambarName = time() . '_' . $safeGambar . '.' . $extGambar;
+            $request->file('gambar')->move('img/assignment', $fileGambarName);
+
+            // file
+            $originalFile = $request->file('file')->getClientOriginalName();
+            $safeFile = @iconv('UTF-8', 'ASCII//TRANSLIT', pathinfo($originalFile, PATHINFO_FILENAME)) ?: pathinfo($originalFile, PATHINFO_FILENAME);
+            $safeFile = preg_replace('/[^A-Za-z0-9_\-]/', '_', $safeFile);
+            if (empty($safeFile)) {
+                $safeFile = uniqid('file_');
+            }
+            $fileExt = $request->file('file')->getClientOriginalExtension();
+            $fileName = time() . '_' . $safeFile . '.' . $fileExt;
+            $request->file('file')->move('file_upload/assignment', $fileName);
+
+            $assignment = new Assignment();
+            $assignment->judul = $request->judul;
+            $assignment->materi_id = $request->materi_id;
+            $assignment->deskripsi = $request->deskripsi;
+            $assignment->gambar = $fileGambarName;
+            $assignment->file = $fileName;
+            $assignment->start_date = $request->start_date;
+            $assignment->end_date = $request->end_date;
+            $assignment->created_at = Carbon::now();
+            $assignment->updated_at = Carbon::now();
+            $assignment->save();
+
+            return redirect('/admin/assignment')->with('success', 'Tugas berhasil dibuat');
         }
+        return redirect('/admin/assignment')->with('error', 'Gagal membuat tugas (file tidak lengkap)');
     }
+
     public function edit(Request $request)
     {
-        // $data['karyawan'] = Pegawai::where([
-        //     'id' => $request->segment(3)
-        // ])->first();
-
-
-        // dd($request->segment(4));
-
         if (Session('user')['role'] == 'Guru') {
-            $assignment = Assignment::where([
-                'id' => $request->segment(3)
-            ])->first();
-
+            $assignment = Assignment::where('id', $request->segment(3))->first();
             $materi = Materi::all();
-
             return view('pages.edit-assignment', compact('assignment', 'materi'));
-        } else if (Session('user')['role'] == 'Admin') {
-            $assignment = Assignment::where([
-                'id' => $request->segment(3)
-            ])->with('materi')->first();
-
-            // dd($assignment);
-
+        } elseif (Session('user')['role'] == 'Admin') {
+            $assignment = Assignment::where('id', $request->segment(3))->with('materi')->first();
             return view('pages.edit-assignment', compact('assignment'));
-        } else {
-            $assignment = Assignment::where([
-                'id' => $request->segment(4)
-            ])->with('materi')->first();
-
-            // dd($assignment);
-            return view('pages.detail-assignment', compact('assignment'));
         }
+        $assignment = Assignment::where('id', $request->segment(4))->with('materi')->first();
+        return view('pages.detail-assignment', compact('assignment'));
     }
 
     public function viewSubmissions($id)
     {
-        // dd($id);
         $murid = User::where('role', '=', 'Murid')->get();
-        // dd($murid);
         $data = [];
-
         foreach ($murid as $list_murid) {
-            $cek = AssignmentSubmission::where('assignment_id', '=', $id)
-                ->where('user_id', '=', $list_murid->id)
-                ->first();
-
+            $cek = AssignmentSubmission::where('assignment_id', $id)->where('user_id', $list_murid->id)->first();
             $data[] = [
                 'nama_lengkap' => $list_murid->nama_lengkap,
-                'status' => $cek ? $cek->status : "Belum Mengumpulkan",
-                'tgl_submit' => $cek ? Carbon::parse($cek->created_at) : NULL,
-                'file' => $cek ? $cek->file : NULL,
+                'status' => $cek ? $cek->status : 'Belum Mengumpulkan',
+                'tgl_submit' => $cek ? Carbon::parse($cek->created_at) : null,
+                'file' => $cek ? $cek->file : null,
             ];
-
-            // dd($cek);
-
-            # code...
         }
-        // dd($data);
         return view('pages.view-submissions', compact('data'));
     }
 
     public function update(Request $request)
     {
-
-        $assignment = Assignment::where([
-            'id' => $request->segment(3)
-        ])->first();
+        $assignment = Assignment::where('id', $request->segment(3))->first();
         $assignment->judul = $request->judul;
         $assignment->materi_id = $request->materi_id;
         $assignment->deskripsi = $request->deskripsi;
-        // $assignment->gambar = $fileGambarName;
-        // $assignment->file = $fileName;
         $assignment->start_date = $request->start_date;
         $assignment->end_date = $request->end_date;
-        $assignment->created_at = Carbon::now();
         $assignment->updated_at = Carbon::now();
-        // $karyawan->image=$request->image;
 
-        // if ($materi->save()) {
         if ($request->hasFile('gambar') && $request->hasFile('file')) {
-            $fileGambarName = $request->file('gambar')->getClientOriginalName();
+            // gambar
+            $originalGambar = $request->file('gambar')->getClientOriginalName();
+            $safeGambar = @iconv('UTF-8', 'ASCII//TRANSLIT', pathinfo($originalGambar, PATHINFO_FILENAME)) ?: pathinfo($originalGambar, PATHINFO_FILENAME);
+            $safeGambar = preg_replace('/[^A-Za-z0-9_\-]/', '_', $safeGambar);
+            if (empty($safeGambar)) {
+                $safeGambar = uniqid('img_');
+            }
+            $extGambar = $request->file('gambar')->getClientOriginalExtension();
+            $fileGambarName = time() . '_' . $safeGambar . '.' . $extGambar;
             $request->file('gambar')->move('img/assignment', $fileGambarName);
 
-            // save file ke folder public
-            $fileName = $request->file('file')->getClientOriginalName();
+            // file
+            $originalFile = $request->file('file')->getClientOriginalName();
+            $safeFile = @iconv('UTF-8', 'ASCII//TRANSLIT', pathinfo($originalFile, PATHINFO_FILENAME)) ?: pathinfo($originalFile, PATHINFO_FILENAME);
+            $safeFile = preg_replace('/[^A-Za-z0-9_\-]/', '_', $safeFile);
+            if (empty($safeFile)) {
+                $safeFile = uniqid('file_');
+            }
+            $fileExt = $request->file('file')->getClientOriginalExtension();
+            $fileName = time() . '_' . $safeFile . '.' . $fileExt;
             $request->file('file')->move('file_upload/assignment', $fileName);
 
             $assignment->gambar = $fileGambarName;
             $assignment->file = $fileName;
             $assignment->save();
-            return redirect('/admin/assignment');
-        } elseif ($request->hasFile('gambar')) {
-            // dd($request->all());
-
-            $fileGambarName = $request->file('gambar')->getClientOriginalName();
-            $request->file('gambar')->move('img/assignment', $fileGambarName);
-
-
-            $assignment->gambar = $fileGambarName;
-            $assignment->save();
-            return redirect('/admin/assignment');
-        } elseif ($request->hasFile('file')) {
-            $fileName = $request->file('file')->getClientOriginalName();
-            $request->file('file')->move('file_upload/assignment', $fileName);
-
-
-
-            $assignment->file = $fileName;
-
-            $assignment->save();
-            return redirect('/admin/assignment');
-        } else {
-            $assignment->save();
-            return redirect('/admin/assignment');
+            return redirect('/admin/assignment')->with('success', 'Tugas berhasil diperbarui');
         }
+
+        if ($request->hasFile('gambar')) {
+            $originalGambar = $request->file('gambar')->getClientOriginalName();
+            $safeGambar = @iconv('UTF-8', 'ASCII//TRANSLIT', pathinfo($originalGambar, PATHINFO_FILENAME)) ?: pathinfo($originalGambar, PATHINFO_FILENAME);
+            $safeGambar = preg_replace('/[^A-Za-z0-9_\-]/', '_', $safeGambar);
+            if (empty($safeGambar)) {
+                $safeGambar = uniqid('img_');
+            }
+            $extGambar = $request->file('gambar')->getClientOriginalExtension();
+            $fileGambarName = time() . '_' . $safeGambar . '.' . $extGambar;
+            $request->file('gambar')->move('img/assignment', $fileGambarName);
+            $assignment->gambar = $fileGambarName;
+            $assignment->save();
+            return redirect('/admin/assignment')->with('success', 'Tugas berhasil diperbarui');
+        }
+
+        if ($request->hasFile('file')) {
+            $originalFile = $request->file('file')->getClientOriginalName();
+            $safeFile = @iconv('UTF-8', 'ASCII//TRANSLIT', pathinfo($originalFile, PATHINFO_FILENAME)) ?: pathinfo($originalFile, PATHINFO_FILENAME);
+            $safeFile = preg_replace('/[^A-Za-z0-9_\-]/', '_', $safeFile);
+            if (empty($safeFile)) {
+                $safeFile = uniqid('file_');
+            }
+            $fileExt = $request->file('file')->getClientOriginalExtension();
+            $fileName = time() . '_' . $safeFile . '.' . $fileExt;
+            $request->file('file')->move('file_upload/assignment', $fileName);
+            $assignment->file = $fileName;
+            $assignment->save();
+            return redirect('/admin/assignment')->with('success', 'Tugas berhasil diperbarui');
+        }
+
+        $assignment->save();
+        return redirect('/admin/assignment')->with('success', 'Tugas berhasil diperbarui');
     }
 
     public function destroy(Request $request, $id)
     {
-        // $assignment = Assignment::findOrFail($id);
-        $getAssignmentSubmission = AssignmentSubmission::where('assignment_id', '=', $id)->get();
+        $getAssignmentSubmission = AssignmentSubmission::where('assignment_id', $id)->get();
         if ($getAssignmentSubmission) {
-            $deleteAssignmentSubmission = AssignmentSubmission::where('assignment_id', '=', $id)->delete();
-
-            if ($deleteAssignmentSubmission) {
-                Assignment::where('id', $id)->delete();
-                return redirect('/admin/assignment');
-            }
-        } else {
-            Assignment::where('id', $id)->delete();
-            return redirect('/admin/assignment');
+            AssignmentSubmission::where('assignment_id', $id)->delete();
         }
-
-
-        // if ($assignment->delete()) {
-        //     return redirect('/admin/assignment');
-        // } else {
-        //     return redirect('/admin/assignment');
-        // }
+        Assignment::where('id', $id)->delete();
+        return redirect('/admin/assignment')->with('success', 'Tugas berhasil dihapus');
     }
 
     public function submitSubmission(Request $request, $id)
     {
-        // dd($id);
         if ($request->hasFile('file')) {
-            // dd($request->all());
-
-            $file = $request->file('file')->getClientOriginalName();
+            $originalFile = $request->file('file')->getClientOriginalName();
+            $safeFile = @iconv('UTF-8', 'ASCII//TRANSLIT', pathinfo($originalFile, PATHINFO_FILENAME)) ?: pathinfo($originalFile, PATHINFO_FILENAME);
+            $safeFile = preg_replace('/[^A-Za-z0-9_\-]/', '_', $safeFile);
+            if (empty($safeFile)) {
+                $safeFile = uniqid('submission_');
+            }
+            $fileExt = $request->file('file')->getClientOriginalExtension();
+            $file = time() . '_' . $safeFile . '.' . $fileExt;
             $request->file('file')->move('file_upload/submission/', $file);
 
-
-            // Ambil assignment berdasarkan ID
             $assignment = Assignment::findOrFail($id);
-            // dd($assignment);
-
-            // Periksa apakah pengumpulan dilakukan sebelum atau setelah deadline
             $currentDateTime = Carbon::now();
             $endTime = Carbon::parse($assignment->end_date);
-            // dd($assignment->end_date);
+            $status = $currentDateTime->lessThanOrEqualTo($endTime) ? 'Sudah Mengumpulkan' : 'Terlambat';
 
-            $status = $currentDateTime->lessThanOrEqualTo($endTime) ? "Sudah Mengumpulkan" : "Terlambat";
-
-
-            $submission = new AssignmentSubmission;
+            $submission = new AssignmentSubmission();
             $submission->user_id = Session('user')['id'];
             $submission->assignment_id = $id;
             $submission->file = $file;
             $submission->status = $status;
             $submission->save();
-            return redirect('/student/assignment/submission/' . $id);
+
+            return redirect('/student/assignment/submission/' . $id)->with('success', 'Berhasil mengumpulkan tugas (' . $status . ')');
         }
-        return redirect('assignment/submission/submission/' . $id);
+        return redirect('/student/assignment/submission/' . $id)->with('error', 'Gagal mengumpulkan tugas');
     }
 }

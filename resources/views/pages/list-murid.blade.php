@@ -22,6 +22,9 @@ use Illuminate\Support\Str;
                 </div>
             </div>
 
+            <!-- Alerts inserted here so flash messages appear below the page title/header -->
+            @include('components.alerts')
+
             <div class="section-body">
 
                 <div class="row">
