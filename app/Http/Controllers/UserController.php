@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
-use App\models\Admin;
 use App\Models\Materi;
 use App\Models\Notifikasi;
 use App\Models\User;
@@ -167,7 +166,7 @@ class UserController extends Controller
 
         $request->validate([
             'nama_lengkap' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $user->id,
+            'email' => 'required|email|unique:user,email,' . $user->id,
             'nomor_induk' => 'nullable|string|max:100',
             'password' => 'nullable|string|min:6|confirmed',
         ]);

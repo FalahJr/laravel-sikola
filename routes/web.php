@@ -191,9 +191,10 @@ Route::middleware(['authAdmin'])->prefix('admin')->group(function () {
 
     // Guru (teacher) user management by Admin
     Route::get('/gurus', [UserController::class, 'indexGurus']);
-    Route::get('/gurus/{id}', [UserController::class, 'showGuru'])->name('admin.gurus.show');
+    // Put static routes before the dynamic {id} route so 'create' doesn't get captured as an {id}
     Route::get('/gurus/create', [UserController::class, 'createGuru'])->name('admin.gurus.create');
     Route::post('/gurus', [UserController::class, 'storeGuru'])->name('admin.gurus.store');
+    Route::get('/gurus/{id}', [UserController::class, 'showGuru'])->name('admin.gurus.show');
     Route::get('/gurus/{id}/edit', [UserController::class, 'editGuru'])->name('admin.gurus.edit');
     Route::put('/gurus/{id}', [UserController::class, 'updateGuru'])->name('admin.gurus.update');
     Route::delete('/gurus/{id}', [UserController::class, 'destroyGuru'])->name('admin.gurus.destroy');

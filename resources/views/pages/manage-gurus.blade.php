@@ -18,7 +18,7 @@
             <div class="section-body">
                 <div class="row">
                     <div class="col-12">
-                        <a href="{{ url('/admin/gurus/create') }}" class="btn btn-success btn-block w-25">+ Tambah Guru</a>
+                        <a href="{{ route('admin.gurus.create') }}" class="btn btn-success btn-block w-25">+ Tambah Guru</a>
 
                         <div class="card mt-4">
                             <div class="card-body p-0">

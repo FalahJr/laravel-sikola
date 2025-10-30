@@ -15,7 +15,7 @@
         @php $alertClass = $msg === 'success' ? 'alert-success' : ($msg === 'error' ? 'alert-danger' : ($msg === 'warning' ? 'alert-warning' : 'alert-info')); @endphp
         <div class=" mt-3">
             <div class="alert {{ $alertClass }} alert-dismissible fade show" role="alert">
-                {{ session()->get($msg) }} adsad
+                {{ session()->get($msg) }}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
