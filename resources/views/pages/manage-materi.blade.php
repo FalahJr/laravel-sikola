@@ -26,7 +26,8 @@
                             <div class="card-header">
                                 <h4>Daftar Materi</h4>
                                 <div class="card-header-action">
-                                    <a href="{{ route('add-materi') }}" class="btn btn-primary">Tambah Materi Baru</a>
+                                    <a href="{{ Session('user')['role'] == 'Guru' ? url('/teacher/materi/create') : url('/admin/materi/create') }}"
+                                        class="btn btn-primary">Tambah Materi Baru</a>
                                 </div>
                             </div>
                             <div class="card-body">

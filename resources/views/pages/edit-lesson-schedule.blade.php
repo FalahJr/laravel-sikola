@@ -78,10 +78,10 @@
                                                     {{ $schedule->day == 'Thursday' ? 'selected' : '' }}>Kamis</option>
                                                 <option value="Friday" {{ $schedule->day == 'Friday' ? 'selected' : '' }}>
                                                     Jumat</option>
-                                                <option value="Saturday"
+                                                {{-- <option value="Saturday"
                                                     {{ $schedule->day == 'Saturday' ? 'selected' : '' }}>Sabtu</option>
                                                 <option value="Sunday" {{ $schedule->day == 'Sunday' ? 'selected' : '' }}>
-                                                    Minggu</option>
+                                                    Minggu</option> --}}
                                             </select>
                                         </div>
                                     </div>

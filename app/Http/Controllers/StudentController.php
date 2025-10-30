@@ -105,6 +105,18 @@ class StudentController extends Controller
         return view('pages.edit-student', compact('murid', 'classes'));
     }
 
+    /**
+     * Display the specified Murid (detail view).
+     */
+    public function show($id)
+    {
+        $murid = User::where('id', $id)->where('role', 'Murid')->first();
+        if (! $murid) {
+            return redirect('/admin/manage-student')->with('error', 'Murid tidak ditemukan.');
+        }
+        return view('pages.detail-student', compact('murid'));
+    }
+
     public function update(Request $request)
     {
         // dd($request->all());

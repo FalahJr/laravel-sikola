@@ -29,7 +29,7 @@ use Illuminate\Support\Str;
                 <div class="row">
 
                     <div class="col-12 ">
-                        <a href="{{ route('add-assignment') }}"
+                        <a href="{{ route('add-assignment-teacher') }}"
                             class="btn btn-success btn-block w-25 ">{{ __('+ Tambah Tugas') }}</a>
                         <div class="card mt-4">
 

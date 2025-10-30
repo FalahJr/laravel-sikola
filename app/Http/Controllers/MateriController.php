@@ -210,10 +210,18 @@ class MateriController extends Controller
             $notifikasi->updated_at = Carbon::now('Asia/Jakarta');
             $notifikasi->save();
 
-            return redirect('/admin/materi')->with('success', 'Materi berhasil dibuat');
+            if (Session('user')['role'] == 'Guru') {
+                return redirect('/teacher/materi')->with('success', 'Materi berhasil dibuat');
+            } else {
+                return redirect('/admin/materi')->with('success', 'Materi berhasil dibuat');
+            }
         }
 
-        return redirect('/admin/materi')->with('error', 'Gagal membuat materi');
+        if (Session('user')['role'] == 'Guru') {
+            return redirect('/teacher/materi')->with('success', 'Materi berhasil dibuat');
+        } else {
+            return redirect('/admin/materi')->with('success', 'Materi berhasil dibuat');
+        }
     }
     public function edit(Request $request)
     {
@@ -324,7 +332,11 @@ class MateriController extends Controller
         }
 
         $materi->save();
-        return redirect('/admin/materi')->with('success', 'Materi berhasil diperbarui');
+        if (Session('user')['role'] == 'Guru') {
+            return redirect('/teacher/materi')->with('success', 'Materi berhasil diperbarui');
+        } else {
+            return redirect('/admin/materi')->with('success', 'Materi berhasil diperbarui');
+        }
     }
 
     public function destroy(Request $request, $id)

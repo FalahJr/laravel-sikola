@@ -68,8 +68,8 @@
                                                 <option value="Wednesday">Rabu</option>
                                                 <option value="Thursday">Kamis</option>
                                                 <option value="Friday">Jumat</option>
-                                                <option value="Saturday">Sabtu</option>
-                                                <option value="Sunday">Minggu</option>
+                                                {{-- <option value="Saturday">Sabtu</option>
+                                                <option value="Sunday">Minggu</option> --}}
                                             </select>
                                         </div>
                                     </div>

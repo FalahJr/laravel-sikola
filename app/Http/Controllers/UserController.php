@@ -144,6 +144,18 @@ class UserController extends Controller
     }
 
     /**
+     * Display the specified Guru (detail view).
+     */
+    public function showGuru($id)
+    {
+        $user = User::where('id', $id)->where('role', 'Guru')->first();
+        if (!$user) {
+            return redirect(url('/admin/gurus'))->with('error', 'Guru tidak ditemukan.');
+        }
+        return view('pages.detail-guru', compact('user'));
+    }
+
+    /**
      * Update the specified Guru in storage.
      */
     public function updateGuru(Request $request, $id)

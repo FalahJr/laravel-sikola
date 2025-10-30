@@ -55,7 +55,7 @@ use Illuminate\Support\Str;
                                                 <td>{{ $no }}</td>
                                                 <td>{{ $list->nomor_induk }}</td>
 
-                                                <td>
+                                                <td class="text-capitalize">
                                                     {{ $list->nama_lengkap }}
                                                 </td>
                                                 <td>
@@ -75,13 +75,16 @@ use Illuminate\Support\Str;
 
 
                                                 </td>
-                                                <td><a href="manage-student/{{ $list->id }}/edit"
-                                                        class="btn btn-secondary">{{ __('Detail') }}</a>
-                                                    <form class="ml-auto mr-auto mt-3" method="POST"
+                                                <td>
+                                                    <a href="{{ url('/admin/manage-student/' . $list->id) }}"
+                                                        class="btn btn-info btn-sm mr-2">Detail</a>
+                                                    <a href="{{ url('/admin/manage-student/' . $list->id . '/edit') }}"
+                                                        class="btn btn-secondary btn-sm mr-2">Ubah</a>
+                                                    <form class="d-inline" method="POST"
                                                         action="/admin/manage-student/{{ $list->id }}">
                                                         {{ csrf_field() }}
                                                         @method('DELETE')
-                                                        <button class="btn btn-danger">{{ __('Hapus') }}</button>
+                                                        <button class="btn btn-danger btn-sm">{{ __('Hapus') }}</button>
                                                     </form>
                                                 </td>
                                             </tr>

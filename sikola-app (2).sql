@@ -11,7 +11,7 @@ CREATE TABLE `assignment` (
   `materi_id` int(11) DEFAULT NULL,
   `judul` varchar(100) NOT NULL,
   `deskripsi` longtext NOT NULL,
-  `file` varchar(255) NOT NULL,
+  `file` varchar(255) DEFAULT NULL,
   `start_date` datetime NOT NULL,
   `end_date` datetime NOT NULL,
   `gambar` varchar(255) NOT NULL,
@@ -52,7 +52,9 @@ CREATE TABLE `class` (
 INSERT INTO `class` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (1,	'TKJ 1',	'2025-10-21 07:48:23',	'2025-10-21 07:48:23'),
 (2,	'TKJ 2',	'2025-10-21 07:48:30',	'2025-10-21 07:48:30'),
-(3,	'TKJ 3',	'2025-10-21 07:48:38',	'2025-10-21 08:24:31');
+(3,	'TKJ 3',	'2025-10-21 07:48:38',	'2025-10-21 08:24:31'),
+(4,	'TKJ 4',	'2025-10-27 16:27:14',	'2025-10-27 16:27:14'),
+(7,	'TKJ 5',	'2025-10-27 16:29:54',	'2025-10-27 16:29:54');
 
 DROP TABLE IF EXISTS `lesson`;
 CREATE TABLE `lesson` (
@@ -66,8 +68,6 @@ CREATE TABLE `lesson` (
   CONSTRAINT `lesson_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `lesson` (`id`, `name`, `user_id`, `created_at`, `updated_at`) VALUES
-(1,	'MTK',	2,	'2025-10-21 08:32:04',	'2025-10-21 08:32:04');
 
 DROP TABLE IF EXISTS `lesson_attendance`;
 CREATE TABLE `lesson_attendance` (
@@ -92,7 +92,9 @@ CREATE TABLE `lesson_schedule` (
   `class_id` int(11) NOT NULL,
   `room` varchar(100) NOT NULL,
   `day` varchar(10) NOT NULL,
-  `time` time NOT NULL,
+  `start_time` time NOT NULL,
+  `end_time` time NOT NULL,
+  `is_absensi` enum('Y','N') NOT NULL DEFAULT 'N',
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
@@ -102,8 +104,6 @@ CREATE TABLE `lesson_schedule` (
   CONSTRAINT `lesson_schedule_ibfk_2` FOREIGN KEY (`class_id`) REFERENCES `class` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `lesson_schedule` (`id`, `lesson_id`, `class_id`, `room`, `day`, `time`, `created_at`, `updated_at`) VALUES
-(1,	1,	1,	'TKJ 1',	'Monday',	'07:00:00',	'2025-10-21 08:36:51',	'2025-10-21 08:36:51');
 
 DROP TABLE IF EXISTS `materi`;
 CREATE TABLE `materi` (
@@ -120,8 +120,6 @@ CREATE TABLE `materi` (
   CONSTRAINT `materi_ibfk_2` FOREIGN KEY (`lesson_id`) REFERENCES `lesson` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `materi` (`id`, `lesson_id`, `judul`, `deskripsi`, `file`, `gambar`, `created_at`, `updated_at`) VALUES
-(1,	1,	'mtk kabataku',	'<p>adsasd</p>',	NULL,	'my-foto-terbaru.png',	'2025-10-21 09:16:40',	'2025-10-21 09:16:40');
 
 SET NAMES utf8mb4;
 
@@ -147,8 +145,6 @@ CREATE TABLE `notifikasi` (
   KEY `user_id` (`role`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `notifikasi` (`id`, `role`, `judul`, `deskripsi`, `is_seen`, `created_at`, `updated_at`) VALUES
-(1,	'Murid',	'Materi baru dengan judul \'mtk kabataku\' telah diunggah, yuk pelajari !!!',	NULL,	'N',	'2025-10-21 09:16:40',	'2025-10-21 09:16:40');
 
 DROP TABLE IF EXISTS `personal_access_tokens`;
 CREATE TABLE `personal_access_tokens` (
@@ -174,7 +170,7 @@ CREATE TABLE `user` (
   `email` varchar(255) NOT NULL,
   `password` varchar(100) NOT NULL,
   `nama_lengkap` varchar(100) NOT NULL,
-  `nomor_induk` int(20) DEFAULT NULL,
+  `nomor_induk` bigint(20) DEFAULT NULL,
   `role` enum('Guru','Murid','Admin') NOT NULL,
   `jurusan` varchar(100) DEFAULT NULL,
   `class_id` int(11) DEFAULT NULL,
@@ -190,6 +186,9 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `email`, `password`, `nama_lengkap`, `nomor_induk`, `role`, `jurusan`, `class_id`, `alamat`, `gambar`, `created_at`, `updated_at`) VALUES
 (1,	'admin@gmail.com',	'admin123',	'admin',	NULL,	'Admin',	NULL,	NULL,	NULL,	NULL,	'2025-10-21 07:47:21',	'2025-10-21 07:47:21'),
 (2,	'guru@gmail.com',	'guru123',	'guru',	1223456,	'Guru',	'TKJ',	2,	'Jl alamat',	NULL,	'2025-10-21 07:48:54',	'2025-10-21 07:48:54'),
-(3,	'murid1@gmail.com',	'murid123',	'murid1',	912873123,	'Murid',	'TKJ',	1,	'jl murid murid1',	'dyta-profile.jpeg',	'2025-10-21 08:01:26',	'2025-10-21 08:01:26');
+(3,	'murid@gmail.com',	'murid123',	'murid1',	912873123,	'Murid',	'TKJ',	1,	'jl murid murid1',	'1761780698__000c2c7d-3f00-49ab-8db5-37b6951fea1c.jpeg',	'2025-10-30 06:31:38',	'2025-10-30 06:31:38'),
+(5,	'guru2@gmail.com',	'$2y$10$CYUecq1tELQOVSxOWvajQOBAlkK/HzlAzGytTq23i.cZ6J5yLhj3q',	'guru 2',	12318971321,	'Guru',	NULL,	NULL,	NULL,	NULL,	'2025-10-29 19:25:09',	'2025-10-29 19:25:09'),
+(6,	'admin22@mail.com',	'murid123',	'murid1',	1231897132,	'Murid',	NULL,	1,	'Jl. Simowau Baru Gg Durian, Sidoarjo',	'LOGO SIMARA BG BIRU.png',	'2025-10-29 19:38:03',	'2025-10-29 19:38:03'),
+(7,	'adminss@mail.com',	'asdadasd',	'asdad',	1232139,	'Murid',	NULL,	2,	'asdad',	'1761783942__1a596d16-5bfe-438a-82e2-0e0d5a812c38.jpeg',	'2025-10-30 07:25:42',	'2025-10-30 07:25:42');
 
--- 2025-10-24 15:57:08
+-- 2025-10-30 13:59:44

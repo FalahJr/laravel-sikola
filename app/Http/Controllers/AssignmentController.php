@@ -39,8 +39,16 @@ class AssignmentController extends Controller
 
     public function store(Request $request)
     {
-        if ($request->hasFile('gambar') && $request->hasFile('file')) {
-            // gambar
+        // Create new assignment regardless of whether files are uploaded.
+        $assignment = new Assignment();
+        $assignment->judul = $request->judul;
+        $assignment->materi_id = $request->materi_id;
+        $assignment->deskripsi = $request->deskripsi;
+        $assignment->start_date = $request->start_date;
+        $assignment->end_date = $request->end_date;
+
+        // Handle optional gambar upload
+        if ($request->hasFile('gambar')) {
             $originalGambar = $request->file('gambar')->getClientOriginalName();
             $safeGambar = @iconv('UTF-8', 'ASCII//TRANSLIT', pathinfo($originalGambar, PATHINFO_FILENAME)) ?: pathinfo($originalGambar, PATHINFO_FILENAME);
             $safeGambar = preg_replace('/[^A-Za-z0-9_\-]/', '_', $safeGambar);
@@ -50,8 +58,11 @@ class AssignmentController extends Controller
             $extGambar = $request->file('gambar')->getClientOriginalExtension();
             $fileGambarName = time() . '_' . $safeGambar . '.' . $extGambar;
             $request->file('gambar')->move('img/assignment', $fileGambarName);
+            $assignment->gambar = $fileGambarName;
+        }
 
-            // file
+        // Handle optional file upload
+        if ($request->hasFile('file')) {
             $originalFile = $request->file('file')->getClientOriginalName();
             $safeFile = @iconv('UTF-8', 'ASCII//TRANSLIT', pathinfo($originalFile, PATHINFO_FILENAME)) ?: pathinfo($originalFile, PATHINFO_FILENAME);
             $safeFile = preg_replace('/[^A-Za-z0-9_\-]/', '_', $safeFile);
@@ -61,22 +72,18 @@ class AssignmentController extends Controller
             $fileExt = $request->file('file')->getClientOriginalExtension();
             $fileName = time() . '_' . $safeFile . '.' . $fileExt;
             $request->file('file')->move('file_upload/assignment', $fileName);
-
-            $assignment = new Assignment();
-            $assignment->judul = $request->judul;
-            $assignment->materi_id = $request->materi_id;
-            $assignment->deskripsi = $request->deskripsi;
-            $assignment->gambar = $fileGambarName;
             $assignment->file = $fileName;
-            $assignment->start_date = $request->start_date;
-            $assignment->end_date = $request->end_date;
-            $assignment->created_at = Carbon::now();
-            $assignment->updated_at = Carbon::now();
-            $assignment->save();
+        }
 
+        $assignment->created_at = Carbon::now();
+        $assignment->updated_at = Carbon::now();
+        $assignment->save();
+
+        if (Session('user')['role'] == 'Guru') {
+            return redirect('/teacher/assignment')->with('success', 'Tugas berhasil dibuat');
+        } else {
             return redirect('/admin/assignment')->with('success', 'Tugas berhasil dibuat');
         }
-        return redirect('/admin/assignment')->with('error', 'Gagal membuat tugas (file tidak lengkap)');
     }
 
     public function edit(Request $request)
@@ -117,37 +124,8 @@ class AssignmentController extends Controller
         $assignment->deskripsi = $request->deskripsi;
         $assignment->start_date = $request->start_date;
         $assignment->end_date = $request->end_date;
-        $assignment->updated_at = Carbon::now();
 
-        if ($request->hasFile('gambar') && $request->hasFile('file')) {
-            // gambar
-            $originalGambar = $request->file('gambar')->getClientOriginalName();
-            $safeGambar = @iconv('UTF-8', 'ASCII//TRANSLIT', pathinfo($originalGambar, PATHINFO_FILENAME)) ?: pathinfo($originalGambar, PATHINFO_FILENAME);
-            $safeGambar = preg_replace('/[^A-Za-z0-9_\-]/', '_', $safeGambar);
-            if (empty($safeGambar)) {
-                $safeGambar = uniqid('img_');
-            }
-            $extGambar = $request->file('gambar')->getClientOriginalExtension();
-            $fileGambarName = time() . '_' . $safeGambar . '.' . $extGambar;
-            $request->file('gambar')->move('img/assignment', $fileGambarName);
-
-            // file
-            $originalFile = $request->file('file')->getClientOriginalName();
-            $safeFile = @iconv('UTF-8', 'ASCII//TRANSLIT', pathinfo($originalFile, PATHINFO_FILENAME)) ?: pathinfo($originalFile, PATHINFO_FILENAME);
-            $safeFile = preg_replace('/[^A-Za-z0-9_\-]/', '_', $safeFile);
-            if (empty($safeFile)) {
-                $safeFile = uniqid('file_');
-            }
-            $fileExt = $request->file('file')->getClientOriginalExtension();
-            $fileName = time() . '_' . $safeFile . '.' . $fileExt;
-            $request->file('file')->move('file_upload/assignment', $fileName);
-
-            $assignment->gambar = $fileGambarName;
-            $assignment->file = $fileName;
-            $assignment->save();
-            return redirect('/admin/assignment')->with('success', 'Tugas berhasil diperbarui');
-        }
-
+        // Optional gambar
         if ($request->hasFile('gambar')) {
             $originalGambar = $request->file('gambar')->getClientOriginalName();
             $safeGambar = @iconv('UTF-8', 'ASCII//TRANSLIT', pathinfo($originalGambar, PATHINFO_FILENAME)) ?: pathinfo($originalGambar, PATHINFO_FILENAME);
@@ -159,10 +137,9 @@ class AssignmentController extends Controller
             $fileGambarName = time() . '_' . $safeGambar . '.' . $extGambar;
             $request->file('gambar')->move('img/assignment', $fileGambarName);
             $assignment->gambar = $fileGambarName;
-            $assignment->save();
-            return redirect('/admin/assignment')->with('success', 'Tugas berhasil diperbarui');
         }
 
+        // Optional file
         if ($request->hasFile('file')) {
             $originalFile = $request->file('file')->getClientOriginalName();
             $safeFile = @iconv('UTF-8', 'ASCII//TRANSLIT', pathinfo($originalFile, PATHINFO_FILENAME)) ?: pathinfo($originalFile, PATHINFO_FILENAME);
@@ -174,12 +151,16 @@ class AssignmentController extends Controller
             $fileName = time() . '_' . $safeFile . '.' . $fileExt;
             $request->file('file')->move('file_upload/assignment', $fileName);
             $assignment->file = $fileName;
-            $assignment->save();
-            return redirect('/admin/assignment')->with('success', 'Tugas berhasil diperbarui');
         }
 
+        $assignment->updated_at = Carbon::now();
         $assignment->save();
-        return redirect('/admin/assignment')->with('success', 'Tugas berhasil diperbarui');
+
+        if (Session('user')['role'] == 'Guru') {
+            return redirect('/teacher/assignment')->with('success', 'Tugas berhasil diperbarui');
+        } else {
+            return redirect('/admin/assignment')->with('success', 'Tugas berhasil diperbarui');
+        }
     }
 
     public function destroy(Request $request, $id)

@@ -35,10 +35,12 @@
                                         @foreach ($data as $item)
                                             <tr>
                                                 <td>{{ $no }}</td>
-                                                <td>{{ $item->nama_lengkap }}</td>
+                                                <td class="text-capitalize">{{ $item->nama_lengkap }}</td>
                                                 <td>{{ $item->email }}</td>
                                                 <td>{{ $item->nomor_induk ?? '-' }}</td>
                                                 <td>
+                                                    <a href="{{ url('/admin/gurus/' . $item->id) }}"
+                                                        class="btn btn-info btn-sm mr-2">Detail</a>
                                                     <a href="{{ url('/admin/gurus/' . $item->id . '/edit') }}"
                                                         class="btn btn-secondary btn-sm">Ubah</a>
                                                     <form class="d-inline" method="POST"

@@ -33,8 +33,10 @@
                             <div class="card-header">
                                 <h4>{{ __('Form Ubah Tugas') }}</h4>
                             </div>
-                            <form class="form" action="/admin/assignment/{{ Request::segment(3) }}" method="post"
-                                enctype="multipart/form-data">
+                            @php $assignmentId = Request::segment(3); @endphp
+                            <form class="form"
+                                action="{{ Session('user')['role'] == 'Guru' ? url('teacher/assignment/' . $assignmentId) : url('admin/assignment/' . $assignmentId) }}"
+                                method="post" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="card-body">
@@ -69,9 +71,7 @@
                                         <label
                                             class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Deskripsi') }}</label>
                                         <div class="col-sm-12 col-md-7">
-                                            <textarea class="w-100" rows="6" name="deskripsi">
-                                                {{ $assignment->deskripsi }}
-                                            </textarea>
+                                            <textarea class="form-control" name="deskripsi">{{ old('deskripsi', trim($assignment->deskripsi ?? '')) }}</textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row mb-4">
@@ -103,7 +103,7 @@
 
                                         <label
                                             class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Tanggal
-                                                                                                                                    Mulai') }}</label>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        Mulai') }}</label>
                                         <div class="col-sm-12 col-md-7">
 
                                             <input type="text" class="form-control datepicker" name="start_date"
@@ -114,7 +114,7 @@
 
                                         <label
                                             class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Tanggal
-                                                                                                                                    Selesai') }}</label>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        Selesai') }}</label>
                                         <div class="col-sm-12 col-md-7">
 
                                             <input type="text" class="form-control datepicker" name="end_date"

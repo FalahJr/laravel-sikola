@@ -90,6 +90,7 @@ Route::middleware(['authGuru'])->prefix('teacher')->group(function () {
 
     // Route::get('/materi', [MateriController::class, 'index']);
     Route::resource('/materi', MateriController::class);
+    Route::post('/store-materi', [MateriController::class, 'store'])->name("teacher.materi.store");
     Route::get('/add-materi', [MateriController::class, 'create'])->name("add-materi");
     Route::get('/notification', [NotificationController::class, 'index']);
 
@@ -110,7 +111,7 @@ Route::middleware(['authGuru'])->prefix('teacher')->group(function () {
     Route::get('quiz/score/{quiz_id}', [StudentQuizController::class, 'showAllResultByGuru'])->name('teacher.quizzes.showAllResultByGuru');
 
     Route::resource('assignment', AssignmentController::class);
-    Route::get('/add-assignment', [AssignmentController::class, 'create'])->name("add-assignment");
+    Route::get('/add-assignment', [AssignmentController::class, 'create'])->name("add-assignment-teacher");
     Route::get('assignments/submission/', [AssignmentController::class, 'indexAssignmentMurid']);
     Route::get('assignments/submission/{id}', [AssignmentController::class, 'viewSubmissions']);
 
@@ -145,6 +146,7 @@ Route::middleware(['authAdmin'])->prefix('admin')->group(function () {
 
     // Route::get('/materi', [MateriController::class, 'index']);
     Route::resource('/materi', MateriController::class);
+    Route::post('/store-materi', [MateriController::class, 'store'])->name("admin.materi.store");
     Route::get('/add-materi', [MateriController::class, 'create'])->name("add-materi");
     Route::get('/notification', [NotificationController::class, 'index']);
 
@@ -189,6 +191,7 @@ Route::middleware(['authAdmin'])->prefix('admin')->group(function () {
 
     // Guru (teacher) user management by Admin
     Route::get('/gurus', [UserController::class, 'indexGurus']);
+    Route::get('/gurus/{id}', [UserController::class, 'showGuru'])->name('admin.gurus.show');
     Route::get('/gurus/create', [UserController::class, 'createGuru'])->name('admin.gurus.create');
     Route::post('/gurus', [UserController::class, 'storeGuru'])->name('admin.gurus.store');
     Route::get('/gurus/{id}/edit', [UserController::class, 'editGuru'])->name('admin.gurus.edit');
