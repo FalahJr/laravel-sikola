@@ -28,8 +28,9 @@
                                 @endif
                             </div>
                             <div class="profile-widget-description p-3">
-                                <h4 class="text-center">{{ $murid->nama_lengkap }}</h4>
-                                <p class="text-center text-muted">{{ $murid->class ? $murid->class->name : '-' }}</p>
+                                <h4 class="ml-4 text-capitalize">{{ $murid->nama_lengkap }}
+                                </h4>
+                                <p class="ml-4 text-muted">{{ $murid->class ? $murid->class->name : '-' }}</p>
                             </div>
                         </div>
                     </div>
