@@ -94,7 +94,9 @@ class AssignmentController extends Controller
             return view('pages.edit-assignment', compact('assignment', 'materi'));
         } elseif (Session('user')['role'] == 'Admin') {
             $assignment = Assignment::where('id', $request->segment(3))->with('materi')->first();
-            return view('pages.edit-assignment', compact('assignment'));
+            $materi = Materi::all();
+
+            return view('pages.edit-assignment', compact('assignment', 'materi'));
         }
         $assignment = Assignment::where('id', $request->segment(4))->with('materi')->first();
         return view('pages.detail-assignment', compact('assignment'));
