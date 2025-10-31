@@ -54,6 +54,9 @@
         </div>
     </div>
 
+    <!-- Reusable confirmation modal (available on all pages) -->
+    @include('components.confirm-modal')
+
     <!-- General JS Scripts -->
     <script src="{{ asset('library/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('library/popper.js/dist/umd/popper.js') }}"></script>

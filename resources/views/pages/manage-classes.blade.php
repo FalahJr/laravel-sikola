@@ -47,15 +47,16 @@
                                                 </td>
                                                 <td>{{ $list->created_at ? $list->created_at->format('d M Y') : '-' }}</td>
                                                 <td>
-                                                    <a href="classes/{{ $list->id }}/edit"
-                                                        class="btn btn-secondary">Ubah</a>
+                                                    <button type="button" class="btn btn-secondary btn-confirm"
+                                                        data-href="{{ url('admin/classes/' . $list->id . '/edit') }}"
+                                                        data-message='Apakah Anda yakin ingin mengubah data kelas "{{ $list->name }}"?'>Ubah</button>
                                                     <a href="classes/{{ $list->id }}" class="btn btn-info">Detail</a>
-                                                    <form class="ml-auto mr-auto mt-3" method="POST"
+                                                    <form class="ml-auto mr-auto mt-3 js-confirm-form" method="POST"
                                                         action="/admin/classes/{{ $list->id }}">
                                                         {{ csrf_field() }}
                                                         @method('DELETE')
-                                                        <button class="btn btn-danger"
-                                                            onclick="return confirm('Anda yakin ingin menghapus kelas ini?')">
+                                                        <button type="button" class="btn btn-danger btn-delete"
+                                                            data-message='Apakah Anda yakin ingin menghapus kelas "{{ $list->name }}"?'>
                                                             Hapus
                                                         </button>
                                                     </form>
