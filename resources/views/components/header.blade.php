@@ -123,10 +123,18 @@ if ($role == 'Murid') {
             </a>
             <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-title">{{ __('Logged in 5 min ago') }}</div>
-                <a href="{{ Session('user')['role'] == 'Guru' ? '/teacher/profile' : '/student/profile' }}"
-                    class="dropdown-item has-icon">
-                    <i class="far fa-user"></i> Profile
-                </a>
+                {{-- Profile link varies by role. Use the $role variable defined above to avoid parsing issues. --}}
+                @if (isset($role) && $role !== 'Admin')
+                    <a href="{{ $role === 'Guru' ? url('/teacher/profile') : url('/student/profile') }}"
+                        class="dropdown-item has-icon">
+                        <i class="far fa-user"></i> Profile
+                    </a>
+                @else
+                    <a href="{{ url('/admin/profile') }}" class="dropdown-item has-icon">
+                        <i class="far fa-user"></i> Profile
+                    </a>
+                @endif
+
                 {{-- <a href="features-activities.html" class="dropdown-item has-icon">
                     <i class="fas fa-bolt"></i> Activities
                 </a>
