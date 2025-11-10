@@ -123,7 +123,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->nomor_induk = $request->nomor_induk;
         $user->role = 'Guru';
-        $user->password = Hash::make($request->password);
+        $user->password = $request->password;
         $user->save();
 
         session()->flash('success', 'Guru berhasil ditambahkan.');
@@ -175,7 +175,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->nomor_induk = $request->nomor_induk;
         if ($request->filled('password')) {
-            $user->password = Hash::make($request->password);
+            $user->password = $request->password;
         }
         $user->save();
 
