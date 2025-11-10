@@ -141,7 +141,7 @@ Route::middleware(['authGuru'])->prefix('teacher')->group(function () {
 });
 
 Route::middleware(['authAdmin'])->prefix('admin')->group(function () {
-    Route::get('/home', [DashboardController::class, 'indexDashboardGuru']);
+    Route::get('/home', [DashboardController::class, 'indexDashboardAdmin']);
 
 
     // Route::get('/materi', [MateriController::class, 'index']);

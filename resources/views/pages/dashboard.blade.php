@@ -18,6 +18,64 @@
 
                 </div>
             </div>
+
+            <!-- Statistik ringkas: tampil di atas section HALO -->
+            <div class="row">
+                <div class="col-12 mb-4">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6 mb-3">
+                            <div class="card card-statistic-1">
+                                <div class="card-icon bg-primary">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="card-wrap">
+                                    <div class="card-header">
+                                        <h4>Total Murid 1 Kelas </h4>
+                                    </div>
+                                    <div class="card-body">
+                                        {{ $studentsInClass ?? 0 }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 mb-3">
+                            <div class="card card-statistic-1">
+                                <div class="card-icon bg-success">
+                                    <i class="fas fa-book-open"></i>
+                                </div>
+                                <div class="card-wrap">
+                                    <div class="card-header">
+                                        <h4>Total Mata Pelajaran</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        {{ $totalLessons ?? 0 }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-4 col-sm-6 mb-3">
+                            <div class="card card-statistic-1">
+                                <div class="card-icon bg-warning">
+                                    <i class="fas fa-folder-open"></i>
+                                </div>
+                                <div class="card-wrap">
+                                    <div class="card-header">
+                                        <h4>Total Materi</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        {{ $totalMaterials ?? 0 }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-12 col-sm-12">
                     <div class="section-header">

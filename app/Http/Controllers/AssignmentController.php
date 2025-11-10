@@ -19,7 +19,22 @@ class AssignmentController extends Controller
 {
     public function index()
     {
-        $data = Assignment::orderBy('id', 'desc')->get();
+        // Ambil id guru dari session
+        $guruId = Session('user')['id'] ?? null;
+
+        if (!$guruId) {
+            // Jika tidak ada guru di session, kembalikan koleksi kosong
+            $data = collect();
+            return view('pages.assignment-guru', compact('data'));
+        }
+
+        // Ambil assignment yang terkait dengan materi -> lesson dimana lesson.user_id == guruId
+        $data = Assignment::whereHas('materi', function ($q) use ($guruId) {
+            $q->whereHas('lesson', function ($q2) use ($guruId) {
+                $q2->where('user_id', $guruId);
+            });
+        })->orderBy('id', 'desc')->get();
+
         return view('pages.assignment-guru', compact('data'));
     }
 
@@ -33,7 +48,18 @@ class AssignmentController extends Controller
 
     public function create()
     {
-        $materi = Materi::all();
+        // Ambil id guru dari session dan hanya tampilkan materi yang berelasi ke lesson milik guru ini
+        $guruId = Session('user')['id'] ?? null;
+
+        if ($guruId) {
+            $materi = Materi::whereHas('lesson', function ($q) use ($guruId) {
+                $q->where('user_id', $guruId);
+            })->get();
+        } else {
+            // fallback: kosongkan daftar agar form tidak menampilkan materi dari guru lain
+            $materi = collect();
+        }
+
         return view('pages.add-assignment', compact('materi'));
     }
 

@@ -17,6 +17,9 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/components.css') }}">
+    <!-- Favicon: SVG with PNG fallback -->
+    <link rel="icon" type="image/svg+xml" href="{{ asset('img/logo-lms.svg') }}">
+    <link rel="shortcut icon" href="{{ asset('img/logo-lms.png') }}">
 
     <!-- Start GA -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>{{ __('Login &mdash; Stisla') }}</title>
+    <title>{{ __('Login Sikola App') }}</title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="{{ asset('library/bootstrap/dist/css/bootstrap.min.css') }}">
@@ -60,7 +60,8 @@
                             </div>
                             <div class="form-group">
                                 <div class="d-block">
-                                    <label for="confirm_password" class="control-label">{{ __('Confirm Password') }}</label>
+                                    <label for="confirm_password"
+                                        class="control-label">{{ __('Confirm Password') }}</label>
                                 </div>
                                 <input id="confirm_password" type="password" class="form-control"
                                     name="confirm_password" tabindex="2" required>

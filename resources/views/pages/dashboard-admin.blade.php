@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'General Dashboard')
+@section('title', 'Dashboard Admin')
 
 @push('style')
-    <!-- CSS Libraries -->
+    <!-- CSS Libraries (copy from dashboard-guru) -->
     <link rel="stylesheet" href="{{ asset('library/jqvmap/dist/jqvmap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('library/summernote/dist/summernote-bs4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('library/fullcalendar/dist/fullcalendar.min.css') }}">
@@ -14,133 +14,111 @@
         <section class="section">
             <div class="section-header">
                 <div class="d-flex flex-column">
-                    <h1>{{ __('Dashboard') }}</h1>
-
+                    <h1>Beranda Admin</h1>
                 </div>
             </div>
 
-
-
             <div class="row">
-                <div class="col-12 mb-4">
+                <div class="col-12">
                     <div class="row">
-                        <div class="col-md-3 col-sm-6 mb-3">
+                        <div class="col-md-4 col-sm-12">
                             <div class="card card-statistic-1">
                                 <div class="card-icon bg-primary">
-                                    <i class="fas fa-users"></i>
+                                    <i class="fas fa-chalkboard-teacher"></i>
                                 </div>
                                 <div class="card-wrap">
                                     <div class="card-header">
-                                        <h4>Jumlah Murid (Total)</h4>
+                                        <h4>Jumlah Guru</h4>
                                     </div>
                                     <div class="card-body">
-                                        {{ $totalMurid ?? 0 }}
+                                        {{ $guruCount ?? 0 }}
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-md-3 col-sm-6 mb-3">
+                        <div class="col-md-4 col-sm-12">
                             <div class="card card-statistic-1">
                                 <div class="card-icon bg-success">
+                                    <i class="fas fa-user-graduate"></i>
+                                </div>
+                                <div class="card-wrap">
+                                    <div class="card-header">
+                                        <h4>Jumlah Murid</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        {{ $muridCount ?? 0 }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-12">
+                            <div class="card card-statistic-1">
+                                <div class="card-icon bg-warning">
+                                    <i class="fas fa-school"></i>
+                                </div>
+                                <div class="card-wrap">
+                                    <div class="card-header">
+                                        <h4>Jumlah Kelas</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        {{ $kelasCount ?? 0 }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="card card-statistic-1">
+                                <div class="card-icon bg-info">
                                     <i class="fas fa-book"></i>
                                 </div>
                                 <div class="card-wrap">
                                     <div class="card-header">
-                                        <h4>Mata Pelajaran Saya</h4>
+                                        <h4>Jumlah Mata Pelajaran</h4>
                                     </div>
                                     <div class="card-body">
-                                        {{ $lessonCount ?? 0 }}
+                                        {{ $mataPelajaranCount ?? 0 }}
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-md-3 col-sm-6 mb-3">
+                        <div class="col-md-6 col-sm-12">
                             <div class="card card-statistic-1">
-                                <div class="card-icon bg-info">
-                                    <i class="fas fa-file"></i>
+                                <div class="card-icon bg-danger">
+                                    <i class="fas fa-file-alt"></i>
                                 </div>
                                 <div class="card-wrap">
                                     <div class="card-header">
-                                        <h4>Materi Saya</h4>
+                                        <h4>Jumlah Tugas</h4>
                                     </div>
                                     <div class="card-body">
-                                        {{ $materiCount ?? 0 }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3 col-sm-6 mb-3">
-                            <div class="card card-statistic-1">
-                                <div class="card-icon bg-warning">
-                                    <i class="fas fa-tasks"></i>
-                                </div>
-                                <div class="card-wrap">
-                                    <div class="card-header">
-                                        <h4>Tugas Saya</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        {{ $assignmentCount ?? 0 }}
+                                        {{ $tugasCount ?? 0 }}
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
-                {{-- <div class="col-lg-3 col-md-12 col-12 col-sm-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>{{ __('Leaderboard') }}</h4>
-                        </div>
-                        <div class="card-body">
-                            <ul class="list-unstyled list-unstyled-border">
-                                @foreach ($list_leaderboard as $list_ranking)
-                                    <li class="media">
-                                        <img class="rounded-circle mr-3" width="50"
-                                            src="{{ asset('img/avatar/avatar-1.png') }}" alt="avatar">
-                                        <div class="media-body">
-
-                                            <div class="media-title">{{ $list_ranking->nama_lengkap }}</div>
-                                            <span class="text-small text-muted">Score {{ $list_ranking->score }}</span>
-                                        </div>
-                                    </li>
-                                @endforeach
-
-
-                            </ul>
-                            <div class="pt-1 pb-1 text-center">
-                                <a href="#" class="btn btn-primary btn-lg btn-round">
-                                    View All
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
             </div>
-
 
         </section>
     </div>
 @endsection
 
 @push('scripts')
-    <!-- JS Libraies -->
+    <!-- Page Specific JS copied from dashboard-guru to keep layout parity -->
     <script src="{{ asset('library/simpleweather/jquery.simpleWeather.min.js') }}"></script>
     <script src="{{ asset('library/chart.js/dist/Chart.min.js') }}"></script>
     <script src="{{ asset('library/jqvmap/dist/jquery.vmap.min.js') }}"></script>
     <script src="{{ asset('library/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
     <script src="{{ asset('library/summernote/dist/summernote-bs4.min.js') }}"></script>
     <script src="{{ asset('library/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
-    <!-- JS Libraies -->
     <script src="{{ asset('library/fullcalendar/dist/fullcalendar.min.js') }}"></script>
-
-    <!-- Page Specific JS File -->
     <script src="{{ asset('js/page/modules-calendar.js') }}"></script>
-
-    <!-- Page Specific JS File -->
     <script src="{{ asset('js/page/index-0.js') }}"></script>
 @endpush
