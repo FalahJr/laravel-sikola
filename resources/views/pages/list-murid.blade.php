@@ -84,7 +84,8 @@ use Illuminate\Support\Str;
                                                         action="/admin/manage-student/{{ $list->id }}">
                                                         {{ csrf_field() }}
                                                         @method('DELETE')
-                                                        <button class="btn btn-danger btn-sm">{{ __('Hapus') }}</button>
+                                                        <button type="button" class="btn btn-danger btn-sm btn-delete"
+                                                            data-message='Apakah Anda yakin ingin menghapus murid "{{ $list->nama_lengkap }}"?'>{{ __('Hapus') }}</button>
                                                     </form>
                                                 </td>
                                             </tr>

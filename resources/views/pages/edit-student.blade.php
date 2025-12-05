@@ -39,7 +39,7 @@
                                     <div class="form-group row mb-4">
                                         <label
                                             class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Nama
-                                                                                                                                                                                                                                                                                                                    Lengkap') }}</label>
+                                                                                                                                                                                                                                                                                                                                                                Lengkap') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <input type="text" class="form-control" name="nama_lengkap"
                                                 value="{{ $murid->nama_lengkap }}">
@@ -58,17 +58,25 @@
                                     <div class="form-group row mb-4">
                                         <label
                                             class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Kata
-                                                                                                                                                                                                                                                                                                                    Sandi') }}</label>
+                                                                                                                                                                                                                                                                                                                                                                Sandi') }}</label>
                                         <div class="col-sm-12 col-md-7">
-                                            <input type="text" class="form-control" name="password"
-                                                value="{{ $murid->password }}">
+                                            <div class="input-group">
+                                                <input type="password" class="form-control" name="password" id="password"
+                                                    value="{{ $murid->password }}">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text" id="togglePassword"
+                                                        style="cursor:pointer;">
+                                                        <i class="fa fa-eye" id="togglePasswordIcon"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
                                     <div class="form-group row mb-4">
                                         <label
                                             class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Nomor
-                                                                                                                                                                                                                                                                                                                    Induk') }}</label>
+                                                                                                                                                                                                                                                                                                                                                                Induk') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <input type="number" min="0" class="form-control" name="nomor_induk"
                                                 value="{{ $murid->nomor_induk }}">
@@ -100,7 +108,7 @@
                                     <div class="form-group row mb-4">
                                         <label
                                             class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Foto
-                                                                                                                                                                                                                                                                                                                    Profil') }}</label>
+                                                                                                                                                                                                                                                                                                                                                                Profil') }}</label>
                                         <div class="col-sm-12 col-md-7">
                                             <div id="image-preview" class="image-preview"
                                                 style="background-image: url('{{ asset('img/murid/' . $murid->gambar) }}') ; background-size: cover;
@@ -142,4 +150,22 @@
     <script src="{{ asset('js/page/features-post-create.js') }}"></script>
 
     <!-- Page Specific JS File -->
+
+    <!-- Password Toggle Script -->
+    <script>
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const passwordField = document.getElementById('password');
+            const passwordIcon = document.getElementById('togglePasswordIcon');
+
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                passwordIcon.classList.remove('fa-eye');
+                passwordIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                passwordIcon.classList.remove('fa-eye-slash');
+                passwordIcon.classList.add('fa-eye');
+            }
+        });
+    </script>
 @endpush

@@ -47,8 +47,8 @@
                                                         action="{{ url('/admin/gurus/' . $item->id) }}">
                                                         {{ csrf_field() }}
                                                         @method('DELETE')
-                                                        <button class="btn btn-danger btn-sm"
-                                                            onclick="return confirm('Yakin ingin menghapus guru ini?')">Hapus</button>
+                                                        <button type="button" class="btn btn-danger btn-sm btn-delete"
+                                                            data-message='Apakah Anda yakin ingin menghapus guru "{{ $item->nama_lengkap }}"?'>Hapus</button>
                                                     </form>
                                                 </td>
                                             </tr>

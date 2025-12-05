@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return array(
   'Laravel' => 'Laravel',
   'Home' => 'Rumah',
   'Log in' => 'Masuk',
@@ -106,7 +106,7 @@ return array (
                             ujian.',
   'Mulai' => 'Mulai',
   'Publish' => 'Menerbitkan',
-  'Login &mdash; Stisla' => 'Masuk — Stistla',
+  'Login Sikola App' => 'Masuk — Stistla',
   'Please fill in your email' => 'Silakan isi email Anda',
   'Password' => 'Kata sandi',
   'please fill in your password' => 'silakan isi kata sandi Anda',

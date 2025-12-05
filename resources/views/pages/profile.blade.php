@@ -5,7 +5,7 @@
 @push('style')
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ asset('library/summernote/dist/summernote-bs4.css') }}">
-    <link rel="stylesheet" href="{{ asset('library/bootstrap-social/assets/css/bootstrap.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('library/bootstrap-social/assets/css/bootstrap.css') }}"> --}}
 @endpush
 
 @section('main')
@@ -18,11 +18,23 @@
                     <div class="breadcrumb-item">{{ __('Profile') }}</div>
                 </div>
             </div>
+            @include('components.alerts')
+
             <div class="section-body">
                 <h2 class="section-title text-capitalize">Hi, {{ $user->nama_lengkap }}!</h2>
                 <p class="section-lead">
                     Change information about yourself on this page.
                 </p>
+
+                {{-- @if (session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif --}}
+
 
                 <div class="row mt-sm-4">
                     <div class="col-12 col-md-12 col-lg-5">
@@ -46,7 +58,7 @@
                     <div class="col-12 col-md-12 col-lg-7">
                         <div class="card">
                             <form class="form"
-                                action="{{ Session('user')['role'] == 'Guru' ? '/teacher/profile' : '/student/profile' }}"
+                                action="{{ (Session('user')['role'] == 'Guru' ? '/teacher/profile' : Session('user')['role'] == 'Admin') ? '/admin/profile' : '/student/profile' }}"
                                 method="post" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')

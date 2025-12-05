@@ -41,8 +41,12 @@ class UserController extends Controller
         $user->save();
 
         // provide a flash message for the profile update (CUD success)
+        // session()->flash('success', 'Profil berhasil diperbarui.');
         session()->flash('success', 'Profil berhasil diperbarui.');
+
         return view('pages.profile', compact('user'));
+        // return redirect(url('/admin/profile'));
+
 
 
         // $newest_notifikasi = Notifikasi::where('role', '=', 'Murid')->orderBy('id', 'desc')->first();
@@ -51,7 +55,7 @@ class UserController extends Controller
 
 
         // dd($data);
-        return view('pages.dashboard', compact('newest_notifikasi'));
+        // return view('pages.dashboard', compact('newest_notifikasi'));
     }
 
     public function forgot()
@@ -190,8 +194,80 @@ class UserController extends Controller
     {
         $user = User::where('id', $id)->where('role', 'Guru')->first();
         if ($user) {
+            // Delete all related data in proper order to avoid foreign key constraints
+
+            // 1. Delete user answers through quiz attempts
+            // \App\Models\UserAnswers::whereHas('quizAttempts', function ($q) use ($id) {
+            //     $q->where('user_id', $id);
+            // })->delete();
+
+            // // 2. Delete quiz attempts for this user
+            // \App\Models\QuizAttempts::where('user_id', $id)->delete();
+
+            // // 3. Delete assignment submissions for this user
+            // \App\Models\AssignmentSubmission::where('user_id', $id)->delete();
+
+            // // 4. Delete lesson attendances for this user
+            // \App\Models\LessonAttendance::where('user_id', $id)->delete();
+
+            // 5. Delete activity logs for this user
+            // \App\Models\ActivityLog::where('user_id', $id)->delete();
+
+            // 6. Delete notifications for this user
+            // \App\Models\Notifikasi::whereHas('user_id', $id)->delete();
+
+            // 7. For lessons owned by this guru, we need to handle cascading deletes
+            // $lessons = \App\Models\Lesson::where('user_id', $id)->get();
+            // foreach ($lessons as $lesson) {
+            //     // Delete lesson schedules and their attendances
+            //     $lessonSchedules = \App\Models\LessonSchedule::where('lesson_id', $lesson->id)->get();
+            //     foreach ($lessonSchedules as $schedule) {
+            //         \App\Models\LessonAttendance::where('lesson_schedule_id', $schedule->id)->delete();
+            //         $schedule->delete();
+            //     }
+
+            //     // Delete materi and their related data
+            //     $materis = \App\Models\Materi::where('lesson_id', $lesson->id)->get();
+            //     foreach ($materis as $materi) {
+            //         // Delete assignments related to this materi
+            //         $assignments = \App\Models\Assignment::where('materi_id', $materi->id)->get();
+            //         foreach ($assignments as $assignment) {
+            //             \App\Models\AssignmentSubmission::where('assignment_id', $assignment->id)->delete();
+            //             $assignment->delete();
+            //         }
+
+            //         // Delete quizzes related to this materi
+            //         $quizzes = \App\Models\Quizzes::where('materi_id', $materi->id)->get();
+            //         foreach ($quizzes as $quiz) {
+            //             // Delete user answers for quiz questions
+            //             $questions = \App\Models\Questions::where('quizzes_id', $quiz->id)->get();
+            //             foreach ($questions as $question) {
+            //                 \App\Models\UserAnswers::where('question_id', $question->id)->delete();
+            //                 $question->delete();
+            //             }
+
+            //             // Delete quiz attempts for this quiz
+            //             \App\Models\QuizAttempts::where('quizzes_id', $quiz->id)->delete();
+            //             $quiz->delete();
+            //         }
+
+            //         // Delete activity logs for this materi
+            //         \App\Models\ActivityLog::where('materi_id', $materi->id)->delete();
+
+            //         // Delete the materi itself
+            //         $materi->delete();
+            //     }
+
+            //     // Delete the lesson
+            //     $lesson->delete();
+            // }
+
+            // 8. Finally, delete the user
             $user->delete();
-            session()->flash('success', 'Guru berhasil dihapus.');
+
+            session()->flash('success', 'Guru dan semua data terkaitnya berhasil dihapus.');
+        } else {
+            session()->flash('error', 'Guru tidak ditemukan.');
         }
         return redirect(url('/admin/gurus'));
     }

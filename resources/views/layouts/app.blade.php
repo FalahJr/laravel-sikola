@@ -71,6 +71,29 @@
 
     @stack('scripts')
 
+    <!-- Auto-dismiss alerts after 3 seconds -->
+    <script>
+        $(document).ready(function() {
+            if ($('.alert').length > 0) {
+                setTimeout(function() {
+                    $('.alert').fadeOut('slow', function() {
+                        // Clear session alerts after fadeout
+                        $.ajax({
+                            url: '{{ url('/clear-session-alerts') }}',
+                            type: 'POST',
+                            data: {
+                                _token: '{{ csrf_token() }}'
+                            },
+                            success: function() {
+                                console.log('Session alerts cleared');
+                            }
+                        });
+                    });
+                }, 3000);
+            }
+        });
+    </script>
+
     <!-- Template JS File -->
     <script src="{{ asset('js/scripts.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>

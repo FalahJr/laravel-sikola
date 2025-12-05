@@ -21,6 +21,11 @@
                         <a class="nav-link" href="{{ url('student/home') }}"><i class="fas fa-th-large"></i>
                             <span>Beranda</span></a>
                     </li>
+                    <li class="{{ Request::is('student/lesson-schedules*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('student/lesson-schedules') }}"><i
+                                class="fas fa-calendar-alt"></i>
+                            <span>Jadwal Pelajaran</span></a>
+                    </li>
                     <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('student/materi') }}"><i class="fas fa-home"></i>
                             <span>Materi</span></a>
@@ -32,11 +37,6 @@
                     <li class="{{ Request::is('assignment') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('student/assignment') }}"><i class="fas fa-file-pen"></i>
                             <span>Tugas</span></a>
-                    </li>
-                    <li class="{{ Request::is('student/lesson-schedules*') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('student/lesson-schedules') }}"><i
-                                class="fas fa-calendar-alt"></i>
-                            <span>Jadwal Pelajaran</span></a>
                     </li>
                 @endif
                 {{-- <li class="menu-header">{{ __('Dashboard') }}</li> --}}
@@ -78,15 +78,16 @@
                         <a class="nav-link" href="{{ url('admin/lessons') }}"><i class="fas fa-book"></i>
                             <span>Manajemen Pelajaran</span></a>
                     </li>
-                    <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('admin/materi') }}"><i class="fas fa-home"></i>
-                            <span>Materi</span></a>
-                    </li>
                     <li class="{{ Request::is('lesson-schedules') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('admin/lesson-schedules') }}"><i
                                 class="fas fa-calendar-alt"></i>
                             <span>Jadwal Pelajaran</span></a>
                     </li>
+                    <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('admin/materi') }}"><i class="fas fa-home"></i>
+                            <span>Materi</span></a>
+                    </li>
+
                     {{-- <li class="nav-item dropdown">
                         <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                                 class="fas fa-columns"></i>
@@ -125,6 +126,11 @@
                         <a class="nav-link" href="{{ url('teacher/materi') }}"><i class="fas fa-home"></i>
                             <span>Materi</span></a>
                     </li>
+                    <li class="{{ Request::is('lesson-schedules') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('teacher/lesson-schedules') }}"><i
+                                class="fas fa-calendar-alt"></i>
+                            <span>Jadwal Pelajaran</span></a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                                 class="fas fa-columns"></i>
@@ -138,11 +144,6 @@
                             </li>
 
                         </ul>
-                    </li>
-                    <li class="{{ Request::is('lesson-schedules') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('teacher/lesson-schedules') }}"><i
-                                class="fas fa-calendar-alt"></i>
-                            <span>Jadwal Pelajaran</span></a>
                     </li>
                 @endif
 

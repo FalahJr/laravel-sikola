@@ -74,7 +74,7 @@
                                         <div class="col-sm-12 col-md-7">
                                             <div id="image-preview" class="image-preview">
                                                 <label for="image-upload" id="image-label">{{ __('Pilih Gambar') }}</label>
-                                                <input type="file" name="gambar" id="image-upload" />
+                                                <input type="file" name="gambar" id="image-upload" accept="image/*" />
                                             </div>
                                         </div>
                                     </div>
@@ -90,7 +90,7 @@
 
                                         <label
                                             class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Tanggal
-                                                                                                                                                                                                                            Mulai') }}</label>
+                                                                                                                                                                                                                                                                        Mulai') }}</label>
                                         <div class="col-sm-12 col-md-7">
 
                                             <input type="text" class="form-control datepicker" name="start_date">
@@ -100,7 +100,7 @@
 
                                         <label
                                             class="col-form-label text-md-right col-12 col-md-3 col-lg-3">{{ __('Tanggal
-                                                                                                                                                                                                                            Selesai') }}</label>
+                                                                                                                                                                                                                                                                        Selesai') }}</label>
                                         <div class="col-sm-12 col-md-7">
 
                                             <input type="text" class="form-control datepicker" name="end_date">

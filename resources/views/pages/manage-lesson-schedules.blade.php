@@ -77,8 +77,8 @@
                                                         action="{{ Session('user')['role'] == 'Guru' ? url('/teacher/lesson-schedules/' . $list->id) : url('/admin/lesson-schedules/' . $list->id) }}">
                                                         {{ csrf_field() }}
                                                         @method('DELETE')
-                                                        <button class="btn btn-danger btn-sm"
-                                                            onclick="return confirm('Anda yakin ingin menghapus jadwal ini?')">
+                                                        <button type="button" class="btn btn-danger btn-sm btn-delete"
+                                                            data-message='Apakah Anda yakin ingin menghapus jadwal "{{ $list->lesson_name }}" pada hari {{ $list->day }}?'>
                                                             Hapus
                                                         </button>
                                                     </form>

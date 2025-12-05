@@ -179,7 +179,8 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body text-center">
-                                <a href="/teacher/classes/{{ $class->id }}/edit" class="btn btn-warning">
+                                <a href="{{ Session('user')['role'] == 'Guru' ? url('/teacher/classes/' . $class->id . '/edit') : url('/admin/classes/' . $class->id . '/edit') }}"
+                                    class="btn btn-warning">
                                     <i class="fa fa-edit"></i> Ubah Kelas
                                 </a>
                                 <a href="/teacher/classes" class="btn btn-secondary">

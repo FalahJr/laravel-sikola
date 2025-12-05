@@ -70,12 +70,13 @@ use Illuminate\Support\Str;
                                                     {{-- {{ $list->nama_lengkap }} --}}
                                                 </td>
                                                 <td><a href="assignment/{{ $list->id }}/edit"
-                                                        class="btn btn-secondary">{{ __('Detail') }}</a>
+                                                        class="btn btn-secondary">{{ __('Ubah') }}</a>
                                                     <form class="ml-auto mr-auto mt-3" method="POST"
                                                         action="/admin/assignment/{{ $list->id }}">
                                                         {{ csrf_field() }}
                                                         @method('DELETE')
-                                                        <button class="btn btn-danger">{{ __('Hapus') }}</button>
+                                                        <button type="button" class="btn btn-danger btn-delete"
+                                                            data-message='Apakah Anda yakin ingin menghapus tugas "{{ $list->judul }}"?'>{{ __('Hapus') }}</button>
                                                     </form>
                                                 </td>
                                             </tr>

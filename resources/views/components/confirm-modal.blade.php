@@ -56,8 +56,20 @@
                 formToSubmit = target.closest('form');
                 hrefToNavigate = target.getAttribute('data-href') || null;
 
+                // determine action type and update button accordingly
+                const confirmButton = document.getElementById('confirmModalYes');
+                const isDelete = target.classList.contains('btn-delete');
+
+                if (isDelete) {
+                    confirmButton.textContent = 'Ya, Hapus';
+                    confirmButton.className = 'btn btn-danger';
+                } else {
+                    confirmButton.textContent = 'Ya, Lanjutkan';
+                    confirmButton.className = 'btn btn-primary';
+                }
+
                 // message can be customized via data-message attribute
-                const defaultMsg = target.classList.contains('btn-delete') ?
+                const defaultMsg = isDelete ?
                     'Apakah Anda yakin ingin menghapus data ini?' :
                     'Apakah Anda yakin ingin melanjutkan aksi ini?';
                 const message = target.getAttribute('data-message') || defaultMsg;

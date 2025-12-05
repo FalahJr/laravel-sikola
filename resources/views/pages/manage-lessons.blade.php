@@ -64,8 +64,8 @@
                                                         action="/admin/lessons/{{ $list->id }}">
                                                         {{ csrf_field() }}
                                                         @method('DELETE')
-                                                        <button class="btn btn-danger"
-                                                            onclick="return confirm('Anda yakin ingin menghapus pelajaran ini?')">
+                                                        <button type="button" class="btn btn-danger btn-delete"
+                                                            data-message='Apakah Anda yakin ingin menghapus pelajaran "{{ $list->name }}"?'>
                                                             Hapus
                                                         </button>
                                                     </form>

@@ -68,10 +68,11 @@
                                 <a href="{{ url('/admin/manage-student/' . $murid->id . '/edit') }}"
                                     class="btn btn-warning">Ubah</a>
                                 <form action="{{ url('/admin/manage-student/' . $murid->id) }}" method="POST"
-                                    class="d-inline" onsubmit="return confirm('Yakin ingin menghapus murid ini?')">
+                                    class="d-inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger">Hapus</button>
+                                    <button type="button" class="btn btn-danger btn-delete"
+                                        data-message='Apakah Anda yakin ingin menghapus murid "{{ $murid->nama_lengkap }}"?'>Hapus</button>
                                 </form>
                                 <a href="{{ url('/admin/manage-student') }}" class="btn btn-secondary">Kembali</a>
                             </div>

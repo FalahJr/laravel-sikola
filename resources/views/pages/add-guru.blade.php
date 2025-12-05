@@ -51,12 +51,29 @@
 
                                     <div class="form-group">
                                         <label>Password</label>
-                                        <input type="password" name="password" class="form-control" required>
+                                        <div class="input-group">
+                                            <input type="password" name="password" id="password" class="form-control"
+                                                required>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text" id="togglePassword" style="cursor:pointer;">
+                                                    <i class="fa fa-eye" id="togglePasswordIcon"></i>
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Konfirmasi Password</label>
-                                        <input type="password" name="password_confirmation" class="form-control" required>
+                                        <div class="input-group">
+                                            <input type="password" name="password_confirmation" id="password_confirmation"
+                                                class="form-control" required>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text" id="togglePasswordConfirm"
+                                                    style="cursor:pointer;">
+                                                    <i class="fa fa-eye" id="togglePasswordConfirmIcon"></i>
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <button class="btn btn-primary">Simpan</button>
@@ -71,3 +88,39 @@
         </section>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        // Toggle password visibility for password field
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const passwordField = document.getElementById('password');
+            const passwordIcon = document.getElementById('togglePasswordIcon');
+
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                passwordIcon.classList.remove('fa-eye');
+                passwordIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                passwordIcon.classList.remove('fa-eye-slash');
+                passwordIcon.classList.add('fa-eye');
+            }
+        });
+
+        // Toggle password visibility for confirmation field
+        document.getElementById('togglePasswordConfirm').addEventListener('click', function() {
+            const passwordField = document.getElementById('password_confirmation');
+            const passwordIcon = document.getElementById('togglePasswordConfirmIcon');
+
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                passwordIcon.classList.remove('fa-eye');
+                passwordIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                passwordIcon.classList.remove('fa-eye-slash');
+                passwordIcon.classList.add('fa-eye');
+            }
+        });
+    </script>
+@endpush

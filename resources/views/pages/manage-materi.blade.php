@@ -67,8 +67,8 @@
                                                             action="/admin/materi/{{ $materi->id }}">
                                                             {{ csrf_field() }}
                                                             @method('DELETE')
-                                                            <button class="btn btn-danger btn-sm"
-                                                                onclick="return confirm('Anda yakin ingin menghapus materi ini?')">
+                                                            <button type="button" class="btn btn-danger btn-sm btn-delete"
+                                                                data-message='Apakah Anda yakin ingin menghapus materi "{{ $materi->judul }}"?'>
                                                                 Hapus
                                                             </button>
                                                         </form>

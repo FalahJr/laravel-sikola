@@ -50,6 +50,12 @@ Route::post('/reset-password-action', [UserController::class, 'reset_action']);
 
 Route::post('/login-action', [LoginController::class, 'login_action']);
 
+// Clear session alerts (AJAX route)
+Route::post('/clear-session-alerts', function () {
+    session()->forget(['success', 'error', 'warning', 'info']);
+    return response()->json(['status' => 'success']);
+});
+
 // Murid
 Route::middleware(['authMurid'])->prefix('student')->group(function () {
     // Route::get('/home', function () {

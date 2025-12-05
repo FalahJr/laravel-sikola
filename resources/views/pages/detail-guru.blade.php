@@ -56,11 +56,11 @@
                             </div>
                             <div class="card-footer text-right">
                                 <a href="{{ url('/admin/gurus/' . $user->id . '/edit') }}" class="btn btn-warning">Ubah</a>
-                                <form action="{{ url('/admin/gurus/' . $user->id) }}" method="POST" class="d-inline"
-                                    onsubmit="return confirm('Yakin ingin menghapus guru ini?')">
+                                <form action="{{ url('/admin/gurus/' . $user->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger">Hapus</button>
+                                    <button type="button" class="btn btn-danger btn-delete"
+                                        data-message='Apakah Anda yakin ingin menghapus guru "{{ $user->nama_lengkap }}"?'>Hapus</button>
                                 </form>
                                 <a href="{{ url('/admin/gurus') }}" class="btn btn-secondary">Kembali</a>
                             </div>
