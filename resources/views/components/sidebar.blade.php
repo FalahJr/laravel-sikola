@@ -17,7 +17,7 @@
             <ul class="sidebar-menu">
 
                 @if (Session('user')['role'] == 'Murid')
-                    <li class="{{ Request::is('home') ? 'active' : '' }}">
+                    <li class="{{ Request::is('student/home') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('student/home') }}"><i class="fas fa-th-large"></i>
                             <span>Beranda</span></a>
                     </li>
@@ -26,15 +26,15 @@
                                 class="fas fa-calendar-alt"></i>
                             <span>Jadwal Pelajaran</span></a>
                     </li>
-                    <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('student/materi') }}"><i class="fas fa-home"></i>
+                    <li class="{{ Request::is('student/materi*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('student/materi') }}"><i class="fas fa-book-open"></i>
                             <span>Materi</span></a>
                     </li>
-                    {{-- <li class="{{ Request::is('quizzes') ? 'active' : '' }}">
+                    {{-- <li class="{{ Request::is('student/quizzes*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('student/quizzes') }}"><i class="fas fa-file-pen"></i>
                             <span>{{ __('Quiz') }}</span></a>
                     </li> --}}
-                    <li class="{{ Request::is('assignment') ? 'active' : '' }}">
+                    <li class="{{ Request::is('student/assignment*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('student/assignment') }}"><i class="fas fa-file-pen"></i>
                             <span>Tugas</span></a>
                     </li>
@@ -42,27 +42,29 @@
                 {{-- <li class="menu-header">{{ __('Dashboard') }}</li> --}}
 
                 @if (Session('user')['role'] == 'Admin')
-                    <li class="{{ Request::is('/admin/home') ? 'active' : '' }}">
+                    <li class="{{ Request::is('admin/home') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('admin/home') }}"><i class="fas fa-th-large"></i>
                             <span>Beranda</span></a>
                     </li>
 
-                    {{-- <li class="{{ Request::is('quizzes/score') ? 'active' : '' }}">
+                    {{-- <li class="{{ Request::is('admin/quiz*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('admin/quiz') }}"><i class="fas fa-file-pen"></i>
                             <span>{{ __('Result Quiz') }}</span></a>
                     </li> --}}
-                    <li class="nav-item dropdown">
+                    <li
+                        class="nav-item dropdown {{ Request::is('admin/gurus*') || Request::is('admin/manage-student*') ? 'active' : '' }}">
                         <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
-                                class="fas fa-columns"></i>
+                                class="fas fa-users"></i>
                             <span>{{ __('Manajemen Pengguna') }}</span></a>
                         <ul class="dropdown-menu">
-                            <li class="{{ Request::is('gurus') ? 'active' : '' }}">
-                                <a class="nav-link" href="{{ url('admin/gurus') }}"><i class="fas fa-user"></i>
+                            <li class="{{ Request::is('admin/gurus*') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ url('admin/gurus') }}"><i
+                                        class="fas fa-chalkboard-teacher"></i>
                                     <span>Manajemen Guru</span></a>
                             </li>
-                            <li class="{{ Request::is('manage-student') ? 'active' : '' }}">
+                            <li class="{{ Request::is('admin/manage-student*') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ url('admin/manage-student') }}"><i
-                                        class="fas fa-user"></i>
+                                        class="fas fa-user-graduate"></i>
                                     <span>Manajemen Siswa</span></a>
                             </li>
 
@@ -70,45 +72,47 @@
                         </ul>
                     </li>
 
-                    <li class="{{ Request::is('classes') ? 'active' : '' }}">
+                    <li class="{{ Request::is('admin/classes*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('admin/classes') }}"><i class="fas fa-school"></i>
                             <span>Manajemen Kelas</span></a>
                     </li>
-                    <li class="{{ Request::is('lessons') ? 'active' : '' }}">
+                    <li class="{{ Request::is('admin/lessons') || Request::is('admin/add-lesson') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('admin/lessons') }}"><i class="fas fa-book"></i>
                             <span>Manajemen Pelajaran</span></a>
                     </li>
-                    <li class="{{ Request::is('lesson-schedules') ? 'active' : '' }}">
+                    <li class="{{ Request::is('admin/lesson-schedules*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('admin/lesson-schedules') }}"><i
                                 class="fas fa-calendar-alt"></i>
                             <span>Jadwal Pelajaran</span></a>
                     </li>
-                    <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('admin/materi') }}"><i class="fas fa-home"></i>
+                    <li class="{{ Request::is('admin/materi*') || Request::is('admin/add-materi') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('admin/materi') }}"><i class="fas fa-book-open"></i>
                             <span>Materi</span></a>
                     </li>
 
-                    {{-- <li class="nav-item dropdown">
+                    {{-- <li class="nav-item dropdown {{ Request::is('admin/quizzes*') ? 'active' : '' }}">
                         <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
-                                class="fas fa-columns"></i>
+                                class="fas fa-clipboard-question"></i>
                             <span>{{ __('Manage Quiz') }}</span></a>
                         <ul class="dropdown-menu">
-                            <li class="{{ Request::is('admin/quizzes') ? 'active' : '' }}">
+                            <li class="{{ Request::is('admin/quizzes*') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ url('admin/quizzes') }}">{{ __('Quiz') }}</a>
                             </li>
                         
 
                         </ul>
                     </li> --}}
-                    <li class="nav-item dropdown">
+                    <li
+                        class="nav-item dropdown {{ Request::is('admin/assignment*') || Request::is('admin/assignments/submission*') ? 'active' : '' }}">
                         <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
-                                class="fas fa-columns"></i>
+                                class="fas fa-tasks"></i>
                             <span>Tugas</span></a>
                         <ul class="dropdown-menu">
-                            <li class="{{ Request::is('admin/assignment') ? 'active' : '' }}">
+                            <li
+                                class="{{ Request::is('admin/assignment*') && !Request::is('admin/assignments/submission*') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ url('admin/assignment') }}">Manajemen Tugas</a>
                             </li>
-                            <li class="{{ Request::is('submission/') ? 'active' : '' }}">
+                            <li class="{{ Request::is('admin/assignments/submission*') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ url('admin/assignments/submission/') }}">Hasil</a>
                             </li>
 
@@ -118,28 +122,31 @@
 
 
                 @if (Session('user')['role'] == 'Guru')
-                    <li class="{{ Request::is('/teacher/home') ? 'active' : '' }}">
+                    <li class="{{ Request::is('teacher/home') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('teacher/home') }}"><i class="fas fa-th-large"></i>
                             <span>Beranda</span></a>
                     </li>
-                    <li class="{{ Request::is('blank-page') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('teacher/materi') }}"><i class="fas fa-home"></i>
+                    <li
+                        class="{{ Request::is('teacher/materi*') || Request::is('teacher/add-materi') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('teacher/materi') }}"><i class="fas fa-book-open"></i>
                             <span>Materi</span></a>
                     </li>
-                    <li class="{{ Request::is('lesson-schedules') ? 'active' : '' }}">
+                    <li class="{{ Request::is('teacher/lesson-schedules*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('teacher/lesson-schedules') }}"><i
                                 class="fas fa-calendar-alt"></i>
                             <span>Jadwal Pelajaran</span></a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li
+                        class="nav-item dropdown {{ Request::is('teacher/assignment*') || Request::is('teacher/assignments/submission*') ? 'active' : '' }}">
                         <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
-                                class="fas fa-columns"></i>
+                                class="fas fa-tasks"></i>
                             <span>Tugas</span></a>
                         <ul class="dropdown-menu">
-                            <li class="{{ Request::is('teacher/assignment') ? 'active' : '' }}">
+                            <li
+                                class="{{ Request::is('teacher/assignment*') && !Request::is('teacher/assignments/submission*') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ url('teacher/assignment') }}">Manajemen Tugas</a>
                             </li>
-                            <li class="{{ Request::is('submission/') ? 'active' : '' }}">
+                            <li class="{{ Request::is('teacher/assignments/submission*') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ url('teacher/assignments/submission/') }}">Hasil</a>
                             </li>
 
